@@ -6,7 +6,7 @@ public class Companhia {
     // Atributos (Propriedades)
     private final String CNPJ;
     private String nome;
-    private ArrayList<Cidade> listaCidades;     // lista de cidades em que a companhia atua
+    private ArrayList<Cidade> listaCidades;     // Lista de cidades em que a companhia atua
     private ArrayList<Conexao> listaConexoes;   // Lista de conexões que existem entre Aeroporto-Aeroporto
     private ArrayList<Aviao> listaAvioes;       // Lista de aviões da companhia
     private ArrayList<Cliente> listaClientes;   // Lista de clientes cadastrados na companhia
@@ -144,7 +144,7 @@ public class Companhia {
         Retorna o avião se ele estiver na lista.
         Caso contrário, retorna null. */
         for (Aviao a: listaAvioes) 
-            if (a.getSerie().equals(nome))
+            if (a.getSerie().equals(serie))
                 return a;
         return null;
     }
