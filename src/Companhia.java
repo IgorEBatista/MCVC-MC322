@@ -24,7 +24,8 @@ public class Companhia {
 
 
     // Métodos
-    // - Getters (acessors) e Setters (mutators)
+
+    // - Getters e Setters
 
     public String getNome() {
         return nome;
@@ -88,6 +89,13 @@ public class Companhia {
         return null;
     }
 
+    public String listarCidades() {
+        /* Retorna uma string com as cidades onde a companhia atua.
+        TODO: Implementar */
+        String lista = "Lista de Cidades:\n";
+        return lista;
+    }
+
     // -- Conexao
 
     public boolean adicionarConexao(Conexao conexao) {
@@ -112,7 +120,20 @@ public class Companhia {
         return false;
     }
 
-    // buscarConexao()?
+    public ArrayList<ArrayList<Conexao>> verificarConexoes(Cidade A, Cidade B) {
+        /* Retorna uma lista de todas as conexões entre as cidades A e B.
+        Ou seja, A e B podem não estar conectadas diretamente, mas pode
+        haver um caminho para elas.
+        TODO: Implementar um algoritmo de grafos. */
+        return null;
+    }
+
+    public String listarConexoes() {
+        /* Retorna uma string com as conexões que a companhia possui.
+        TODO: Implementar */
+        String lista = "Lista de Conexoes:\n";
+        return lista;
+    }
 
     // -- Aviao
 
@@ -147,6 +168,13 @@ public class Companhia {
             if (a.getSerie().equals(serie))
                 return a;
         return null;
+    }
+
+    public String listarAvioes() {
+        /* Retorna uma string com os aviões que a companhia possui.
+        TODO: Implementar */
+        String lista = "Lista de Avioes:\n";
+        return lista;
     }
 
     // -- Cliente
@@ -195,12 +223,26 @@ public class Companhia {
         return null;
     }
 
+    public String listarClientes() {
+        /* Retorna uma string com os clientes que a companhia possui.
+        TODO: Implementar */
+        String lista = "Lista de Clientes:\n";
+        return lista;
+    }
+
     // -- Análise de vendas
 
-    public ArrayList<Voo> getVoosComuns() {
+    public ArrayList<Voo> getTopVoos() {
         /* Retorna uma lista dos voos mais comuns.
         TODO: Implementar */
         return null;
+    }
+
+    public String listarTopVoos() {
+        /* Retorna uma string com os voos mais comuns da companhia.
+        TODO: Implementar */
+        String lista = "Voos mais comuns:\n";
+        return lista;
     }
 
     public ArrayList<Cidade> getTopOrigens() {
@@ -210,10 +252,24 @@ public class Companhia {
         return null;
     }
 
+    public String listarTopOrigens() {
+        /* Retorna uma string com as origens mais comuns da companhia. 
+        TODO: Implementar */
+        String lista = "Origens mais comuns:\n";
+        return lista;
+    } // Estranho
+
     public ArrayList<Cidade> getTopDestinos() {
         /* Retorna uma lista dos destinos mais comuns.
         TODO: Implementar */
         return null;
+    }
+
+    public String listarTopDestinos() {
+        /* Retorna uma string com a lista dos destinos mais comuns da companhia.
+        TODO: Implementar */
+        String lista = "Destinos mais comuns:\n";
+        return lista;
     }
 
     public double calcularFaturamento() {
@@ -227,5 +283,24 @@ public class Companhia {
         }
         return faturamento;
     }
-    
+
+    public ArrayList<Trajeto> getTrajetos(Cidade origem, Cidade destino) {
+        ArrayList<Trajeto> trajetos = new ArrayList<Trajeto>();
+        /* Calcula os possíveis trajetos para viajar da origem para o destino.
+        TODO: Implementar */
+        return trajetos;
+    }
+
+    public String listarTrajetos(Cidade origem, Cidade destino) {
+        /* Calcula os possíveis trajetos para viajar da origem para o destino.
+        TODO: Implementar */
+        String lista = "Lista de trajetos:\n";
+        return lista;
+    }
+
+    @Override
+    public String toString() {
+        return "CNPJ: " + this.CNPJ + "\n" + 
+               "Nome: " + this.nome + "\n";
+    }
 }
