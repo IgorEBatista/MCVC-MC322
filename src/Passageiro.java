@@ -3,86 +3,67 @@ import java.util.Calendar;
 
 public class Passageiro {
     
-    private static int serie = 0;
-    private final int ID;
-    private Cliente comprador;
-    private Voo voo;
-    private double preco;
-    private ArrayList<Caminho> escalas;
-    private Calendar data;
+    public static final double pesoMedio = 70.0; //média de peso 70 kg
+    private final String  CPF;
+    private String nome;
+    private String telefoneEmergencia;
+    private Passagem passagem;
+    private double pesoBagagem;
+    
+    //Construtor
 
-    //Constructor
-    public Passageiro(Cliente comprador, Voo voo, double preco, Calendar data) {
-        this.ID = serie;
-        this.comprador = comprador;
-        this.voo = voo;
-        this.preco = preco;
-        this.escalas = new ArrayList<Caminho>();
-        this.data = data;
-
-        serie++;
+    public Passageiro(String CPF, String nome, String telefoneEmergencia, Passagem passagem, double pesoBagagem) {
+        this.CPF = CPF;
+        this.nome = nome;
+        this.telefoneEmergencia = telefoneEmergencia;
+        this.passagem = passagem;
+        this.pesoBagagem = pesoBagagem;
     }
+    
+    
+    //Sets e Gets
 
-    // Sets e Gets
-    public int getID() {
-        return ID;
-    }
-
-    public Cliente getComprador() {
-        return comprador;
+    public String getCPF() {
+        return CPF;
     }
 
-    public void setComprador(Cliente comprador) {
-        this.comprador = comprador;
+    public String getNome() {
+        return nome;
+    }
+    
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
-    public Voo getVoo() {
-        return voo;
+    public String getTelefoneEmergencia() {
+        return telefoneEmergencia;
     }
 
-    public void setVoo(Voo voo) {
-        this.voo = voo;
+    public void setTelefoneEmergencia(String telefoneEmergencia) {
+        this.telefoneEmergencia = telefoneEmergencia;
     }
 
-    public double getPreco() {
-        return preco;
+    public Passagem getPassagem() {
+        return passagem;
     }
 
-    public void setPreco(double preco) {
-        this.preco = preco;
+    public void setPassagem(Passagem passagem) {
+        this.passagem = passagem;
     }
 
-    public ArrayList<Caminho> getEscalas() {
-        return escalas;
+    public double getPesoBagagem() {
+        return pesoBagagem;
     }
- 
-    public void setEscalas(ArrayList<Caminho> escalas) {
-        this.escalas = escalas;
+
+    public void setPesoBagagem(double pesoBagagem) {
+        this.pesoBagagem = pesoBagagem;
     }
- 
-    public Calendar getData() {
-        return data;
-    }
- 
-    public void setData(Calendar data) {
-        this.data = data;
-    }
+
 
     //Outros métodos
 
-    public double calculaPreco() {
-        ///TODO implementar metodo
-        throw new UnsupportedOperationException("Unimplemented method 'calculaPreco");
-    }
-
-    public ArrayList<Voo> listaEscalas(){
+    public Passageiro identificaPassageiro(String CPF) {
         //TODO implementar metodo
-        throw new UnsupportedOperationException("Unimplemented method 'listaEscalas'");
+        throw new UnsupportedOperationException("Unimplemented method 'identificaPassageiro'");
     }
-
-    public ArrayList<Aeroporto> calculaRota(){
-        //TODO implementar metodo
-        throw new UnsupportedOperationException("Unimplemented method 'calculaRota'");
-    }
-
 }
