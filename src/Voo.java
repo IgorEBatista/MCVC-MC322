@@ -72,4 +72,10 @@ public class Voo {
 
     // Criar os métodos de listar coisas
     // Criar toString
+    @Override
+    public String toString() {
+        return "Código do vôo: " + this.codigo + "\n" +
+               "Origem: " + this.origem.getCidade() + " - " + this.origem.getNome() + "\n" +
+               "Destino: " + this.destino.getCidade() + " - " + this.destino.getNome() + "\n";
+    }
 }
