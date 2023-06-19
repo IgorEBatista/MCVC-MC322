@@ -1,6 +1,3 @@
-import java.util.ArrayList;
-import java.util.Calendar;
-
 public class Passageiro {
     
     public static final double pesoMedio = 70.0; //média de peso 70 kg
