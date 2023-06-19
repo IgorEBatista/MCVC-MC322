@@ -2,7 +2,7 @@ public class AviaoCargueiro extends Aviao{
     
     String tipoCarga;
 
-    public AviaoCargueiro(int serie, String modelo, String marca, Aroporto local, double capacidade, double combustivel,
+    public AviaoCargueiro(String serie, String modelo, String marca, Aeroporto local, double capacidade, double combustivel,
             double consumoCombustivel, double envergadura, String tipoCarga) {
         super(serie, modelo, marca, local, capacidade, combustivel, consumoCombustivel, envergadura);
         this.tipoCarga = tipoCarga;

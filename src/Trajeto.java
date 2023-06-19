@@ -47,6 +47,8 @@ public class Trajeto {
     public boolean atualizarVoo(Voo antigo, Voo novo) {
         /* Substitui um voo do trajeto. */
         // TODO: Implementar
+        return false;
+
     }
 
     public Voo buscarVoo(int codigo) {
@@ -62,7 +64,7 @@ public class Trajeto {
 
     public String vizualizarTrajeto() {
         /* Retorna uma string com a rota e os voos do trajeto. */
-        String lista;
+        String lista = "";
         for (Voo v : listaVoos) {
             lista += (v.getOrigem()).getCidade() + " -> " + (v.getDestino()).getCidade() + 
                      ": Vôo " + v.getCodigo() + "\n";

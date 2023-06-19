@@ -24,14 +24,18 @@ public class Coordenada {
     }
 
     public static double calculaDistancia(Coordenada coordenada1, Coordenada coordenada2){
-
+        //TODO implementar metodo
+        return 0.0;
     }
 
     public static double calculaDistancia(Aeroporto aeroporto1, Aeroporto aeroporto2){
-
+        //TODO implementar metodo
+        return 0.0;
     }
 
     public String toString(){
+        //TODO implementar metodo
+        return null;
 
     }
 }
