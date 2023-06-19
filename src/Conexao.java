@@ -1,6 +1,5 @@
-//TODO fazer o comparable, que vai comparar qual conexão é mais curta
 
-public class Conexao implements comparable {
+public class Conexao implements Comparable {
     private double distancia_conexao;
     private Aeroporto aeroportoA_conexao;
     private Aeroporto aeroportoB_conexao;
@@ -11,6 +10,7 @@ public class Conexao implements comparable {
         this.aeroportoB_conexao = aeroportoB;
     }
 
+    //Gets e Sets
     public double getDistancia_conexao() {
         return distancia_conexao;
     }
@@ -35,7 +35,10 @@ public class Conexao implements comparable {
         this.aeroportoB_conexao = aeroportoB_conexao;
     }
 
+    //Outros metodos
     public String toString(){
+        //TODO implementar metodo
+        return null;
 
     }
 }

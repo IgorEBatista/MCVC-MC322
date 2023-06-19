@@ -1,54 +1,61 @@
 public class Aeroporto {
 
-    private String nome_aeroporto;
-    private Coordenada coordenada_aeroporto;
-    private Cidade cidade_aeroporto;
-    private double larguraPistaPouso_aeroporto;
+    private String nome;
+    private Coordenada coordenada;
+    private Cidade cidade;
+    private double larguraPistaPouso;
     
     public Aeroporto(String nome, Coordenada coordenada, Cidade cidade, double larguraPistaPouso){
-        this.nome_aeroporto = nome;
-        this.coordenada_aeroporto = coordenada;
-        this.cidade_aeroporto = cidade;
-        this.larguraPistaPouso_aeroporto = larguraPistaPouso;
+        this.nome = nome;
+        this.coordenada = coordenada;
+        this.cidade = cidade;
+        this.larguraPistaPouso = larguraPistaPouso;
     }
 
-    public String getNome_aeroporto() {
-        return nome_aeroporto;
+
+    //Gets e Sets
+    public String getNome() {
+        return nome;
     }
 
-    public void setNome_aeroporto(String nome_aeroporto) {
-        this.nome_aeroporto = nome_aeroporto;
+    public void setNome(String nome_aeroporto) {
+        this.nome = nome_aeroporto;
     }
 
-    public Coordenada getCoordenada_aeroporto() {
-        return coordenada_aeroporto;
+    public Coordenada getCoordenada() {
+        return coordenada;
     }
 
-    public void setCoordenada_aeroporto(Coordenada coordenada_aeroporto) {
-        this.coordenada_aeroporto = coordenada_aeroporto;
+    public void setCoordenada(Coordenada coordenada_aeroporto) {
+        this.coordenada = coordenada_aeroporto;
     }
 
-    public Cidade getCidade_aeroporto() {
-        return cidade_aeroporto;
+    public Cidade getCidade() {
+        return cidade;
     }
 
-    public void setCidade_aeroporto(Cidade cidade_aeroporto) {
-        this.cidade_aeroporto = cidade_aeroporto;
+    public void setCidade(Cidade cidade_aeroporto) {
+        this.cidade = cidade_aeroporto;
     }
 
-    public double getLarguraPistaPouso_aeroporto() {
-        return larguraPistaPouso_aeroporto;
+    public double getLarguraPistaPouso() {
+        return larguraPistaPouso;
     }
 
-    public void setLarguraPistaPouso_aeroporto(double larguraPistaPouso_aeroporto) {
-        this.larguraPistaPouso_aeroporto = larguraPistaPouso_aeroporto;
+    public void setLarguraPistaPouso(double larguraPistaPouso_aeroporto) {
+        this.larguraPistaPouso = larguraPistaPouso_aeroporto;
     }
 
+
+    //Outros métodos
     public boolean aceitaPouso(Aviao aviao){
-
+        //TODO implementar metodo
+        return false;
     }
     
     public String toString(){
+        //TODO implementar metodo
+        return null;
         
     }
 }

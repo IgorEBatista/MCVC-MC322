@@ -1,16 +1,16 @@
 abstract class Aviao{
 
-    final int serie;
+    final String serie;
     String modelo;
     String marca;
-    Aroporto local;
+    Aeroporto local;
     double capacidade;
     double pesoAtual;
     double combustivel;
     double consumoCombustivel;
     double envergadura;
 
-    public Aviao(int serie, String modelo, String marca, Aroporto local, double capacidade, double combustivel,
+    public Aviao(String serie, String modelo, String marca, Aeroporto local, double capacidade, double combustivel,
             double consumoCombustivel, double envergadura) {
         this.serie = serie;
         this.modelo = modelo;
@@ -43,6 +43,12 @@ abstract class Aviao{
         return false;
     }
 
+
+    //Gets e Sets
+    public String getSerie() {
+        return serie;
+    }
+
     public String getModelo() {
         return modelo;
     }
@@ -59,11 +65,11 @@ abstract class Aviao{
         this.marca = marca;
     }
 
-    public Aroporto getLocal() {
+    public Aeroporto getLocal() {
         return local;
     }
 
-    public void setLocal(Aroporto local) {
+    public void setLocal(Aeroporto local) {
         this.local = local;
     }
 
