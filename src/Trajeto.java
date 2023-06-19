@@ -1,7 +1,5 @@
 import java.util.ArrayList;
 
-// Essa classe ainda tá um pouco confusa, vou pensar melhor depois
-
 public class Trajeto {
     // Atributos (Propriedades)
     private ArrayList<Aeroporto> rota;   // Lista de aeroportos que compoem o trajeto
@@ -42,6 +40,7 @@ public class Trajeto {
             return false;   // Não é possível adicionar mais voos
         }
         return true;
+        // Pensar em uma maneira de colocar todos os voos em ordem
         // TODO: Terminar a implementação
     }
 

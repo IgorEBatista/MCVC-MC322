@@ -71,7 +71,7 @@ public class Voo {
     }
 
     // Criar os métodos de listar coisas
-    // Criar toString
+    
     @Override
     public String toString() {
         return "Código do vôo: " + this.codigo + "\n" +
