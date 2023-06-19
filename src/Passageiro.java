@@ -58,9 +58,4 @@ public class Passageiro {
 
 
     //Outros métodos
-
-    public Passageiro buscaPassageiro(String CPF) {
-        //TODO implementar metodo
-        throw new UnsupportedOperationException("Unimplemented method 'buscaPassageiro'");
-    }
 }

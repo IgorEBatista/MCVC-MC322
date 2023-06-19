@@ -70,6 +70,11 @@ public class Voo {
         return faturamento;
     }
 
+    public Passageiro buscaPassageiro(String CPF) {
+        //TODO implementar metodo
+        throw new UnsupportedOperationException("Unimplemented method 'buscaPassageiro'");
+    }
+
     // Criar os métodos de listar coisas
     
     @Override
