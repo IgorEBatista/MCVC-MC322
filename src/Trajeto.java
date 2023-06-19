@@ -30,15 +30,16 @@ public class Trajeto {
 
     public boolean adicionarVoo(Voo voo) {
         /* Adiciona um voo ao trajeto.
-        Se há n aeroportos no trajeto, deve haver n-1 voos.
-        Só faz sentido adicionar voos quando estamos criando uma passagem. */
+        Se há N aeroportos no trajeto, deve haver N-1 voos.
+        O trajeto pode ser usado por uma companhia para fazer as combinações de caminhos
+        entre uma cidade A e B.
+        Mas só faz sentido adicionar voos ao trajeto quando estamos criando uma passagem. */
         if (listaVoos.size() == 0) {
             listaVoos.add(voo);
             return true;
         }
         if (listaVoos.size() == rota.size() - 1) {
-            // Não é possível adicionar mais voos.
-            return false;
+            return false;   // Não é possível adicionar mais voos
         }
         return true;
         // TODO: Terminar a implementação
