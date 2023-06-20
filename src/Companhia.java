@@ -277,7 +277,7 @@ public class Companhia {
         o quanto a companhia já faturou com suas vendas de passagens. */
         double faturamento = 0;
         for (Cliente c : listaClientes) {
-            for (Passagem p : c.getHistoricoCompras()) {
+            for (Passagem p : c.getHistoricoDeCompras()) {
                 faturamento += p.getPreco();
             }
         }
