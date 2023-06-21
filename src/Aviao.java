@@ -5,7 +5,6 @@ abstract class Aviao{
     String marca;
     Aeroporto local;
     double capacidade;
-    double pesoAtual;
     double combustivel;
     double consumoCombustivel;
     double envergadura;
@@ -16,7 +15,6 @@ abstract class Aviao{
         this.modelo = modelo;
         this.marca = marca;
         this.local = local;
-        this.pesoAtual = 0;
         this.capacidade = capacidade;
         this.combustivel = combustivel;
         this.consumoCombustivel = consumoCombustivel;
@@ -96,15 +94,7 @@ abstract class Aviao{
     public void setEnvergadura(double envergadura) {
         this.envergadura = envergadura;
     }
-
-    public double getPesoAtual() {
-        return pesoAtual;
-    }
-
-    public void setPesoAtual(double pesoAtual) {
-        this.pesoAtual = pesoAtual;
-    }
-
+    
     public String toString(){
         return "Número de série: " + this.serie + "\nModelo: " + this.modelo + "\nLocal atual: " + this.local + "\nCapacidade: " + this.capacidade + "\nNível de combustível atual: " + this.combustivel + "\nConsumo de combustível(l/km): " + this.consumoCombustivel + "\nEnvergadura(m): " + this.envergadura;
     }
