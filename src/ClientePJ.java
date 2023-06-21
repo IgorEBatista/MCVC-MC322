@@ -1,5 +1,5 @@
 public class ClientePJ extends Cliente{
-    
+
     private final String CNPJ;
 
     // Construtor
@@ -11,6 +11,11 @@ public class ClientePJ extends Cliente{
     //Gets e Sets
     public String getCNPJ() {
         return CNPJ;
+    }
+    
+    public String toString() {
+        return super.toString() +
+            "\nCNPJ: " + CNPJ;
     }
 
 }

@@ -1,41 +1,50 @@
-public class Coordenada {
-    private int latitude_coordenada;
-    private int longitude_coordenada;
+import java.lang.Math;
 
-    public Coordenada(int latitudo, int longitude){
-        this.latitude_coordenada = latitudo;
-        this.longitude_coordenada = longitude;
+public class Coordenada {
+    private double latitude;
+    private double longitude;
+
+    public Coordenada(double latitude, double longitude){
+        this.latitude = latitude;
+        this.longitude = longitude;
     }
    
-    public int getLatitude_coordenada() {
-        return latitude_coordenada;
+    public double getLatitude() {
+        return latitude;
     }
 
-    public void setLatitude_coordenada(int latitude_coordenada) {
-        this.latitude_coordenada = latitude_coordenada;
+    public void setLatitude(double latitude) {
+        this.latitude = latitude;
     }
 
-    public int getLongitude_coordenada() {
-        return longitude_coordenada;
+    public double getLongitude() {
+        return longitude;
     }
 
-    public void setLongitude_coordenada(int longitude_coordenada) {
-        this.longitude_coordenada = longitude_coordenada;
+    public void setLongitude(double longitude) {
+        this.longitude = longitude;
     }
 
     public static double calculaDistancia(Coordenada coordenada1, Coordenada coordenada2){
-        //TODO implementar metodo
-        return 0.0;
+        double grau = 111319.5; // 1 grau equivale a aproximadamente essa distância no equador, tanto em termos de latitude quanto longitude.
+        double dif_lat = Math.abs(coordenada1.getLatitude() - coordenada2.getLatitude());
+        double med_lon = Math.abs(coordenada1.getLongitude() + coordenada2.getLongitude())/2;
+        double dif_lon = Math.abs(coordenada1.getLongitude() - coordenada2.getLongitude());
+        double dist_lat, dist_long;
+
+        dist_lat = dif_lat * grau;
+        dist_long = dif_lon * grau * Math.cos(med_lon); // Devido a mudança no comprimento dos paralelos, é necessário corrigir pela longitude.
+        
+        return Math.sqrt(Math.pow(dist_lat, 2) + Math.pow(dist_long, 2));
     }
 
     public static double calculaDistancia(Aeroporto aeroporto1, Aeroporto aeroporto2){
-        //TODO implementar metodo
-        return 0.0;
+        return calculaDistancia(aeroporto1.getCoordenada(), aeroporto2.getCoordenada());
     }
 
-    public String toString(){
-        //TODO implementar metodo
-        return null;
-
+    public String toString() {
+        return "Latitude: " + latitude + 
+            "\nLongitude: " + longitude;
     }
+
 }

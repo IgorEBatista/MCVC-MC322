@@ -23,4 +23,11 @@ public class ClientePF extends Cliente{
         this.dataNascimento = dataNascimento;
     }
 
+    //Outros métodos
+    public String toString() {
+        return super.toString() + 
+            "\nCPF: " + CPF + 
+            "\nData de Nascimento: " + dataNascimento;
+    }
+
 }
