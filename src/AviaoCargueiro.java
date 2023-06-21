@@ -19,7 +19,11 @@ public class AviaoCargueiro extends Aviao{
 
     @Override
     public boolean descarregar(double peso){
-        return false;
+        if (getPesoAtual() >= peso){
+            setPesoAtual(getPesoAtual() - peso); 
+            return true;
+        }
+        return false;    
     }
 
     public String getTipoCarga() {
@@ -28,6 +32,10 @@ public class AviaoCargueiro extends Aviao{
 
     public void setTipoCarga(String tipoCarga) {
         this.tipoCarga = tipoCarga;
+    }
+
+    public String toString(){
+        
     }
 
 }

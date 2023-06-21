@@ -23,25 +23,18 @@ abstract class Aviao{
         this.envergadura = envergadura;
     }
 
-    public double alcance(){
+    public double calculaAlcance(){
         return combustivel/consumoCombustivel;
     }
 
     public boolean abastercer(double volume){
-        
         this.combustivel += volume;
         return true;
     }
 
-    // Sempre será usada em overload
-    public boolean carregar(double peso){
-        return false;
-    }
+    public abstract boolean carregar(double peso);
 
-    // Sempre será usada em overload
-    public boolean descarregar(double peso){
-        return false;
-    }
+    public abstract boolean descarregar(double peso);
 
 
     //Gets e Sets
