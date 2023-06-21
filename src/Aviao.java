@@ -36,7 +36,6 @@ abstract class Aviao{
 
     public abstract boolean descarregar(double peso);
 
-
     //Gets e Sets
     public String getSerie() {
         return serie;
@@ -106,4 +105,7 @@ abstract class Aviao{
         this.pesoAtual = pesoAtual;
     }
 
+    public String toString(){
+        return "Número de série: " + this.serie + "\nModelo: " + this.modelo + "\nLocal atual: " + this.local + "\nCapacidade: " + this.capacidade + "\nNível de combustível atual: " + this.combustivel + "\nConsumo de combustível(l/km): " + this.consumoCombustivel + "\nEnvergadura(m): " + this.envergadura;
+    }
 }
