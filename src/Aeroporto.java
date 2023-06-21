@@ -11,9 +11,20 @@ public class Aeroporto {
         this.cidade = cidade;
         this.larguraPistaPouso = larguraPistaPouso;
     }
-
-
     //Gets e Sets
+    public String toString(){
+        String saida = "";
+        saida += "Nome: " + nome + "\nCoordenadas: " + coordenada + "\nCidade: " + cidade.getNome() + "\nLargura Pista: " + larguraPistaPouso;
+        return saida;
+    }
+    public boolean aceitaPouso(Aviao aviao){
+
+        if (aviao.getEnvergadura() <= larguraPistaPouso){
+            return true;
+        }
+        return false;
+    }
+    
     public String getNome() {
         return nome;
     }
@@ -44,18 +55,5 @@ public class Aeroporto {
 
     public void setLarguraPistaPouso(double larguraPistaPouso_aeroporto) {
         this.larguraPistaPouso = larguraPistaPouso_aeroporto;
-    }
-
-
-    //Outros métodos
-    public boolean aceitaPouso(Aviao aviao){
-        //TODO implementar metodo
-        return false;
-    }
-    
-    public String toString(){
-        //TODO implementar metodo
-        return null;
-        
     }
 }
