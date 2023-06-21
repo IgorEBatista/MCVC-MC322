@@ -71,8 +71,11 @@ public class Voo {
     }
 
     public Passageiro buscaPassageiro(String CPF) {
-        //TODO implementar metodo
-        throw new UnsupportedOperationException("Unimplemented method 'buscaPassageiro'");
+        //Encontra o passageiro dado o CPF, caso não haja, retorna null
+        for (Passageiro a: listaPassageiros) 
+            if (a.getCPF().equals(CPF))
+                return a;
+        return null;
     }
 
     // Criar os métodos de listar coisas
