@@ -75,4 +75,11 @@ public abstract class Cliente {
 
     }
 
+    public String toString() {
+        return "Nome: " + nome + 
+            "\nTelefone: " + telefone + 
+            "\nEmail: " + email + 
+            "\nHistórico De Compras: " + historicoDeCompras;
+    }
+    
 }
