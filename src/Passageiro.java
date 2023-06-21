@@ -56,6 +56,14 @@ public class Passageiro {
         this.pesoBagagem = pesoBagagem;
     }
 
-
     //Outros métodos
+
+    public String toString() {
+        return "CPF: " + CPF + 
+            "\nNome: " + nome + 
+            "\nTelefone de Emergência: " + telefoneEmergencia +
+            "\nID da Passagem: " + passagem.getID() +
+            "\nOrigem e Destino: " + passagem.getTrajeto().vizualizarTrajeto() +
+            "\nPeso da Bagagem=" + pesoBagagem;
+    }
 }

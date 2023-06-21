@@ -50,13 +50,36 @@ public abstract class Cliente {
 
     //Outros metodos
 
+    public Passagem buscaPassagem(String ID) {
+        //Encontra a pasagem referida.
+        for (Passagem a: historicoDeCompras) 
+            if (a.getID() == Integer.parseInt(ID))
+                return a;
+        return null;
+    }
+
     public boolean addPassagem(Passagem passagem) {
-        //TODO implementar método
-        throw new UnsupportedOperationException("Unimplemented method 'remPassagem'");
+        return this.historicoDeCompras.add(passagem);
     }
     
     public boolean remPassagem(Passagem passagem){
-        //TODO implementar método
-        throw new UnsupportedOperationException("Unimplemented method 'remPassagem'");
+        return this.historicoDeCompras.remove(passagem);
     }
+    
+    public boolean remPassagem(String ID){
+        return remPassagem(buscaPassagem(ID));        
+    }
+
+    public boolean remPassagem(int ID){
+        return remPassagem(buscaPassagem(String.valueOf(ID)));        
+
+    }
+
+    public String toString() {
+        return "Nome: " + nome + 
+            "\nTelefone: " + telefone + 
+            "\nEmail: " + email + 
+            "\nHistórico De Compras: " + historicoDeCompras;
+    }
+    
 }
