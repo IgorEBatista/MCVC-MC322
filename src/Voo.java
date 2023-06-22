@@ -8,6 +8,7 @@ public class Voo {
     private Aeroporto origem;
     private Aeroporto destino;
     private ArrayList<Passageiro> listaPassageiros;
+    private ArrayList<Carga> listaCargas;
 
     // Construtor
     public Voo(Aviao aviao, Aeroporto origem, Aeroporto destino) {
@@ -16,6 +17,7 @@ public class Voo {
         this.origem = origem;
         this.destino = destino;
         this.listaPassageiros = new ArrayList<Passageiro>();
+        this.listaCargas = new ArrayList<Carga>();
     }
 
     // Métodos
@@ -58,6 +60,13 @@ public class Voo {
         this.listaPassageiros = listaPassageiros;
     }
 
+    public ArrayList<Carga> getListaCargas() {
+        return listaCargas;
+    }
+
+    public void setListaCargas(ArrayList<Carga> listaCargas) {
+        this.listaCargas = listaCargas;
+    }
 
     // - Funções da classe Voo
 

@@ -50,8 +50,7 @@ public class Carga {
     }
 
     public String toString(){
-
+        return "ID" + this.ID + "\nTipo de carga: " + this.tipoCarga + "\nPeso da carga: " + 
+        this.peso + "\nID da passagem associada: " + this.passagem.getID(); 
     }
-
-
 }
