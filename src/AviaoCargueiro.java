@@ -8,6 +8,14 @@ public class AviaoCargueiro extends Aviao{
         this.tipoCarga = tipoCarga;
     }
 
+    public boolean carregar(Voo voo){
+        
+    }
+
+    public boolean descarregar(Voo voo){
+
+    }
+
     public String getTipoCarga() {
         return tipoCarga;
     }
