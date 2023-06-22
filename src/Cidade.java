@@ -8,10 +8,10 @@ public class Cidade {
 
 
     // Construtor
-    public Cidade(String nome, String pais, ArrayList<Aeroporto> listaAeroportos){
+    public Cidade(String nome, String pais){
         this.nome = nome;
         this.pais = pais;
-        this.listaAeroportos = listaAeroportos;
+        this.listaAeroportos = new ArrayList<Aeroporto>();
     }
 
 

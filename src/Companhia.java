@@ -10,23 +10,30 @@ public class Companhia {
     private ArrayList<Conexao> listaConexoes;   // Lista de conexões que existem entre Aeroporto-Aeroporto
     private ArrayList<Aviao> listaAvioes;       // Lista de aviões da companhia
     private ArrayList<Cliente> listaClientes;   // Lista de clientes cadastrados na companhia
+    private int limiteEscalas;
     
-
     // Construtor
-    public Companhia(String CNPJ, String nome) {
+    public Companhia(String CNPJ, String nome, int limiteEscalas) {
         this.CNPJ = CNPJ;
         this.nome = nome;
         this.listaCidades = new ArrayList<Cidade>();
         this.listaConexoes = new ArrayList<Conexao>();
         this.listaAvioes = new ArrayList<Aviao>();
         this.listaClientes = new ArrayList<Cliente>();
+        this.limiteEscalas = limiteEscalas;
     }
-
-
     // Métodos
 
     // - Getters e Setters
+    
+    public int getLimiteEscalas() {
+        return limiteEscalas;
+    }
 
+
+    public void setLimiteEscalas(int limiteEscalas) {
+        this.limiteEscalas = limiteEscalas;
+    }
     public String getNome() {
         return nome;
     }
@@ -116,43 +123,6 @@ public class Companhia {
             lista += c.toString() + "------------------------------\n";
         return lista;
     }
-
-    // -- Conexao
-
-    public boolean adicionarConexao(Conexao conexao) {
-        /* Adiciona, na lista de conexões, a conexão dada como parâmetro.
-        Se já estiver na lista, retorna False.
-        Caso contrário, retorna True. */
-        if (!listaConexoes.contains(conexao)) {
-            listaConexoes.add(conexao);
-            return true;
-        }
-        return false;
-    }
-
-    public boolean removerConexao(Conexao conexao) {
-        /* Remove, da lista de conexões, a conexão dada como parâmetro.
-        Se não estiver na lista, retorna False.
-        Caso contrário, retorna True. */
-        if (listaConexoes.contains(conexao)) {
-            listaConexoes.remove(conexao);
-            return true;
-        }
-        return false;
-    }
-
-    public String listarConexoes() {
-        /* Retorna uma string com as conexões que a companhia possui. */
-        if (listaConexoes.size() == 0)
-            return "A companhia " + this.getNome() + " ainda não tem conexões.\n";
-        String lista = "--------------------------------------------------\n" +
-                       "Conexões da companhia " + this.getNome() + ":\n" +
-                       "--------------------------------------------------\n";
-        for (Conexao c : listaConexoes)
-            lista += c.toString() + "------------------------------\n";
-        return lista;
-    }
-
     // -- Aviao
 
     public boolean adicionarAviao(Aviao aviao) {
@@ -321,6 +291,8 @@ public class Companhia {
         o combustível necessário para concluir os voos do trajeto;
             - Se há aviões da companhia disponíveis para realizar o trajeto
             - Muita coisa, scrr
+
+
         TODO: Implementar um algoritmo de grafos. */
         return trajetos;
     }
