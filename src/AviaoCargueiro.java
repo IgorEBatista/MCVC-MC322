@@ -22,11 +22,6 @@ public class AviaoCargueiro extends Aviao{
         return false;
     }
 
-    @Override
-    public boolean descarregar(){
-        setPesoAtual(0);
-        return true;
-    }
     public String getTipoCarga() {
         return tipoCarga;
     }

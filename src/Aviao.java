@@ -37,8 +37,10 @@ abstract class Aviao{
 
     public abstract boolean carregar(Voo voo);
 
-    public abstract boolean descarregar();
-
+    public boolean descarregar(){
+        setPesoAtual(0);
+        return true;
+    }
     //Gets e Sets
     public int getSerie() {
         return serie;

@@ -1,5 +1,3 @@
-import java.util.ArrayList;
-
 public class AviaoComercial extends Aviao {
     
     private int passageirosMax;
@@ -22,12 +20,6 @@ public class AviaoComercial extends Aviao {
             return true;
         }
         return false;
-    }
-
-    @Override
-    public boolean descarregar(){
-        setPesoAtual(0);
-        return true;
     }
 
     public int getPassageirosMax() {
