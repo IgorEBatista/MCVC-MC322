@@ -4,13 +4,13 @@ public class AviaoCargueiro extends Aviao{
 
     public AviaoCargueiro(String serie, String modelo, String marca, Aeroporto local, double capacidade, double combustivel,
             double consumoCombustivel, double envergadura, String tipoCarga, double pesoAtual) {
-        super(serie, modelo, marca, local, capacidade, combustivel, consumoCombustivel, envergadura);
+        super(modelo, marca, local, capacidade, consumoCombustivel, envergadura, pesoAtual);
         this.tipoCarga = tipoCarga;
         this.pesoAtual = pesoAtual;
     }
 
     public boolean carregar(Voo voo){
-        
+
     }
 
     public boolean descarregar(Voo voo){
