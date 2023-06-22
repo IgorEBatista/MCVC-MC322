@@ -155,7 +155,7 @@ public class Companhia {
         Retorna o avião se ele estiver na lista.
         Caso contrário, retorna null. */
         for (Aviao a: listaAvioes) 
-            if (a.getSerie().equals(serie))
+            if (String.valueOf(a.getSerie()).equals(serie))
                 return a;
         return null;
     }
@@ -232,23 +232,14 @@ public class Companhia {
 
     // -- Análise de vendas
 
-    public ArrayList<Voo> getTopVoos() {
-        /* Retorna uma lista dos voos mais comuns.
-        TODO: Implementar */
-        return null;
-    }
-
-    public String listarTopVoos() {
-        /* Retorna uma string com os voos mais comuns da companhia.
-        TODO: Implementar */
-        String lista = "Voos mais comuns:\n";
-        return lista;
-    }
 
     public ArrayList<Aeroporto> getTopOrigens() {
         /* Retorna uma lista das origens mais comuns.
         TODO: Implementar 
         (faz sentido ter origens mais comuns?)*/
+        
+        
+        
         return null;
     }
 
