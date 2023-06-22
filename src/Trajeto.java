@@ -33,8 +33,7 @@ public class Trajeto {
     }
 
     public boolean removerConexao(Conexao conexao) {
-        /* Remove uma conexão da rota.
-        Se  */
+        /* Remove uma conexão da rota. */
         if (rota.contains(conexao)) {
             rota.remove(conexao);
             return true;
