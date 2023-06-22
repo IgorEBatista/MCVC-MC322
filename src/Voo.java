@@ -49,6 +49,15 @@ public class Voo {
     public void setDestino(Aeroporto destino) {
         this.destino = destino;
     }
+    
+    public ArrayList<Passageiro> getListaPassageiros() {
+        return listaPassageiros;
+    }
+
+    public void setListaPassageiros(ArrayList<Passageiro> listaPassageiros) {
+        this.listaPassageiros = listaPassageiros;
+    }
+
 
     // - Funções da classe Voo
 
