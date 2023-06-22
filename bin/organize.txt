@@ -1,0 +1,3 @@
+Arquivo existente apenas para manter a pasta aberta no repositório, os arquivos .class serão ignorados pelo git (conforme consta no .gitignore) até o fim do projeto,
+visto que até o momento, foram fontes de conflitos desnecessários ao andamento do projeto, tão logo ele seja finalizado, os arquivos de código compilado serão adicionados
+ao repositório.

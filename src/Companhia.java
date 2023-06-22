@@ -90,9 +90,14 @@ public class Companhia {
     }
 
     public String listarCidades() {
-        /* Retorna uma string com as cidades onde a companhia atua.
-        TODO: Implementar */
-        String lista = "Lista de Cidades:\n";
+        /* Retorna uma string com as cidades onde a companhia atua. */
+        if (listaCidades.size() == 0)
+            return "A companhia " + this.getNome() + " ainda não atua em nenhuma cidade.\n";
+        String lista = "--------------------------------------------------\n" +
+                       "Cidades onde a companhia " + this.getNome() + " atua:\n" +
+                       "--------------------------------------------------\n";
+        for (Cidade c : listaCidades)
+            lista += c.toString() + "------------------------------\n";
         return lista;
     }
 
@@ -120,18 +125,23 @@ public class Companhia {
         return false;
     }
 
-    public ArrayList<ArrayList<Conexao>> verificarConexoes(Cidade A, Cidade B) {
-        /* Retorna uma lista de todas as conexões entre as cidades A e B.
-        Ou seja, A e B podem não estar conectadas diretamente, mas pode
-        haver um caminho para elas.
-        TODO: Implementar um algoritmo de grafos. */
-        return null;
-    }
+    // public ArrayList<ArrayList<Conexao>> verificarConexoes(Cidade A, Cidade B) {
+    //     /* Retorna uma lista de todas as conexões entre as cidades A e B.
+    //     Ou seja, A e B podem não estar conectadas diretamente, mas pode
+    //     haver um caminho para elas.
+    //     TODO: Implementar um algoritmo de grafos. */
+    //     return null;
+    // }
 
     public String listarConexoes() {
-        /* Retorna uma string com as conexões que a companhia possui.
-        TODO: Implementar */
-        String lista = "Lista de Conexoes:\n";
+        /* Retorna uma string com as conexões que a companhia possui. */
+        if (listaConexoes.size() == 0)
+            return "A companhia " + this.getNome() + " ainda não tem conexões.\n";
+        String lista = "--------------------------------------------------\n" +
+                       "Conexões da companhia " + this.getNome() + ":\n" +
+                       "--------------------------------------------------\n";
+        for (Conexao c : listaConexoes)
+            lista += c.toString() + "------------------------------\n";
         return lista;
     }
 
@@ -171,15 +181,20 @@ public class Companhia {
     }
 
     public String listarAvioes() {
-        /* Retorna uma string com os aviões que a companhia possui.
-        TODO: Implementar */
-        String lista = "Lista de Avioes:\n";
+        /* Retorna uma string com os aviões que a companhia possui. */
+        if (listaConexoes.size() == 0)
+            return "A companhia " + this.getNome() + " ainda não possui aviões.\n";
+        String lista = "--------------------------------------------------\n" +
+                       "Aviões da companhia " + this.getNome() + ":\n" +
+                       "--------------------------------------------------\n";
+        for (Aviao a : listaAvioes)
+            lista += a.toString() + "------------------------------\n";
         return lista;
     }
 
     // -- Cliente
 
-    public boolean cadastrarCliente(Cliente cliente) {
+    public boolean adicionarCliente(Cliente cliente) {
         /* Adiciona na listaClientes o cliente dado como parâmetro.
         Se o cliente já for cadastrado, retorna False.
         Caso contrário, retorna True. */
@@ -224,9 +239,14 @@ public class Companhia {
     }
 
     public String listarClientes() {
-        /* Retorna uma string com os clientes que a companhia possui.
-        TODO: Implementar */
-        String lista = "Lista de Clientes:\n";
+        /* Retorna uma string contendo todos os clientes da companhia. */
+        if (listaClientes.size() == 0)
+            return "Ainda não há clientes cadastrados em " + this.nome + ".\n";
+        String lista = "--------------------------------------------------\n" +
+                       "Clientes de " + this.nome + ":\n" +
+                       "--------------------------------------------------\n";
+        for (Cliente c : listaClientes)
+            lista += c.toString() + "------------------------------\n";
         return lista;
     }
 
@@ -287,14 +307,26 @@ public class Companhia {
     public ArrayList<Trajeto> getTrajetos(Cidade origem, Cidade destino) {
         ArrayList<Trajeto> trajetos = new ArrayList<Trajeto>();
         /* Calcula os possíveis trajetos para viajar da origem para o destino.
-        TODO: Implementar */
+        Precisa levar em consideração:
+            - As conexões entre aeroportos;
+            - Se há aviões que têm espaço suficiente para alocar
+        o combustível necessário para concluir os voos do trajeto;
+            - Se há aviões da companhia disponíveis para realizar o trajeto
+            - Muita coisa, scrr
+        TODO: Implementar um algoritmo de grafos. */
         return trajetos;
     }
-
+    
     public String listarTrajetos(Cidade origem, Cidade destino) {
-        /* Calcula os possíveis trajetos para viajar da origem para o destino.
-        TODO: Implementar */
-        String lista = "Lista de trajetos:\n";
+        /* Retorna uma string com os possíveis trajetos para viajar da origem para o destino. */
+        ArrayList<Trajeto> listaTrajetos = getTrajetos(origem, destino);
+        if (listaTrajetos.size() == 0)
+            return "A companhia " + this.getNome() + " não oferece trajetos entre " + origem.getNome() + " e " + destino.getNome() + ".\n";
+        String lista = "--------------------------------------------------\n" +
+                       "Trajetos entre " + origem.getNome() + " e " + destino.getNome() + ":\n" +
+                       "--------------------------------------------------\n";
+        for (Trajeto t : listaTrajetos)
+            lista += t.toString() + "------------------------------\n";
         return lista;
     }
 
