@@ -18,9 +18,6 @@ public class Voo {
         this.listaPassageiros = new ArrayList<Passageiro>();
     }
 
-    // Métodos
-
-
     // - Getters e Setters
     public int getCodigo() {
         return codigo;
