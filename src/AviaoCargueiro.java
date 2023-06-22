@@ -1,13 +1,24 @@
 public class AviaoCargueiro extends Aviao{
     
-    String tipoCarga;
-    double pesoAtual;
-
+    private String tipoCarga;
+    
     public AviaoCargueiro(String serie, String modelo, String marca, Aeroporto local, double capacidade, double combustivel,
-            double consumoCombustivel, double envergadura, String tipoCarga, double pesoAtual) {
-        super(serie, modelo, marca, local, capacidade, combustivel, consumoCombustivel, envergadura);
+                            double consumoCombustivel, double envergadura, String tipoCarga, double pesoAtual, double pesoMax) {
+        super(modelo, marca, local, capacidade, consumoCombustivel, envergadura, pesoAtual, pesoMax);
         this.tipoCarga = tipoCarga;
-        this.pesoAtual = pesoAtual;
+    }
+
+    @Override
+    public boolean carregar(Voo voo){
+        double peso_entrando = 0;
+        for(Carga carga_iterada : voo.getListaCargas()){
+            peso_entrando += (carga_iterada.getPeso());
+        }
+        if (peso_entrando <= getPesoMax()){
+            setPesoAtual(peso_entrando); 
+            return true;
+        }
+        return false;
     }
 
     public String getTipoCarga() {
@@ -18,18 +29,8 @@ public class AviaoCargueiro extends Aviao{
         this.tipoCarga = tipoCarga;
     }
 
-    public double getPesoAtual() {
-        return pesoAtual;
-    }
-
-    public void setPesoAtual(double pesoAtual) {
-        this.pesoAtual = pesoAtual;
-    }
-
+    @Override
     public String toString(){
-        return "Número de série: " + this.serie + "\nModelo: " + this.modelo + "\nLocal atual: " + this.local + 
-        "\nCapacidade: " + this.capacidade + "\nNível de combustível atual: " + this.combustivel + 
-        "\nConsumo de combustível(l/km): " + this.consumoCombustivel + "\nEnvergadura(m): " + this.envergadura + 
-        "\nTipo de carga: " + this.tipoCarga + "\nPeso atual: " + this.pesoAtual;
+        return super.toString() + "\nTipo de carga: " + this.tipoCarga;
     }
 }
