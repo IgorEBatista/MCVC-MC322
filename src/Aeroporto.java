@@ -34,6 +34,7 @@ public class Aeroporto {
         if (!listaVoos.contains(novo)){
             return listaVoos.add(novo);
         }
+        //TODO: colocar o voo no aeroporto destino também
         return false;
     }
 
