@@ -4,9 +4,9 @@ public class AviaoComercial extends Aviao {
     
     private int passageirosMax;
 
-    public AviaoComercial(String serie, String modelo, String marca, Aeroporto local, double capacidade, double combustivel,
-            double consumoCombustivel, double envergadura, int passageirosMax) {
-        super(serie, modelo, marca, local, capacidade, consumoCombustivel, envergadura);
+    public AviaoComercial(String modelo, String marca, Aeroporto local, double capacidade, double combustivel,
+            double consumoCombustivel, double envergadura, int passageirosMax, double pesoAtual) {
+        super(modelo, marca, local, capacidade, consumoCombustivel, envergadura, pesoAtual);
         this.passageirosMax = passageirosMax;
     }
 
@@ -44,19 +44,7 @@ public class AviaoComercial extends Aviao {
         this.passageirosMax = passageirosMax;
     }
 
-    public ArrayList<Passageiro> getListaPassageiros() {
-        return listaPassageiros;
-    }
-
-    public void setListaPassageiros(ArrayList<Passageiro> listaPassageiros) {
-        this.listaPassageiros = listaPassageiros;
-    }
-
     public String toString(){
-        String listaPassageiros_str = "";
-        for(Passageiro passageiro_iterado : listaPassageiros){
-            listaPassageiros_str = listaPassageiros_str +  passageiro_iterado.getNome() + "\n";
-        }
-        return super.toString() + "\nNúmero máximo de passageiros: " + this.passageirosMax + "\nLista de passageiros: " + listaPassageiros_str;
+        return super.toString() + "\nNúmero máximo de passageiros: " + this.passageirosMax;
     }
 }

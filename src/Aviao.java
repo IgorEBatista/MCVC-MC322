@@ -11,7 +11,7 @@ abstract class Aviao{
     private double envergadura;
     private double pesoAtual;
 
-    public Aviao(String serie, String modelo, String marca, Aeroporto local, double capacidade,
+    public Aviao(String modelo, String marca, Aeroporto local, double capacidade,
             double consumoCombustivel, double envergadura, double pesoAtual) {
         this.serie = gerarSerie();
         this.modelo = modelo;
