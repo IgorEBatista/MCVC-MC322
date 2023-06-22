@@ -1,45 +1,45 @@
 
 public class Conexao implements Comparable {
-    private double distancia_conexao;
-    private Aeroporto aeroportoA_conexao;
-    private Aeroporto aeroportoB_conexao;
+    private double distancia;
+    private Aeroporto aeroportoA;
+    private Aeroporto aeroportoB;
 
     public Conexao(double distancia, Aeroporto aeroportoA, Aeroporto aeroportoB) {
-        this.distancia_conexao = distancia;
-        this.aeroportoA_conexao = aeroportoA;
-        this.aeroportoB_conexao = aeroportoB;
+        this.distancia = distancia;
+        this.aeroportoA = aeroportoA;
+        this.aeroportoB = aeroportoB;
     }
     
     public String toString(){
         String saida = "";
-        saida += "Conexão de "  + aeroportoA_conexao.getNome() + " a " + aeroportoB_conexao.getNome() + 
-        "\nDistância: " + distancia_conexao + "\n"; 
+        saida += "Conexão de "  + aeroportoA.getNome() + " a " + aeroportoB.getNome() + 
+        "\nDistância: " + distancia + "\n"; 
         return saida;
     
     }
     //Gets e Sets
-    public double getDistancia_conexao() {
-        return distancia_conexao;
+    public double getDistancia() {
+        return distancia;
     }
 
-    public void setDistancia_conexao(double distancia_conexao) {
-        this.distancia_conexao = distancia_conexao;
+    public void setDistancia(double distancia) {
+        this.distancia = distancia;
     }
 
-    public Aeroporto getAeroportoA_conexao() {
-        return aeroportoA_conexao;
+    public Aeroporto getAeroportoA() {
+        return aeroportoA;
     }
 
-    public void setAeroportoA_conexao(Aeroporto aeroportoA_conexao) {
-        this.aeroportoA_conexao = aeroportoA_conexao;
+    public void setAeroportoA(Aeroporto aeroportoA) {
+        this.aeroportoA = aeroportoA;
     }
 
-    public Aeroporto getAeroportoB_conexao() {
-        return aeroportoB_conexao;
+    public Aeroporto getAeroportoB() {
+        return aeroportoB;
     }
 
-    public void setAeroportoB_conexao(Aeroporto aeroportoB_conexao) {
-        this.aeroportoB_conexao = aeroportoB_conexao;
+    public void setAeroportoB(Aeroporto aeroportoB) {
+        this.aeroportoB = aeroportoB;
     }
 
     //Outros metodos
