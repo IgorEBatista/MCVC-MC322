@@ -312,7 +312,7 @@ public class Companhia {
         return faturamento;
     }
 
-    public ArrayList<Trajeto> getTrajetos(Cidade origem, Cidade destino) {
+    public ArrayList<Trajeto> calculaTrajetos(Cidade origem, Cidade destino) {
         ArrayList<Trajeto> trajetos = new ArrayList<Trajeto>();
         /* Calcula os possíveis trajetos para viajar da origem para o destino.
         Precisa levar em consideração:
