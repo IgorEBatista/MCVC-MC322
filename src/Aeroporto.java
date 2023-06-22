@@ -4,22 +4,21 @@ public class Aeroporto {
 
     private String nome;
     private Coordenada coordenada;
-    private Cidade cidade;
+    private String cidade;
     private double larguraPistaPouso;
     private ArrayList<Voo> listaVoos;
     
-    public Aeroporto(String nome, Coordenada coordenada, Cidade cidade, double larguraPistaPouso){
+    public Aeroporto(String nome, Coordenada coordenada, String cidade, double larguraPistaPouso){
         this.nome = nome;
         this.coordenada = coordenada;
         this.cidade = cidade;
         this.larguraPistaPouso = larguraPistaPouso;
         this.listaVoos = new ArrayList<Voo>();
-        cidade.adicionarAeroporto(this);
     }
     //Gets e Sets
     public String toString(){
         String saida = "";
-        saida += "Nome: " + nome + "\nCoordenadas: " + coordenada + "\nCidade: " + cidade.getNome() + "\nLargura Pista: " + larguraPistaPouso;
+        saida += "Nome: " + nome + "\nCoordenadas: " + coordenada + "\nCidade: " + cidade + "\nLargura Pista: " + larguraPistaPouso;
         return saida;
     }
     public boolean aceitaPouso(Aviao aviao){
@@ -29,7 +28,7 @@ public class Aeroporto {
         }
         return false;
     }
-    public boolean criarVoo (Aeroporto destino, Aviao aviao){
+    public boolean cadastrarVoo (Aeroporto destino, Aviao aviao){
         
         Voo novo = new Voo(aviao, this, destino);
         if (!listaVoos.contains(novo)){
@@ -45,6 +44,12 @@ public class Aeroporto {
     public String getNome() {
         return nome;
     }
+    public String getCidade() {
+        return cidade;
+    }
+    public void setCidade(String cidade) {
+        this.cidade = cidade;
+    }
 
     public void setNome(String nome_aeroporto) {
         this.nome = nome_aeroporto;
@@ -56,14 +61,6 @@ public class Aeroporto {
 
     public void setCoordenada(Coordenada coordenada_aeroporto) {
         this.coordenada = coordenada_aeroporto;
-    }
-
-    public Cidade getCidade() {
-        return cidade;
-    }
-
-    public void setCidade(Cidade cidade_aeroporto) {
-        this.cidade = cidade_aeroporto;
     }
 
     public double getLarguraPistaPouso() {

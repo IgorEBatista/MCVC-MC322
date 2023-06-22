@@ -20,9 +20,6 @@ public class Voo {
         this.listaCargas = new ArrayList<Carga>();
     }
 
-    // Métodos
-
-
     // - Getters e Setters
     public int getCodigo() {
         return codigo;

@@ -1,12 +1,14 @@
 // Esqueleto pronto!
-
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Stack;
 
 public class Companhia {
     // Atributos (Propriedades)
     private final String CNPJ;
     private String nome;
-    private ArrayList<Cidade> listaCidades;     // Lista de cidades em que a companhia atua
+    private ArrayList<Aeroporto> listaAeroportos;     // Lista de cidades em que a companhia atua
     private ArrayList<Conexao> listaConexoes;   // Lista de conexões que existem entre Aeroporto-Aeroporto
     private ArrayList<Aviao> listaAvioes;       // Lista de aviões da companhia
     private ArrayList<Cliente> listaClientes;   // Lista de clientes cadastrados na companhia
@@ -16,7 +18,7 @@ public class Companhia {
     public Companhia(String CNPJ, String nome, int limiteEscalas) {
         this.CNPJ = CNPJ;
         this.nome = nome;
-        this.listaCidades = new ArrayList<Cidade>();
+        this.listaAeroportos = new ArrayList<Aeroporto>();
         this.listaConexoes = new ArrayList<Conexao>();
         this.listaAvioes = new ArrayList<Aviao>();
         this.listaClientes = new ArrayList<Cliente>();
@@ -42,12 +44,12 @@ public class Companhia {
         this.nome = nome;
     }
 
-    public ArrayList<Cidade> getListaCidades() {
-        return listaCidades;
+    public ArrayList<Aeroporto> getlistaAeroportos() {
+        return listaAeroportos;
     }
     
-    public void setListaCidades(ArrayList<Cidade> listaCidades) {
-        this.listaCidades = listaCidades;
+    public void setlistaAeroportos(ArrayList<Aeroporto> listaAeroportos) {
+        this.listaAeroportos = listaAeroportos;
     }
     
     
@@ -79,48 +81,48 @@ public class Companhia {
 
     // -- Cidade
 
-    public boolean adicionarCidade(Cidade cidade) {
-        /* Adiciona, na lista de cidades, a cidade dada como parâmetro.
+    public boolean adicionarAeroporto(Aeroporto aeroporto){
+        /* Adiciona, na lista de aeroportos, o aeroporto dado como parâmetro.
         Se já estiver na lista, retorna False.
         Caso contrário, retorna True. */
-        if (!listaCidades.contains(cidade)) {
-            listaCidades.add(cidade);
+        if (!listaAeroportos.contains(aeroporto)) {
+            listaAeroportos.add(aeroporto);
             return true;
         }
         return false;
     }
 
-    public boolean removerCidade(Cidade cidade) {
-        /* Remove, da lista de cidades, a cidade dada como parâmetro.
+    public boolean removerAeroporto(Aeroporto aeroporto){
+        /* Remove, da lista de aeroportos, o aeroporto dado como parâmetro.
         Se não estiver na lista, retorna False.
         Caso contrário, retorna True. */
-        if (listaCidades.contains(cidade)) {
-            listaCidades.remove(cidade);
+        if (listaAeroportos.contains(aeroporto)) {
+            listaAeroportos.remove(aeroporto);
             return true;
         }
         return false;
     }
 
-    public Cidade buscarCidade(String nome) {
-        /* Busca, na lista de cidades, a cidade que tem o nome
+    public Aeroporto buscarAeroporto(String nome) {
+        /* Busca, na lista de aeroportos, o aeroporto que tem o nome
         dado como parâmetro.
-        Retorna a cidade se ela estiver na lista.
+        Retorna o aeroporto se ele estiver na lista.
         Caso contrário, retorna null. */
-        for (Cidade c : listaCidades) 
-            if (c.getNome().equals(nome))
-                return c;
+        for (Aeroporto a : listaAeroportos) 
+            if (a.getNome().equals(nome))
+                return a;
         return null;
     }
 
-    public String listarCidades() {
-        /* Retorna uma string com as cidades onde a companhia atua. */
-        if (listaCidades.size() == 0)
-            return "A companhia " + this.getNome() + " ainda não atua em nenhuma cidade.\n";
+    public String listarAeroporto() {
+        /* Retorna uma string com os aeroportos da cidade. */
+        if (listaAeroportos.size() == 0)
+            return this.getNome() + " não possui aeroportos.\n";
         String lista = "--------------------------------------------------\n" +
-                       "Cidades onde a companhia " + this.getNome() + " atua:\n" +
+                       "Aeroportos em " + this.getNome() + " :\n" +
                        "--------------------------------------------------\n";
-        for (Cidade c : listaCidades)
-            lista += c.toString() + "------------------------------\n";
+        for (Aeroporto a : listaAeroportos)
+            lista += a.toString() + "------------------------------\n";
         return lista;
     }
     // -- Aviao
@@ -243,7 +245,7 @@ public class Companhia {
         return lista;
     }
 
-    public ArrayList<Cidade> getTopOrigens() {
+    public ArrayList<Aeroporto> getTopOrigens() {
         /* Retorna uma lista das origens mais comuns.
         TODO: Implementar 
         (faz sentido ter origens mais comuns?)*/
@@ -257,7 +259,7 @@ public class Companhia {
         return lista;
     } // Estranho
 
-    public ArrayList<Cidade> getTopDestinos() {
+    public ArrayList<Aeroporto> getTopDestinos() {
         /* Retorna uma lista dos destinos mais comuns.
         TODO: Implementar */
         return null;
@@ -282,7 +284,7 @@ public class Companhia {
         return faturamento;
     }
 
-    public ArrayList<Trajeto> calculaTrajetos(Cidade origem, Cidade destino) {
+    public ArrayList<Trajeto> calculaTrajetos(Aeroporto origem, Aeroporto destino) {
         ArrayList<Trajeto> trajetos = new ArrayList<Trajeto>();
         /* Calcula os possíveis trajetos para viajar da origem para o destino.
         Precisa levar em consideração:
@@ -291,13 +293,36 @@ public class Companhia {
         o combustível necessário para concluir os voos do trajeto;
             - Se há aviões da companhia disponíveis para realizar o trajeto
             - Muita coisa, scrr
-
-
         TODO: Implementar um algoritmo de grafos. */
+        Map<Aeroporto, Boolean> foiVisitado = new HashMap<Aeroporto, Boolean>();
+        for (Aeroporto a : listaAeroportos){
+            foiVisitado.put(a, false);
+        }
+        Stack<Aeroporto> pilha = new Stack<Aeroporto>();
+        pilha.push(origem);
+        
+        while (!pilha.isEmpty()){
+            Aeroporto atual = pilha.pop();
+
+            if(!foiVisitado.get(atual)){
+                foiVisitado.put(atual, true);
+
+                if (atual.equals(destino)){
+                    System.out.println(foiVisitado);
+                }
+
+                for (Voo adj : atual.getListaVoos()){
+                    if (!foiVisitado.get(adj.getDestino())){
+                        pilha.push(adj.getDestino());
+                    }
+                }
+            }
+
+        }
         return trajetos;
     }
     
-    public String listarTrajetos(Cidade origem, Cidade destino) {
+    public String listarTrajetos(Aeroporto origem, Aeroporto destino) {
         /* Retorna uma string com os possíveis trajetos para viajar da origem para o destino. */
         ArrayList<Trajeto> listaTrajetos = calculaTrajetos(origem, destino);
         if (listaTrajetos.size() == 0)
