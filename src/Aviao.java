@@ -1,17 +1,18 @@
 abstract class Aviao{
 
-    final String serie;
-    String modelo;
-    String marca;
-    Aeroporto local;
-    double capacidade;
-    double combustivel;
-    double consumoCombustivel;
-    double envergadura;
+    private static int registros = 1_000_000;
+    private final int serie;
+    private String modelo;
+    private String marca;
+    private Aeroporto local;
+    private double capacidade;
+    private double combustivel;
+    private double consumoCombustivel;
+    private double envergadura;
 
     public Aviao(String serie, String modelo, String marca, Aeroporto local, double capacidade, double combustivel,
             double consumoCombustivel, double envergadura) {
-        this.serie = serie;
+        this.serie = gerarSerie();
         this.modelo = modelo;
         this.marca = marca;
         this.local = local;
@@ -35,7 +36,7 @@ abstract class Aviao{
     public abstract boolean descarregar(Voo voo);
 
     //Gets e Sets
-    public String getSerie() {
+    public int getSerie() {
         return serie;
     }
 
@@ -93,6 +94,13 @@ abstract class Aviao{
 
     public void setEnvergadura(double envergadura) {
         this.envergadura = envergadura;
+    }
+    
+    public int gerarSerie() {
+        /* Gera um número a partir do atributo de classe 'registros'.
+        o ID gerado tem, pelo menos, 7 dígitos. */
+        registros++;
+        return registros;
     }
 
     public String toString(){
