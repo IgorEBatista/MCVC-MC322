@@ -1,6 +1,8 @@
 // Esqueleto pronto!
-
 import java.util.ArrayList;
+import java.util.PriorityQueue;
+import java.util.Queue;
+import java.util.Stack;
 
 public class Companhia {
     // Atributos (Propriedades)
@@ -282,7 +284,7 @@ public class Companhia {
         return faturamento;
     }
 
-    public ArrayList<Trajeto> calculaTrajetos(Cidade origem, Cidade destino) {
+    public ArrayList<Trajeto> calculaTrajetos(Aeroporto origem, Aeroporto destino) {
         ArrayList<Trajeto> trajetos = new ArrayList<Trajeto>();
         /* Calcula os possíveis trajetos para viajar da origem para o destino.
         Precisa levar em consideração:
@@ -291,9 +293,32 @@ public class Companhia {
         o combustível necessário para concluir os voos do trajeto;
             - Se há aviões da companhia disponíveis para realizar o trajeto
             - Muita coisa, scrr
-
-
         TODO: Implementar um algoritmo de grafos. */
+
+        Stack<Integer> stackCount = new Stack<Integer>();
+        Stack<Aeroporto> stack = new Stack<Aeroporto>();
+        boolean[] foiVisitado = new boolean[origem.getListaVoos().size()];
+        stack.push(origem);
+        stackCount.push(0);
+
+        while (!stack.isEmpty()){
+            Aeroporto atual = stack.pop();
+            int atualCount = stackCount.pop();
+            if (!foiVisitado[atualCount]){
+                foiVisitado[atualCount] = true;
+                
+                //Visita vértice
+
+                for (Voo dest : atual.getListaVoos()){
+                    if (!foiVisitado[dest]){
+                        stackCount.push(dest);
+                    }
+                }
+
+            }
+        }
+
+
         return trajetos;
     }
     
