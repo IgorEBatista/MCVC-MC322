@@ -14,6 +14,7 @@ public class Aeroporto {
         this.cidade = cidade;
         this.larguraPistaPouso = larguraPistaPouso;
         this.listaVoos = new ArrayList<Voo>();
+        cidade.adicionarAeroporto(this);
     }
     //Gets e Sets
     public String toString(){
@@ -28,8 +29,12 @@ public class Aeroporto {
         }
         return false;
     }
-    public boolean cadastrarVoo (Aeroporto destino, Aviao aviao){
-        //TODO cadastrar o voo
+    public boolean criarVoo (Aeroporto destino, Aviao aviao){
+        
+        Voo novo = new Voo(aviao, this, destino);
+        if (!listaVoos.contains(novo)){
+            return listaVoos.add(novo);
+        }
         return false;
     }
 
