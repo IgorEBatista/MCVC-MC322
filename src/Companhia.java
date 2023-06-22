@@ -327,7 +327,7 @@ public class Companhia {
     
     public String listarTrajetos(Cidade origem, Cidade destino) {
         /* Retorna uma string com os possíveis trajetos para viajar da origem para o destino. */
-        ArrayList<Trajeto> listaTrajetos = getTrajetos(origem, destino);
+        ArrayList<Trajeto> listaTrajetos = calculaTrajetos(origem, destino);
         if (listaTrajetos.size() == 0)
             return "A companhia " + this.getNome() + " não oferece trajetos entre " + origem.getNome() + " e " + destino.getNome() + ".\n";
         String lista = "--------------------------------------------------\n" +
