@@ -10,7 +10,7 @@ public class Companhia {
     private ArrayList<Conexao> listaConexoes;   // Lista de conexões que existem entre Aeroporto-Aeroporto
     private ArrayList<Aviao> listaAvioes;       // Lista de aviões da companhia
     private ArrayList<Cliente> listaClientes;   // Lista de clientes cadastrados na companhia
-
+    
 
     // Construtor
     public Companhia(String CNPJ, String nome) {
@@ -38,20 +38,36 @@ public class Companhia {
     public ArrayList<Cidade> getListaCidades() {
         return listaCidades;
     }
-
+    
+    public void setListaCidades(ArrayList<Cidade> listaCidades) {
+        this.listaCidades = listaCidades;
+    }
+    
+    
     public ArrayList<Conexao> getListaConexoes() {
         return listaConexoes;
     }
 
+    public void setListaConexoes(ArrayList<Conexao> listaConexoes) {
+        this.listaConexoes = listaConexoes;
+    }
+    
     public ArrayList<Aviao> getListaAvioes() {
         return listaAvioes;
+    }
+    
+    public void setListaAvioes(ArrayList<Aviao> listaAvioes) {
+        this.listaAvioes = listaAvioes;
     }
 
     public ArrayList<Cliente> getListaClientes() {
         return listaClientes;
     }
-
-
+    
+    public void setListaClientes(ArrayList<Cliente> listaClientes) {
+        this.listaClientes = listaClientes;
+    }
+    
     // - Funções da classe Companhia
 
     // -- Cidade
