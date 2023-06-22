@@ -10,32 +10,6 @@ public class AviaoCargueiro extends Aviao{
         this.pesoAtual = pesoAtual;
     }
 
-    @Override
-    public boolean carregar(Voo voo){
-        double peso_entrando = 0;
-        for(Passageiro passageiro_iterado : voo.getListaPassageiros()){
-            peso_entrando  += (passageiro_iterado.getPesoBagagem() + 70);
-        }
-        if (getPesoAtual() + peso_entrando <= capacidade){
-            setPesoAtual(getPesoAtual() + peso_entrando); 
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public boolean descarregar(Voo voo){
-        double peso_saindo = 0;
-        for(Passageiro passageiro_iterado : voo.getListaPassageiros()){
-            peso_saindo  += (passageiro_iterado.getPesoBagagem() + 70);
-        }
-        if (getPesoAtual() + peso_saindo <= capacidade){
-            setPesoAtual(getPesoAtual() + peso_saindo); 
-            return true;
-        }
-        return false;
-    }
-
     public String getTipoCarga() {
         return tipoCarga;
     }

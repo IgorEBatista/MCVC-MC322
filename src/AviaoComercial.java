@@ -2,8 +2,8 @@ import java.util.ArrayList;
 
 public class AviaoComercial extends Aviao {
     
-    int passageirosMax;
-    ArrayList<Passageiro> listaPassageiros;
+    private int passageirosMax;
+    private ArrayList<Passageiro> listaPassageiros;
 
     public AviaoComercial(String serie, String modelo, String marca, Aeroporto local, double capacidade, double combustivel,
             double consumoCombustivel, double envergadura, int passageirosMax, ArrayList<Passageiro> listaPassageiros) {
@@ -12,16 +12,31 @@ public class AviaoComercial extends Aviao {
         this.listaPassageiros = listaPassageiros;
     }
 
-    public boolean carregar (double peso){
-        double pesoMax = passageirosMax * 70;
-        if()
+    @Override
+    public boolean carregar(Voo voo){
+        double peso_entrando = 0;
+        for(Passageiro passageiro_iterado : voo.getListaPassageiros()){
+            peso_entrando  += (passageiro_iterado.getPesoBagagem() + 70);
+        }
+        if (peso_entrando <= capacidade){
+            setPesoAtual(peso_entrando); 
+            return true;
+        }
         return false;
     }
 
-    public boolean descarregar (double peso){
+    @Override
+    public boolean descarregar(Voo voo){
+        double peso_saindo = 0;
+        for(Passageiro passageiro_iterado : voo.getListaPassageiros()){
+            peso_saindo  += (passageiro_iterado.getPesoBagagem() + 70);
+        }
+        if (getPesoAtual() + peso_saindo <= capacidade){
+            setPesoAtual(getPesoAtual() + peso_saindo); 
+            return true;
+        }
         return false;
     }
-
 
     public int getPassageirosMax() {
         return passageirosMax;
