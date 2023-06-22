@@ -2,40 +2,42 @@ import java.util.ArrayList;
 
 public class Trajeto {
     // Atributos (Propriedades)
-    private ArrayList<Conexao> rota;   // Lista de conexões que compoem o trajeto
-    private Aeroporto origem;
-    private Aeroporto destino;
-
-
+    private ArrayList<Voo> rota;   // Lista de conexões que compoem o trajeto
+    private double distanciaTotal;
+    
     // Construtor
     public Trajeto() {
-        this.rota = new ArrayList<Conexao>();
+        this.rota = new ArrayList<Voo>();
     }
 
     // Métodos
+    public double getDistanciaTotal() {
+        return distanciaTotal;
+    }
 
     // - Getters e Setters
 
-    public ArrayList<Conexao> getRota() {
+    public ArrayList<Voo> getRota() {
         return rota;
     }
 
-    public void setRota(ArrayList<Conexao> rota) {
+    public void setRota(ArrayList<Voo> rota) {
         this.rota = rota;
     }
 
     // - Funções da classe Trajeto
 
-    public boolean adicionarConexao(Conexao conexao) {
+    public boolean adicionarRota(Voo voo) {
         /* Adiciona uma conexão à rota. */
-        rota.add(conexao);
+        rota.add(voo);
         return true;
     }
 
-    public boolean removerConexao(Conexao conexao) {
-        /* Remove uma conexão da rota. */
-        if (rota.contains(conexao)) {
-            rota.remove(conexao);
+    public boolean removerRota(Voo voo) {
+        /* Remove uma conexão da rota.
+        Se  */
+        if (rota.contains(voo)) {
+            rota.remove(voo);
             return true;
         }
         return false;
@@ -44,8 +46,8 @@ public class Trajeto {
     public String vizualizarTrajeto() {
         /* Retorna uma string com a rota do trajeto. */
         String lista = "Trajeto:\n";
-        for (Conexao c : rota) {
-            lista += (c.getAeroportoA()).getNome() + " -> " + (c.getAeroportoB()).getNome() + "\n";
+        for (Voo v : rota) {
+            lista += (v.getOrigem()).getNome() + " -> " + (v.getDestino()).getNome() + "\n";
         }
         return lista;
     }

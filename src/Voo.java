@@ -9,7 +9,6 @@ public class Voo {
     private Aeroporto destino;
     private ArrayList<Passageiro> listaPassageiros;
 
-
     // Construtor
     public Voo(Aviao aviao, Aeroporto origem, Aeroporto destino) {
         this.codigo = gerarCodigo();
@@ -20,8 +19,9 @@ public class Voo {
     }
 
     // Métodos
-    // - Getters e Setters
 
+
+    // - Getters e Setters
     public int getCodigo() {
         return codigo;
     }
