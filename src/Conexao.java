@@ -9,7 +9,14 @@ public class Conexao implements Comparable {
         this.aeroportoA_conexao = aeroportoA;
         this.aeroportoB_conexao = aeroportoB;
     }
-
+    
+    public String toString(){
+        String saida = "";
+        saida += "Conexão de "  + aeroportoA_conexao.getNome() + " a " + aeroportoB_conexao.getNome() + 
+        "\nDistância: " + distancia_conexao + "\n"; 
+        return saida;
+    
+    }
     //Gets e Sets
     public double getDistancia_conexao() {
         return distancia_conexao;
@@ -36,9 +43,4 @@ public class Conexao implements Comparable {
     }
 
     //Outros metodos
-    public String toString(){
-        //TODO implementar metodo
-        return null;
-
-    }
 }
