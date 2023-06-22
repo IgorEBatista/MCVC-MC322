@@ -1,15 +1,19 @@
+import java.util.ArrayList;
+
 public class Aeroporto {
 
     private String nome;
     private Coordenada coordenada;
     private Cidade cidade;
     private double larguraPistaPouso;
+    private ArrayList<Voo> listaVoos;
     
     public Aeroporto(String nome, Coordenada coordenada, Cidade cidade, double larguraPistaPouso){
         this.nome = nome;
         this.coordenada = coordenada;
         this.cidade = cidade;
         this.larguraPistaPouso = larguraPistaPouso;
+        this.listaVoos = new ArrayList<Voo>();
     }
     //Gets e Sets
     public String toString(){
@@ -18,11 +22,19 @@ public class Aeroporto {
         return saida;
     }
     public boolean aceitaPouso(Aviao aviao){
-
+        /* Verifica se o aeroporto aceita pouso de acordo com a envergadura e a largura da pista */
         if (aviao.getEnvergadura() <= larguraPistaPouso){
             return true;
         }
         return false;
+    }
+    public boolean cadastrarVoo (Aeroporto destino, Aviao aviao){
+        //TODO cadastrar o voo
+        return false;
+    }
+
+    public ArrayList<Voo> getListaVoos() {
+        return listaVoos;
     }
     
     public String getNome() {

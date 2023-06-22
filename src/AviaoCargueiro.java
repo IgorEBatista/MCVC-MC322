@@ -45,6 +45,9 @@ public class AviaoCargueiro extends Aviao{
     }
 
     public String toString(){
-        return "Número de série: " + this.serie + "\nModelo: " + this.modelo + "\nLocal atual: " + this.local + "\nCapacidade: " + this.capacidade + "\nNível de combustível atual: " + this.combustivel + "\nConsumo de combustível(l/km): " + this.consumoCombustivel + "\nEnvergadura(m): " + this.envergadura + "\nTipo de carga: " + this.tipoCarga + "\nPeso atual: " + this.pesoAtual;
+        return "Número de série: " + this.serie + "\nModelo: " + this.modelo + "\nLocal atual: " + this.local + 
+        "\nCapacidade: " + this.capacidade + "\nNível de combustível atual: " + this.combustivel + 
+        "\nConsumo de combustível(l/km): " + this.consumoCombustivel + "\nEnvergadura(m): " + this.envergadura + 
+        "\nTipo de carga: " + this.tipoCarga + "\nPeso atual: " + this.pesoAtual;
     }
 }

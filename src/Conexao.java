@@ -1,5 +1,5 @@
 
-public class Conexao implements Comparable {
+public class Conexao{
     private double distancia;
     private Aeroporto aeroportoA;
     private Aeroporto aeroportoB;
