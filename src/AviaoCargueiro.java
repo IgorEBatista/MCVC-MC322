@@ -10,24 +10,6 @@ public class AviaoCargueiro extends Aviao{
         this.pesoAtual = pesoAtual;
     }
 
-    @Override
-    public boolean carregar(double peso){
-        if (getPesoAtual() + peso <= capacidade){
-            setPesoAtual(getPesoAtual() + peso); 
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public boolean descarregar(double peso){
-        if (getPesoAtual() >= peso){
-            setPesoAtual(getPesoAtual() - peso); 
-            return true;
-        }
-        return false;    
-    }
-
     public String getTipoCarga() {
         return tipoCarga;
     }

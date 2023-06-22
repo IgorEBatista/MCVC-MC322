@@ -10,7 +10,7 @@ public class Companhia {
     private ArrayList<Conexao> listaConexoes;   // Lista de conexões que existem entre Aeroporto-Aeroporto
     private ArrayList<Aviao> listaAvioes;       // Lista de aviões da companhia
     private ArrayList<Cliente> listaClientes;   // Lista de clientes cadastrados na companhia
-
+    
 
     // Construtor
     public Companhia(String CNPJ, String nome) {
@@ -38,20 +38,36 @@ public class Companhia {
     public ArrayList<Cidade> getListaCidades() {
         return listaCidades;
     }
-
+    
+    public void setListaCidades(ArrayList<Cidade> listaCidades) {
+        this.listaCidades = listaCidades;
+    }
+    
+    
     public ArrayList<Conexao> getListaConexoes() {
         return listaConexoes;
     }
 
+    public void setListaConexoes(ArrayList<Conexao> listaConexoes) {
+        this.listaConexoes = listaConexoes;
+    }
+    
     public ArrayList<Aviao> getListaAvioes() {
         return listaAvioes;
+    }
+    
+    public void setListaAvioes(ArrayList<Aviao> listaAvioes) {
+        this.listaAvioes = listaAvioes;
     }
 
     public ArrayList<Cliente> getListaClientes() {
         return listaClientes;
     }
-
-
+    
+    public void setListaClientes(ArrayList<Cliente> listaClientes) {
+        this.listaClientes = listaClientes;
+    }
+    
     // - Funções da classe Companhia
 
     // -- Cidade
@@ -80,7 +96,7 @@ public class Companhia {
 
     public Cidade buscarCidade(String nome) {
         /* Busca, na lista de cidades, a cidade que tem o nome
-        dada como parâmetro.
+        dado como parâmetro.
         Retorna a cidade se ela estiver na lista.
         Caso contrário, retorna null. */
         for (Cidade c : listaCidades) 
@@ -124,14 +140,6 @@ public class Companhia {
         }
         return false;
     }
-
-    // public ArrayList<ArrayList<Conexao>> verificarConexoes(Cidade A, Cidade B) {
-    //     /* Retorna uma lista de todas as conexões entre as cidades A e B.
-    //     Ou seja, A e B podem não estar conectadas diretamente, mas pode
-    //     haver um caminho para elas.
-    //     TODO: Implementar um algoritmo de grafos. */
-    //     return null;
-    // }
 
     public String listarConexoes() {
         /* Retorna uma string com as conexões que a companhia possui. */
@@ -304,7 +312,7 @@ public class Companhia {
         return faturamento;
     }
 
-    public ArrayList<Trajeto> getTrajetos(Cidade origem, Cidade destino) {
+    public ArrayList<Trajeto> calculaTrajetos(Cidade origem, Cidade destino) {
         ArrayList<Trajeto> trajetos = new ArrayList<Trajeto>();
         /* Calcula os possíveis trajetos para viajar da origem para o destino.
         Precisa levar em consideração:
@@ -319,7 +327,7 @@ public class Companhia {
     
     public String listarTrajetos(Cidade origem, Cidade destino) {
         /* Retorna uma string com os possíveis trajetos para viajar da origem para o destino. */
-        ArrayList<Trajeto> listaTrajetos = getTrajetos(origem, destino);
+        ArrayList<Trajeto> listaTrajetos = calculaTrajetos(origem, destino);
         if (listaTrajetos.size() == 0)
             return "A companhia " + this.getNome() + " não oferece trajetos entre " + origem.getNome() + " e " + destino.getNome() + ".\n";
         String lista = "--------------------------------------------------\n" +
