@@ -30,9 +30,9 @@ abstract class Aviao{
         return true;
     }
 
-    public abstract boolean carregar(double peso);
+    public abstract boolean carregar(Voo voo);
 
-    public abstract boolean descarregar(double peso);
+    public abstract boolean descarregar(Voo voo);
 
     //Gets e Sets
     public String getSerie() {
@@ -94,7 +94,7 @@ abstract class Aviao{
     public void setEnvergadura(double envergadura) {
         this.envergadura = envergadura;
     }
-    
+
     public String toString(){
         return "Número de série: " + this.serie + "\nModelo: " + this.modelo + "\nLocal atual: " + this.local + "\nCapacidade: " + this.capacidade + "\nNível de combustível atual: " + this.combustivel + "\nConsumo de combustível(l/km): " + this.consumoCombustivel + "\nEnvergadura(m): " + this.envergadura;
     }
