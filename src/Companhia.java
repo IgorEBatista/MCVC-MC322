@@ -324,8 +324,8 @@ public class Companhia {
         String lista = "--------------------------------------------------\n" +
                        "Trajetos entre " + origem.getNome() + " e " + destino.getNome() + ":\n" +
                        "--------------------------------------------------\n";
-        for (Cliente c : listaClientes)
-            lista += c.toString() + "------------------------------\n";
+        for (Trajeto t : listaTrajetos)
+            lista += t.toString() + "------------------------------\n";
         return lista;
     }
 
