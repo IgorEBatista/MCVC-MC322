@@ -141,14 +141,6 @@ public class Companhia {
         return false;
     }
 
-    // public ArrayList<ArrayList<Conexao>> verificarConexoes(Cidade A, Cidade B) {
-    //     /* Retorna uma lista de todas as conexões entre as cidades A e B.
-    //     Ou seja, A e B podem não estar conectadas diretamente, mas pode
-    //     haver um caminho para elas.
-    //     TODO: Implementar um algoritmo de grafos. */
-    //     return null;
-    // }
-
     public String listarConexoes() {
         /* Retorna uma string com as conexões que a companhia possui. */
         if (listaConexoes.size() == 0)
