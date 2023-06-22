@@ -6,6 +6,7 @@ public class AviaoCargueiro extends Aviao{
                             double consumoCombustivel, double envergadura, String tipoCarga, double pesoAtual, double pesoMax) {
         super(modelo, marca, local, capacidade, consumoCombustivel, envergadura, pesoAtual, pesoMax);
         this.tipoCarga = tipoCarga;
+        this.pesoAtual = pesoAtual;
     }
 
     @Override
