@@ -5,33 +5,31 @@ abstract class Aviao{
     private String modelo;
     private String marca;
     private Aeroporto local;
-    private double capacidade;
-    private double combustivel;
+    private double combustivelAtual;
+    private double combustivelMax;
     private double consumoCombustivel;
     private double envergadura;
     private double pesoAtual;
     private final double pesoMax;
 
-    public Aviao(String modelo, String marca, Aeroporto local, double capacidade,
-            double consumoCombustivel, double envergadura, double pesoAtual, double pesoMax) {
+    public Aviao(String modelo, String marca, Aeroporto local, double combustivelMax,
+            double consumoCombustivel, double envergadura, double pesoMax) {
         this.serie = gerarSerie();
         this.modelo = modelo;
         this.marca = marca;
         this.local = local;
-        this.capacidade = capacidade;
-        this.combustivel = capacidade;
+        this.combustivelMax = combustivelMax;
         this.consumoCombustivel = consumoCombustivel;
         this.envergadura = envergadura;
-        this.pesoAtual = pesoAtual;
         this.pesoMax = pesoMax;
     }
 
     public double calculaAlcance(){
-        return combustivel/consumoCombustivel;
+        return combustivelAtual/consumoCombustivel;
     }
 
     public boolean abastercer(double volume){
-        this.combustivel += volume;
+        this.combustivelAtual += volume;
         return true;
     }
 
@@ -71,19 +69,19 @@ abstract class Aviao{
     }
 
     public double getCapacidade() {
-        return capacidade;
+        return combustivelMax;
     }
 
-    public void setCapacidade(double capacidade) {
-        this.capacidade = capacidade;
+    public void setCombustivelMax(double combustivelMax) {
+        this.combustivelMax = combustivelMax;
     }
 
-    public double getCombustivel() {
-        return combustivel;
+    public double getCombustivelAtual() {
+        return combustivelAtual;
     }
 
-    public void setCombustivel(double combustivel) {
-        this.combustivel = combustivel;
+    public void setCombustivelAtual(double combustivelAtual) {
+        this.combustivelAtual = combustivelAtual;
     }
 
     public double getConsumoCombustivel() {
@@ -124,7 +122,7 @@ abstract class Aviao{
 
     public String toString(){
         return "Número de série: " + this.serie + "\nModelo: " + this.modelo + "\nLocal atual: " + this.local + 
-        "\nCapacidade: " + this.capacidade + "\nNível de combustível atual: " + this.combustivel + 
+        "\nCapacidade: " + this.combustivelMax + "\nNível de combustível atual: " + this.combustivelAtual + 
         "\nConsumo de combustível(l/km): " + this.consumoCombustivel + "\nEnvergadura(m): " + this.envergadura + 
         "\nPeso atual: " + this.pesoAtual;
     }

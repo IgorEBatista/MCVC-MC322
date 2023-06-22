@@ -2,9 +2,9 @@ public class AviaoComercial extends Aviao {
     
     private int passageirosMax;
 
-    public AviaoComercial(String modelo, String marca, Aeroporto local, double capacidade, double combustivel,
-            double consumoCombustivel, double envergadura, int passageirosMax, double pesoAtual, double pesoMax) {
-        super(modelo, marca, local, capacidade, consumoCombustivel, envergadura, pesoAtual, pesoMax);
+    public AviaoComercial(String modelo, String marca, Aeroporto local, double combustivelMax,
+            double consumoCombustivel, double envergadura, int passageirosMax, double pesoMax) {
+        super(modelo, marca, local, combustivelMax, consumoCombustivel, envergadura, pesoMax);
         this.passageirosMax = passageirosMax;
     }
 
@@ -12,7 +12,7 @@ public class AviaoComercial extends Aviao {
     public boolean carregar(Voo voo){
         double peso_entrando = 0;
         for(Passageiro passageiro_iterado : voo.getListaPassageiros()){
-            peso_entrando  += (passageiro_iterado.getPesoBagagem() + 70);
+            peso_entrando  += (passageiro_iterado.getPesoBagagem() + Passageiro.pesoMedio);
 
         }
         if (peso_entrando <= (getPesoMax())){
