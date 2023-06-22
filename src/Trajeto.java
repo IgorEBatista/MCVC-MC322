@@ -8,6 +8,7 @@ public class Trajeto {
     // Construtor
     public Trajeto() {
         this.rota = new ArrayList<Voo>();
+        this.distanciaTotal = getDistanciaTotal();
     }
 
     // Métodos
