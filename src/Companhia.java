@@ -80,7 +80,7 @@ public class Companhia {
 
     public Cidade buscarCidade(String nome) {
         /* Busca, na lista de cidades, a cidade que tem o nome
-        dada como parâmetro.
+        dado como parâmetro.
         Retorna a cidade se ela estiver na lista.
         Caso contrário, retorna null. */
         for (Cidade c : listaCidades) 
