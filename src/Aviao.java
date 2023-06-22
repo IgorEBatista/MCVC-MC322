@@ -10,9 +10,10 @@ abstract class Aviao{
     private double consumoCombustivel;
     private double envergadura;
     private double pesoAtual;
+    private final double pesoMax;
 
     public Aviao(String modelo, String marca, Aeroporto local, double capacidade,
-            double consumoCombustivel, double envergadura, double pesoAtual) {
+            double consumoCombustivel, double envergadura, double pesoAtual, double pesoMax) {
         this.serie = gerarSerie();
         this.modelo = modelo;
         this.marca = marca;
@@ -22,6 +23,7 @@ abstract class Aviao{
         this.consumoCombustivel = consumoCombustivel;
         this.envergadura = envergadura;
         this.pesoAtual = pesoAtual;
+        this.pesoMax = pesoMax;
     }
 
     public double calculaAlcance(){
@@ -35,7 +37,7 @@ abstract class Aviao{
 
     public abstract boolean carregar(Voo voo);
 
-    public abstract boolean descarregar(Voo voo);
+    public abstract boolean descarregar();
 
     //Gets e Sets
     public int getSerie() {
@@ -113,7 +115,15 @@ abstract class Aviao{
         this.pesoAtual = pesoAtual;
     }
 
+    public double getPesoMax() {
+        return pesoMax;
+    }
+
+
     public String toString(){
-        return "Número de série: " + this.serie + "\nModelo: " + this.modelo + "\nLocal atual: " + this.local + "\nCapacidade: " + this.capacidade + "\nNível de combustível atual: " + this.combustivel + "\nConsumo de combustível(l/km): " + this.consumoCombustivel + "\nEnvergadura(m): " + this.envergadura + "\nPeso atual: " + this.pesoAtual;
+        return "Número de série: " + this.serie + "\nModelo: " + this.modelo + "\nLocal atual: " + this.local + 
+        "\nCapacidade: " + this.capacidade + "\nNível de combustível atual: " + this.combustivel + 
+        "\nConsumo de combustível(l/km): " + this.consumoCombustivel + "\nEnvergadura(m): " + this.envergadura + 
+        "\nPeso atual: " + this.pesoAtual;
     }
 }
