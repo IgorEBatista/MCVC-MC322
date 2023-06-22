@@ -9,6 +9,14 @@ public class AviaoCargueiro extends Aviao{
         this.pesoAtual = pesoAtual;
     }
 
+    public boolean carregar(Voo voo){
+        
+    }
+
+    public boolean descarregar(Voo voo){
+
+    }
+
     public String getTipoCarga() {
         return tipoCarga;
     }
