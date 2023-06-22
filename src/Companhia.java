@@ -312,6 +312,7 @@ public class Companhia {
             - Se há aviões que têm espaço suficiente para alocar
         o combustível necessário para concluir os voos do trajeto;
             - Se há aviões da companhia disponíveis para realizar o trajeto
+            - Muita coisa, scrr
         TODO: Implementar um algoritmo de grafos. */
         return trajetos;
     }
