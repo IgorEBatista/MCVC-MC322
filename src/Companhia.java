@@ -1,9 +1,14 @@
 // Esqueleto pronto!
+import java.time.format.SignStyle;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Stack;
+
+import javax.imageio.ImageIO;
+import javax.sound.midi.VoiceStatus;
 
 public class Companhia {
     // Atributos (Propriedades)
@@ -336,46 +341,103 @@ public class Companhia {
             - Se há aviões da companhia disponíveis para realizar o trajeto
             - Muita coisa, scrr
         TODO: Implementar um algoritmo de grafos. */
+
+
+
         Map<Aeroporto, Boolean> foiVisitado = new HashMap<Aeroporto, Boolean>();
         for (Aeroporto a : listaAeroportos){
             foiVisitado.put(a, false);
         }
-        Stack<Aeroporto> pilha = new Stack<Aeroporto>();
-        pilha.push(origem);
+        // Stack<Aeroporto> pilha = new Stack<Aeroporto>();
+        // pilha.push(origem);
+        // ArrayList<String> caminho = new ArrayList<String>();
+        // while (!pilha.isEmpty()){
+        //     Aeroporto atual = pilha.pop();
+
+        //     if(!foiVisitado.get(atual)){
+
+        //         caminho.add(atual.getNome());
+
+        //         boolean check = false;
+        //         for (Voo visit : atual.getListaVoos()){
+        //             if (!foiVisitado.get(visit.getDestino()) && visit.getOrigem() != atual){
+        //                 check = true;
+        //                 break;
+        //             }
+        //         }
+
+        //         if (atual.getListaVoos().size() == 1 || check == false){
+        //             foiVisitado.put(atual, true);
+        //         }
+
+
+        //         if (atual.equals(destino)){
+        //             System.out.println("oi");
+        //             System.out.println(caminho);
+        //             caminho.clear();
+        //             caminho.add(origem.getNome());
+        //             for(Aeroporto a : pilha){
+        //                 caminho.add(a.getNome());
+        //             }
+        //             foiVisitado.put(atual, false);
+        //         }
+
+
+        //         for (Voo adj : atual.getListaVoos()){
+        //             if (!foiVisitado.get(adj.getDestino())){
+        //                 pilha.push(adj.getDestino());
+        //             }
+        //         }
+        //     }
+
+        // }
+        return trajetos;
+
         
-        while (!pilha.isEmpty()){
-            Aeroporto atual = pilha.pop();
+    }
 
-            if(!foiVisitado.get(atual)){
+    public ArrayList<Aeroporto> getAeroportos(ArrayList<Voo> voos){
+        ArrayList<Aeroporto> aeroportos = new ArrayList<Aeroporto>();
+        for (Voo v : voos){
+            aeroportos.add(v.getDestino());
+        }
+        return aeroportos;
+    }
+    
+    public void verificaTodosCaminhos(ArrayList<ArrayList<Aeroporto>> saida, Aeroporto source, Aeroporto destination, int limite) {
+        Map<Aeroporto, Boolean> foiVisitado = new HashMap<Aeroporto, Boolean>();
+        for (Aeroporto a : listaAeroportos){
+            foiVisitado.put(a, false);
+        }
+        ArrayList<Aeroporto> caminho = new ArrayList<Aeroporto>();
+        caminho.add(source);
+        VerificaTodosCaminhosRecursivo(saida, source, destination, foiVisitado, caminho, 0, limite);
+    }
 
-                boolean check = false;
-                for (Voo visit : atual.getListaVoos()){
-                    if (!foiVisitado.get(visit.getDestino())){
-                        check = true;
-                    }
-                }
+    private void VerificaTodosCaminhosRecursivo(ArrayList<ArrayList<Aeroporto>> saida, Aeroporto current, 
+    Aeroporto destination, Map<Aeroporto, Boolean> foiVisitado, ArrayList<Aeroporto> caminho, int profundidade, int limite) {
+        foiVisitado.put(current, true);
 
-                if (atual.getListaVoos().size() == 0 || check == false){
-                    foiVisitado.put(atual, true);
-                }
+        if (current == destination) {
+            saida.add(new ArrayList<Aeroporto>(caminho));
+        } else if (profundidade < limite) {
 
-
-                if (atual.equals(destino)){
-                    System.out.println("oi");
-                    foiVisitado.put(atual, false);
-                }
-
-                for (Voo adj : atual.getListaVoos()){
-                    if (!foiVisitado.get(adj.getDestino())){
-                        pilha.push(adj.getDestino());
+            ArrayList<Aeroporto> adjacentes = getAeroportos(current.getListaVoos());
+            for (Aeroporto adj : adjacentes) {
+                if (!foiVisitado.get(adj)) {
+                    // Verificar se o nó já está presente no caminho atual para evitar ciclos
+                    if (!caminho.contains(adj)) {
+                        caminho.add(adj);
+                        VerificaTodosCaminhosRecursivo(saida, adj, destination, foiVisitado, caminho, profundidade + 1, limite);
+                        caminho.remove(adj);
                     }
                 }
             }
-
         }
-        return trajetos;
+
+        foiVisitado.put(current, false);
     }
-    
+
     public String listarTrajetos(Aeroporto origem, Aeroporto destino) {
         /* Retorna uma string com os possíveis trajetos para viajar da origem para o destino. */
         ArrayList<Trajeto> listaTrajetos = calculaTrajetos(origem, destino);

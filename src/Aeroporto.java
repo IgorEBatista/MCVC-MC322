@@ -18,7 +18,7 @@ public class Aeroporto {
     //Gets e Sets
     public String toString(){
         String saida = "";
-        saida += "Nome: " + nome + "\nCoordenadas: " + coordenada + "\nCidade: " + cidade + "\nLargura Pista: " + larguraPistaPouso;
+        saida += "Nome: " + nome + "\nCoordenadas: " + coordenada + "\nCidade: " + cidade + "\nLargura Pista: " + larguraPistaPouso + "\n";
         return saida;
     }
     public boolean aceitaPouso(Aviao aviao){

@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class Main {
     
 
@@ -29,11 +31,17 @@ public class Main {
         aeroporto1.cadastrarVoo(aeroporto3, aviao);
         aeroporto3.cadastrarVoo(aeroporto5, aviao);
         aeroporto1.cadastrarVoo(aeroporto4, aviao);
+        aeroporto1.cadastrarVoo(aeroporto5, aviao);
         aeroporto4.cadastrarVoo(aeroporto5, aviao);
 
-        companhia.calculaTrajetos(aeroporto1, aeroporto5);
-
-
+        ArrayList<ArrayList<Aeroporto>> saida = new ArrayList<ArrayList<Aeroporto>>();
+        companhia.verificaTodosCaminhos(saida, aeroporto1, aeroporto5, 1);
+        for (ArrayList<Aeroporto> listaAeroportos : saida){
+            System.out.println("CAMINHO:");
+            for (Aeroporto a : listaAeroportos){
+                System.out.println(a.getNome());
+            }
+        }
 
     
     }
