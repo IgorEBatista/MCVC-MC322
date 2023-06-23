@@ -29,12 +29,19 @@ public class Aeroporto {
         return false;
     }
     public boolean cadastrarVoo (Aeroporto destino, Aviao aviao){
-        
+        //Utilizado quando o voo é cadastrado/gerado, ou seja, no aeroporto de origem.
         Voo novo = new Voo(aviao, this, destino);
         if (!listaVoos.contains(novo)){
-            return listaVoos.add(novo);
+            return listaVoos.add(novo) && destino.cadastrarVoo(novo);
         }
-        //TODO: colocar o voo no aeroporto destino também
+        return false;
+    }
+
+    public boolean cadastrarVoo (Voo novoVoo){
+        //Utilizado quando o voo já criado pelo aeroporto de origem é cadastrado no destino.
+                if (!listaVoos.contains(novoVoo)){
+            return listaVoos.add(novoVoo);
+        }
         return false;
     }
 
