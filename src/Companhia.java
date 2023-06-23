@@ -29,6 +29,10 @@ public class Companhia {
 
     // - Getters e Setters
     
+    public String getCNPJ() {
+        return CNPJ;
+    }
+
     public int getLimiteEscalas() {
         return limiteEscalas;
     }
