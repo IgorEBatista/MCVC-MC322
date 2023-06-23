@@ -331,71 +331,6 @@ public class Companhia {
         return faturamento;
     }
 
-    public ArrayList<Trajeto> calculaTrajetos(Aeroporto origem, Aeroporto destino) {
-        ArrayList<Trajeto> trajetos = new ArrayList<Trajeto>();
-        /* Calcula os possíveis trajetos para viajar da origem para o destino.
-        Precisa levar em consideração:
-            - As conexões entre aeroportos;
-            - Se há aviões que têm espaço suficiente para alocar
-        o combustível necessário para concluir os voos do trajeto;
-            - Se há aviões da companhia disponíveis para realizar o trajeto
-            - Muita coisa, scrr
-        TODO: Implementar um algoritmo de grafos. */
-
-
-
-        Map<Aeroporto, Boolean> foiVisitado = new HashMap<Aeroporto, Boolean>();
-        for (Aeroporto a : listaAeroportos){
-            foiVisitado.put(a, false);
-        }
-        // Stack<Aeroporto> pilha = new Stack<Aeroporto>();
-        // pilha.push(origem);
-        // ArrayList<String> caminho = new ArrayList<String>();
-        // while (!pilha.isEmpty()){
-        //     Aeroporto atual = pilha.pop();
-
-        //     if(!foiVisitado.get(atual)){
-
-        //         caminho.add(atual.getNome());
-
-        //         boolean check = false;
-        //         for (Voo visit : atual.getListaVoos()){
-        //             if (!foiVisitado.get(visit.getDestino()) && visit.getOrigem() != atual){
-        //                 check = true;
-        //                 break;
-        //             }
-        //         }
-
-        //         if (atual.getListaVoos().size() == 1 || check == false){
-        //             foiVisitado.put(atual, true);
-        //         }
-
-
-        //         if (atual.equals(destino)){
-        //             System.out.println("oi");
-        //             System.out.println(caminho);
-        //             caminho.clear();
-        //             caminho.add(origem.getNome());
-        //             for(Aeroporto a : pilha){
-        //                 caminho.add(a.getNome());
-        //             }
-        //             foiVisitado.put(atual, false);
-        //         }
-
-
-        //         for (Voo adj : atual.getListaVoos()){
-        //             if (!foiVisitado.get(adj.getDestino())){
-        //                 pilha.push(adj.getDestino());
-        //             }
-        //         }
-        //     }
-
-        // }
-        return trajetos;
-
-        
-    }
-
     public ArrayList<Aeroporto> getAeroportos(ArrayList<Voo> voos){
         ArrayList<Aeroporto> aeroportos = new ArrayList<Aeroporto>();
         for (Voo v : voos){
@@ -412,6 +347,8 @@ public class Companhia {
         ArrayList<Aeroporto> caminho = new ArrayList<Aeroporto>();
         caminho.add(source);
         VerificaTodosCaminhosRecursivo(saida, source, destination, foiVisitado, caminho, 0, limite);
+
+        //TODO: ajustar para retornar trajetos
     }
 
     private void VerificaTodosCaminhosRecursivo(ArrayList<ArrayList<Aeroporto>> saida, Aeroporto current, 
@@ -438,9 +375,11 @@ public class Companhia {
         foiVisitado.put(current, false);
     }
 
-    public String listarTrajetos(Aeroporto origem, Aeroporto destino) {
+    public String listarTrajetos(Aeroporto origem, Aeroporto destino, int limite) {
         /* Retorna uma string com os possíveis trajetos para viajar da origem para o destino. */
-        ArrayList<Trajeto> listaTrajetos = calculaTrajetos(origem, destino);
+        ArrayList<Trajeto> listaTrajetos = verificaTodosCaminhos(origem, destino);
+        //TODO: ajustar a verificação de caminhos para retornar um Trajeto
+
         if (listaTrajetos.size() == 0)
             return "A companhia " + this.getNome() + " não oferece trajetos entre " + origem.getNome() + " e " + destino.getNome() + ".\n";
         String lista = "--------------------------------------------------\n" +
