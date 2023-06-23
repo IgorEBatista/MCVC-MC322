@@ -1,38 +1,22 @@
-import java.util.ArrayList;
-
 public class AviaoComercial extends Aviao {
     
     private int passageirosMax;
-    private ArrayList<Passageiro> listaPassageiros;
 
-    public AviaoComercial(String serie, String modelo, String marca, Aeroporto local, double capacidade, double combustivel,
-            double consumoCombustivel, double envergadura, int passageirosMax, ArrayList<Passageiro> listaPassageiros) {
-        super(serie, modelo, marca, local, capacidade, combustivel, consumoCombustivel, envergadura);
+    public AviaoComercial(String modelo, String marca, Aeroporto local, double combustivelMax,
+            double consumoCombustivel, double envergadura, int passageirosMax, double pesoMax) {
+        super(modelo, marca, local, combustivelMax, consumoCombustivel, envergadura, pesoMax);
         this.passageirosMax = passageirosMax;
-        this.listaPassageiros = listaPassageiros;
     }
 
     @Override
     public boolean carregar(Voo voo){
         double peso_entrando = 0;
         for(Passageiro passageiro_iterado : voo.getListaPassageiros()){
-            peso_entrando  += (passageiro_iterado.getPesoBagagem() + 70);
-        }
-        if (peso_entrando <= capacidade){
-            setPesoAtual(peso_entrando); 
-            return true;
-        }
-        return false;
-    }
+            peso_entrando  += (passageiro_iterado.getPesoBagagem() + Passageiro.pesoMedio);
 
-    @Override
-    public boolean descarregar(Voo voo){
-        double peso_saindo = 0;
-        for(Passageiro passageiro_iterado : voo.getListaPassageiros()){
-            peso_saindo  += (passageiro_iterado.getPesoBagagem() + 70);
         }
-        if (getPesoAtual() + peso_saindo <= capacidade){
-            setPesoAtual(getPesoAtual() + peso_saindo); 
+        if (peso_entrando <= (getPesoMax())){
+            setPesoAtual(peso_entrando); 
             return true;
         }
         return false;
@@ -46,19 +30,8 @@ public class AviaoComercial extends Aviao {
         this.passageirosMax = passageirosMax;
     }
 
-    public ArrayList<Passageiro> getListaPassageiros() {
-        return listaPassageiros;
-    }
-
-    public void setListaPassageiros(ArrayList<Passageiro> listaPassageiros) {
-        this.listaPassageiros = listaPassageiros;
-    }
-
+    @Override
     public String toString(){
-        String listaPassageiros_str = "";
-        for(Passageiro passageiro_iterado : listaPassageiros){
-            listaPassageiros_str = listaPassageiros_str +  passageiro_iterado.getNome() + "\n";
-        }
-        return "Número de série: " + this.serie + "\nModelo: " + this.modelo + "\nLocal atual: " + this.local + "\nCapacidade: " + this.capacidade + "\nNível de combustível atual: " + this.combustivel + "\nConsumo de combustível(l/km): " + this.consumoCombustivel + "\nEnvergadura(m): " + this.envergadura + "\nNúmero máximo de passageiros: " + this.passageirosMax + "\nLista de passageiros: " + listaPassageiros_str;
+        return super.toString() + "\nNúmero máximo de passageiros: " + this.passageirosMax;
     }
 }

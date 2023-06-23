@@ -9,6 +9,8 @@ public class Passagem {
     private Calendar data;
     private Cliente comprador;
 
+    private final double CUSTOKM = 0.5;
+
 
     // Construtor
     public Passagem(Trajeto trajeto, Calendar data, Cliente comprador) {
@@ -73,9 +75,23 @@ public class Passagem {
 
     public double calcularPreco() {
         /* Retorna o preço a ser pago pelo cliente para comprar a passagem.
-        Pode depender do trajeto, da classe economica, da data etc
-        TODO: Implementar */
-        double preco = 0;
+        Pode depender do trajeto, da classe economica, da data etc */
+
+        double fatDist, fatEscal, fatDia = 1, preco = 0;
+        int semana = data.get(Calendar.DAY_OF_WEEK);
+        fatDist = CUSTOKM * trajeto.getDistanciaTotal();
+        fatEscal = 2/(1 + trajeto.getRota().size());
+        
+        if ((semana % 6) < 3) {
+            if ((semana % 2) == 0) {
+                fatDia = 1.5;
+            } else {
+                fatDia = 2.0;
+            }
+        } else {
+            fatDia = 1.0;
+        }
+        preco = fatDist * fatEscal * fatDia;
         return preco;
     }
 
