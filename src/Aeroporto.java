@@ -30,9 +30,11 @@ public class Aeroporto {
     }
     public boolean cadastrarVoo (Aeroporto destino, Aviao aviao){
         
-        Voo novo = new Voo(aviao, this, destino);
-        if (!listaVoos.contains(novo)){
-            return listaVoos.add(novo);
+        Voo ida = new Voo(aviao, this, destino);
+        Voo volta = new Voo (aviao, destino, this);
+        if (!listaVoos.contains(ida) && !destino.getListaVoos().contains(volta)){
+            destino.getListaVoos().add(volta);
+            return listaVoos.add(ida);
         }
         return false;
     }
