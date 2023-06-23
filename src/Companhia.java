@@ -150,7 +150,7 @@ public class Companhia {
         return false;
     }
 
-    public Aviao buscarAviao(String serie) {
+    public Aviao buscarAviao(int serie) {
         /* Busca, na lista de aviões, o avião que tem o número de série
         dado como parâmetro.
         Retorna o avião se ele estiver na lista.
@@ -347,10 +347,22 @@ public class Companhia {
             Aeroporto atual = pilha.pop();
 
             if(!foiVisitado.get(atual)){
-                foiVisitado.put(atual, true);
+
+                boolean check = false;
+                for (Voo visit : atual.getListaVoos()){
+                    if (!foiVisitado.get(visit.getDestino())){
+                        check = true;
+                    }
+                }
+
+                if (atual.getListaVoos().size() == 0 || check == false){
+                    foiVisitado.put(atual, true);
+                }
+
 
                 if (atual.equals(destino)){
-                    System.out.println(foiVisitado);
+                    System.out.println("oi");
+                    foiVisitado.put(atual, false);
                 }
 
                 for (Voo adj : atual.getListaVoos()){
