@@ -1,5 +1,6 @@
 // Esqueleto pronto!
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Stack;
@@ -155,7 +156,7 @@ public class Companhia {
         Retorna o avião se ele estiver na lista.
         Caso contrário, retorna null. */
         for (Aviao a: listaAvioes) 
-            if (a.gerarSerie() == serie)
+            if (String.valueOf(a.getSerie()).equals(serie))
                 return a;
         return null;
     }
@@ -232,43 +233,84 @@ public class Companhia {
 
     // -- Análise de vendas
 
-    public ArrayList<Voo> getTopVoos() {
-        /* Retorna uma lista dos voos mais comuns.
-        TODO: Implementar */
-        return null;
-    }
-
-    public String listarTopVoos() {
-        /* Retorna uma string com os voos mais comuns da companhia.
-        TODO: Implementar */
-        String lista = "Voos mais comuns:\n";
-        return lista;
-    }
 
     public ArrayList<Aeroporto> getTopOrigens() {
-        /* Retorna uma lista das origens mais comuns.
-        TODO: Implementar 
-        (faz sentido ter origens mais comuns?)*/
-        return null;
+        /* Retorna uma lista das origens mais comuns.*/
+        ArrayList<Integer> cont_odernada = new ArrayList<Integer>(listaAeroportos.size()), contagem = new ArrayList<Integer>(listaAeroportos.size());
+        ArrayList<Aeroporto> ordenado = new ArrayList<Aeroporto>(listaAeroportos.size());
+        
+        int index, indice;
+
+        //Conta quantas vezes cada Aeroporto apareceu
+        for (Cliente cliente : listaClientes) {
+            for (Passagem passagem : cliente.getHistoricoDeCompras()) {
+                index = listaAeroportos.indexOf(passagem.getTrajeto().getInicio());
+                contagem.set(index, contagem.get(index) + 1);
+            }            
+        }
+        //Ordena uma cópia da lista de contagem
+        for (int i = 0; i < contagem.size(); i++) {
+            cont_odernada.set(i, contagem.get(i));
+        }
+        cont_odernada.sort(Collections.reverseOrder());
+
+        //Preenche a lista de aeroportos mais visitados
+        for (int i = 0; i < cont_odernada.size(); i++) {
+            indice = contagem.indexOf(cont_odernada.get(i));
+            ordenado.set(i, listaAeroportos.get(indice));
+            contagem.set(indice, null);
+        }
+
+        return ordenado;
     }
 
-    public String listarTopOrigens() {
-        /* Retorna uma string com as origens mais comuns da companhia. 
-        TODO: Implementar */
-        String lista = "Origens mais comuns:\n";
+    public String listarTopOrigens(int tam) {
+        /* Retorna uma string com as origens mais comuns da companhia.*/
+        ArrayList<Aeroporto> topOrigens = getTopOrigens();
+        String lista = "Origens mais comuns:";
+        for (int i = 0; i < tam; i++){
+            lista = lista + "\n" + topOrigens.get(i).getCidade();
+        }
         return lista;
-    } // Estranho
+    }
 
     public ArrayList<Aeroporto> getTopDestinos() {
-        /* Retorna uma lista dos destinos mais comuns.
-        TODO: Implementar */
-        return null;
+        /* Retorna uma lista dos destinos mais comuns.*/
+        ArrayList<Integer> cont_odernada = new ArrayList<Integer>(listaAeroportos.size()), contagem = new ArrayList<Integer>(listaAeroportos.size());
+        ArrayList<Aeroporto> ordenado = new ArrayList<Aeroporto>(listaAeroportos.size());
+        
+        int index, indice;
+
+        //Conta quantas vezes cada Aeroporto apareceu
+        for (Cliente cliente : listaClientes) {
+            for (Passagem passagem : cliente.getHistoricoDeCompras()) {
+                index = listaAeroportos.indexOf(passagem.getTrajeto().getFim());
+                contagem.set(index, contagem.get(index) + 1);
+            }            
+        }
+        //Ordena uma cópia da lista de contagem
+        for (int i = 0; i < contagem.size(); i++) {
+            cont_odernada.set(i, contagem.get(i));
+        }
+        cont_odernada.sort(Collections.reverseOrder());
+
+        //Preenche a lista de aeroportos mais visitados
+        for (int i = 0; i < cont_odernada.size(); i++) {
+            indice = contagem.indexOf(cont_odernada.get(i));
+            ordenado.set(i, listaAeroportos.get(indice));
+            contagem.set(indice, null);
+        }
+
+        return ordenado;
     }
 
-    public String listarTopDestinos() {
-        /* Retorna uma string com a lista dos destinos mais comuns da companhia.
-        TODO: Implementar */
-        String lista = "Destinos mais comuns:\n";
+    public String listarTopDestinos(int tam) {
+        /* Retorna uma string com a lista dos destinos mais comuns da companhia.*/
+        ArrayList<Aeroporto> topDestinos = getTopDestinos();
+        String lista = "Destinos mais comuns:";
+        for (int i = 0; i < tam; i++){
+            lista = lista + "\n" + topDestinos.get(i).getCidade();
+        }
         return lista;
     }
 
