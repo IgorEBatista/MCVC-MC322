@@ -71,6 +71,16 @@ public class Trajeto {
         setDistanciaTotal(calculaDistanciaTotal());
     }
 
+    public Aeroporto getInicio() {
+        //Devolve o aeroporto de inicio do trajeto.
+        return rota.get(0).getOrigem();
+    }
+    
+    public Aeroporto getFim() {
+        //Devolve o aeroporto final do trajeto.
+        return rota.get(rota.size() - 1).getDestino();
+    }
+
     @Override
     public String toString() {
         return vizualizarTrajeto();
