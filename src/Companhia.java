@@ -8,7 +8,6 @@ public class Companhia {
     private final String CNPJ;
     private String nome;
     private ArrayList<Aeroporto> listaAeroportos;     // Lista de cidades em que a companhia atua
-    private ArrayList<Conexao> listaConexoes;   // Lista de conexões que existem entre Aeroporto-Aeroporto
     private ArrayList<Aviao> listaAvioes;       // Lista de aviões da companhia
     private ArrayList<Cliente> listaClientes;   // Lista de clientes cadastrados na companhia
     private int limiteEscalas;
@@ -18,7 +17,6 @@ public class Companhia {
         this.CNPJ = CNPJ;
         this.nome = nome;
         this.listaAeroportos = new ArrayList<Aeroporto>();
-        this.listaConexoes = new ArrayList<Conexao>();
         this.listaAvioes = new ArrayList<Aviao>();
         this.listaClientes = new ArrayList<Cliente>();
         this.limiteEscalas = limiteEscalas;
@@ -49,15 +47,6 @@ public class Companhia {
     
     public void setlistaAeroportos(ArrayList<Aeroporto> listaAeroportos) {
         this.listaAeroportos = listaAeroportos;
-    }
-    
-    
-    public ArrayList<Conexao> getListaConexoes() {
-        return listaConexoes;
-    }
-
-    public void setListaConexoes(ArrayList<Conexao> listaConexoes) {
-        this.listaConexoes = listaConexoes;
     }
     
     public ArrayList<Aviao> getListaAvioes() {
@@ -161,7 +150,7 @@ public class Companhia {
 
     public String listarAvioes() {
         /* Retorna uma string com os aviões que a companhia possui. */
-        if (listaConexoes.size() == 0)
+        if (listaAvioes.size() == 0)
             return "A companhia " + this.getNome() + " ainda não possui aviões.\n";
         String lista = "--------------------------------------------------\n" +
                        "Aviões da companhia " + this.getNome() + ":\n" +
