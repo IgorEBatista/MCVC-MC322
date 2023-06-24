@@ -1,14 +1,7 @@
-// Esqueleto pronto!
-import java.time.format.SignStyle;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-import java.util.Stack;
-
-import javax.imageio.ImageIO;
-import javax.sound.midi.VoiceStatus;
 
 public class Companhia {
     // Atributos (Propriedades)
@@ -161,7 +154,7 @@ public class Companhia {
         Retorna o avião se ele estiver na lista.
         Caso contrário, retorna null. */
         for (Aviao a: listaAvioes) 
-            if (String.valueOf(a.getSerie()).equals(serie))
+            if (a.getSerie() == serie)
                 return a;
         return null;
     }
@@ -339,7 +332,7 @@ public class Companhia {
         return aeroportos;
     }
     
-    public void verificaTodosCaminhos(ArrayList<ArrayList<Aeroporto>> saida, Aeroporto source, Aeroporto destination, int limite) {
+    public void verificaTodosCaminhos(ArrayList<Trajeto> saida, Aeroporto source, Aeroporto destination, int limite) {
         Map<Aeroporto, Boolean> foiVisitado = new HashMap<Aeroporto, Boolean>();
         for (Aeroporto a : listaAeroportos){
             foiVisitado.put(a, false);
@@ -347,16 +340,16 @@ public class Companhia {
         ArrayList<Aeroporto> caminho = new ArrayList<Aeroporto>();
         caminho.add(source);
         VerificaTodosCaminhosRecursivo(saida, source, destination, foiVisitado, caminho, 0, limite);
-
-        //TODO: ajustar para retornar trajetos
     }
 
-    private void VerificaTodosCaminhosRecursivo(ArrayList<ArrayList<Aeroporto>> saida, Aeroporto current, 
+    private void VerificaTodosCaminhosRecursivo(ArrayList<Trajeto> saida, Aeroporto current, 
     Aeroporto destination, Map<Aeroporto, Boolean> foiVisitado, ArrayList<Aeroporto> caminho, int profundidade, int limite) {
         foiVisitado.put(current, true);
 
         if (current == destination) {
-            saida.add(new ArrayList<Aeroporto>(caminho));
+            Trajeto trajeto = new Trajeto(new ArrayList<Aeroporto>(caminho));
+            saida.add(trajeto);
+        
         } else if (profundidade < limite) {
 
             ArrayList<Aeroporto> adjacentes = getAeroportos(current.getListaVoos());
@@ -377,8 +370,9 @@ public class Companhia {
 
     public String listarTrajetos(Aeroporto origem, Aeroporto destino, int limite) {
         /* Retorna uma string com os possíveis trajetos para viajar da origem para o destino. */
-        ArrayList<Trajeto> listaTrajetos = verificaTodosCaminhos(origem, destino);
-        //TODO: ajustar a verificação de caminhos para retornar um Trajeto
+        ArrayList<Trajeto> listaTrajetos = new ArrayList<Trajeto>();
+        verificaTodosCaminhos(listaTrajetos, origem, destino, limite);
+        Collections.sort(listaTrajetos); // Organizando os trajetos com base em distância
 
         if (listaTrajetos.size() == 0)
             return "A companhia " + this.getNome() + " não oferece trajetos entre " + origem.getNome() + " e " + destino.getNome() + ".\n";
