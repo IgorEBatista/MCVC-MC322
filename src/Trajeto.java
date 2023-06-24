@@ -1,13 +1,14 @@
 import java.util.ArrayList;
 
-public class Trajeto {
+
+public class Trajeto implements Comparable<Trajeto> {
     // Atributos (Propriedades)
-    private ArrayList<Voo> rota;   // Lista de conexões que compoem o trajeto
+    private ArrayList<Aeroporto> rota;   // Lista de conexões que compoem o trajeto
     private double distanciaTotal;
    
     // Construtor
-    public Trajeto() {
-        this.rota = new ArrayList<Voo>();
+    public Trajeto(ArrayList<Aeroporto> rota) {
+        this.rota = rota;
         this.distanciaTotal = calculaDistanciaTotal();
     }
 
@@ -22,47 +23,60 @@ public class Trajeto {
         this.distanciaTotal = distanciaTotal;
     }
 
-    public ArrayList<Voo> getRota() {
+    public ArrayList<Aeroporto> getRota() {
         return rota;
     }
 
-    public void setRota(ArrayList<Voo> rota) {
+    public void setRota(ArrayList<Aeroporto> rota) {
         this.rota = rota;
     }
 
     // - Funções da classe Trajeto
 
-    public boolean adicionarRota(Voo voo) {
+    public boolean adicionarRota(Aeroporto aeroporto) {
         /* Adiciona uma conexão à rota. */
-        rota.add(voo);
+        rota.add(aeroporto);
         atualizaDistancia();
         return true;
     }
 
-    public boolean removerRota(Voo voo) {
+    public boolean removerRota(Aeroporto aeroporto) {
         /* Remove uma conexão da rota.
         Se  */
-        if (rota.contains(voo)) {
-            rota.remove(voo);
+        if (rota.contains(aeroporto)) {
+            rota.remove(aeroporto);
             atualizaDistancia();
             return true;
         }
         return false;
     }
 
+    public int compareTo(Trajeto trajeto){
+
+        if (this.getDistanciaTotal() < trajeto.getDistanciaTotal()){
+            return -1;
+        }
+        if (this.getDistanciaTotal() > trajeto.getDistanciaTotal()){
+            return 1;
+        }
+        return 0;
+    }
+
     public String vizualizarTrajeto() {
         /* Retorna uma string com a rota do trajeto. */
         String lista = "Trajeto:\n";
-        for (Voo v : rota) {
-            lista += (v.getOrigem()).getNome() + " -> " + (v.getDestino()).getNome() + "\n";
+        for (int i = 0; i < rota.size() - 1; i++){
+            lista += (rota.get(i).getNome()) + " -> ";
         }
+        lista += (rota.get(rota.size() - 1).getNome()) + "\n";
+        lista += "Distancia: " + Math.round(getDistanciaTotal())/1000 + " km\n";
         return lista;
     }
 
     public double calculaDistanciaTotal() {
         double distanciaTot = 0.0;
-        for (Voo voo : rota) {
-            distanciaTot += Coordenada.calculaDistancia(voo.getOrigem(), voo.getDestino());
+        for (int i = 0; i < rota.size() - 1; i++){
+            distanciaTot += Coordenada.calculaDistancia(rota.get(i), rota.get(i + 1));
         }
         return distanciaTot;
     }
@@ -73,12 +87,12 @@ public class Trajeto {
 
     public Aeroporto getInicio() {
         //Devolve o aeroporto de inicio do trajeto.
-        return rota.get(0).getOrigem();
+        return rota.get(0);
     }
     
     public Aeroporto getFim() {
         //Devolve o aeroporto final do trajeto.
-        return rota.get(rota.size() - 1).getDestino();
+        return rota.get(rota.size() - 1);
     }
 
     @Override
