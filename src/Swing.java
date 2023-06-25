@@ -90,6 +90,8 @@ class Swing implements ActionListener
 			criar_tela2();
 		}
 
+		if(button.equals("Cadastrar "))
+
 		if(button.equals("Remover")){
 			criar_tela3();
 		}
@@ -120,6 +122,7 @@ class Swing implements ActionListener
 			}
 		}
 	}
+
 	//função que cria a tela2
 	public static void criar_tela2(){
 
@@ -171,7 +174,6 @@ class Swing implements ActionListener
 		tela2.add(trajeto2);
 		tela2.add(voo2);
 		tela2.add(voltar);
-		
 
 		//criando um objeto
 		Swing obj = new Swing();
@@ -228,7 +230,7 @@ class Swing implements ActionListener
 		voo2.setBounds(350,400,200,50);
 		voltar.setBounds(350,475,200,50);
 
-		//Add the button to frame 3
+		//adicionando os botoes na tela3
 		tela3.add(texto1);
 		tela3.add(voltar);
 		tela3.add(aeroporto2);
@@ -273,9 +275,9 @@ class Swing implements ActionListener
 		JLabel texto1 = new JLabel("Vamos simular uma compra de passagem.");  
         texto1.setBounds(20,10, 250,30); 
 		JLabel texto2 = new JLabel("Origem: ");  
-        texto2.setBounds(50,50, 250,30);
+        texto2.setBounds(50,75, 250,30);
 		JLabel texto3 = new JLabel("Destino: ");  
-        texto3.setBounds(50,300, 250,30);
+        texto3.setBounds(50,150, 250,30);
 
 		final JLabel label = new JLabel();          
 		label.setHorizontalAlignment(JLabel.CENTER);  
@@ -296,7 +298,6 @@ class Swing implements ActionListener
 		tela4.add(texto1);
 		tela4.add(texto2);
 		tela4.add(texto3);
-		
 		tela4.add(origens_cb); 
 		tela4.add(destinos_cb);
 		tela4.add(label); 
