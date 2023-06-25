@@ -1,8 +1,8 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-class Swing implements ActionListener
-{
+import java.util.ArrayList;
+class Swing implements ActionListener {
 	static JFrame tela1;
 	static JFrame tela2;
 	static JFrame tela3;
@@ -34,6 +34,8 @@ class Swing implements ActionListener
 	static JButton trajeto4;
 	static JButton voo4;
 	static JButton calcular_trajetos;
+	static JButton concluir_cadastro;
+	static JButton concluir_remocao;
 
 	public static void main(String args[]){
 
@@ -83,14 +85,11 @@ class Swing implements ActionListener
 	}
 
 	//função que vai fazer coisas quando os botões forem clicados
-	public void actionPerformed(ActionEvent e)
-	{
+	public void actionPerformed(ActionEvent e){
 		String button = e.getActionCommand();
 		if(button.equals("Cadastrar")){
 			criar_tela2();
 		}
-
-		if(button.equals("Cadastrar "))
 
 		if(button.equals("Remover")){
 			criar_tela3();
@@ -105,21 +104,32 @@ class Swing implements ActionListener
 		}
 
 		if(button.equals("Voltar")){
-			if(tela5.isVisible()){
+			if (tela5 != null && tela5.isVisible()){
 				tela5.dispose();
 			} 
-
-			if (tela4.isVisible()){
+			else if (tela4 != null && tela4.isVisible()){
 				tela4.dispose();
 			} 
-			
-			if (tela3.isVisible()){
+			else if (tela3 != null && tela3.isVisible()){
 				tela3.dispose();
 			} 
-			
-			if (tela2.isVisible()){
+			else if (tela2 != null && tela2.isVisible()){
 				tela2.dispose();
 			}
+		}
+
+		if(button.equals("Cadastrar Aeroporto")){
+			criar_tela5();
+		}
+		if(button.equals("Concluir cadastro - Aeroporto")){
+			JOptionPane.showMessageDialog(tela5, "Aeroporto cadastrado com sucesso!");
+		}
+
+		if(button.equals("Remover Aeroporto")){
+
+		}
+		if(button.equals("Listar Aeroportos")){
+
 		}
 	}
 
@@ -135,16 +145,16 @@ class Swing implements ActionListener
 
 
 		//criando os botoes
-		aeroporto2 = new JButton("Aeroporto"); 
-		aviao_cargueiro2 = new JButton("Avião cargueiro"); 
-		aviao_comercial2 = new JButton("Avião comercial"); 
-		carga2 = new JButton("Carga");
-		clientePF2 = new JButton("Cliente Pessoa Física"); 
-		clientePJ2 = new JButton("Cliente Pessoa Jurídica"); 
-		passageiro2 = new JButton("Passageiro"); 
-		passagem2 = new JButton("Passagem");
-		trajeto2 = new JButton("Trajeto"); 
-		voo2 = new JButton("Voo"); 
+		aeroporto2 = new JButton("Cadastrar Aeroporto"); 
+		aviao_cargueiro2 = new JButton("Cadastrar Avião cargueiro"); 
+		aviao_comercial2 = new JButton("Cadastrar Avião comercial"); 
+		carga2 = new JButton("Cadastrar Carga");
+		clientePF2 = new JButton("Cadastrar Cliente Pessoa Física"); 
+		clientePJ2 = new JButton("Cadastrar Cliente Pessoa Jurídica"); 
+		passageiro2 = new JButton("Cadastrar Passageiro"); 
+		passagem2 = new JButton("Cadastrar Passagem");
+		trajeto2 = new JButton("Cadastrar Trajeto"); 
+		voo2 = new JButton("Cadastrar Voo"); 
 		voltar = new JButton("Voltar"); 
 
 		aeroporto2.setBounds(75,100,200,50);
@@ -205,16 +215,16 @@ class Swing implements ActionListener
         texto1.setBounds(20,10, 250,30); 
 
 		//criando os botoes
-		aeroporto2 = new JButton("Aeroporto"); 
-		aviao_cargueiro2 = new JButton("Avião cargueiro"); 
-		aviao_comercial2 = new JButton("Avião comercial"); 
-		carga2 = new JButton("Carga");
-		clientePF2 = new JButton("Cliente Pessoa Física"); 
-		clientePJ2 = new JButton("Cliente Pessoa Jurídica"); 
-		passageiro2 = new JButton("Passageiro"); 
-		passagem2 = new JButton("Passagem");
-		trajeto2 = new JButton("Trajeto"); 
-		voo2 = new JButton("Voo"); 
+		aeroporto2 = new JButton("Remover Aeroporto"); 
+		aviao_cargueiro2 = new JButton("Remover Avião cargueiro"); 
+		aviao_comercial2 = new JButton("Remover Avião comercial"); 
+		carga2 = new JButton("Remover Carga");
+		clientePF2 = new JButton("Remover Cliente Pessoa Física"); 
+		clientePJ2 = new JButton("Remover Cliente Pessoa Jurídica"); 
+		passageiro2 = new JButton("Remover Passageiro"); 
+		passagem2 = new JButton("Remover Passagem");
+		trajeto2 = new JButton("Remover Trajeto"); 
+		voo2 = new JButton("Remover Voo"); 
 		voltar = new JButton("Voltar"); 
 
 		aeroporto2.setBounds(75,100,200,50);
@@ -316,7 +326,100 @@ class Swing implements ActionListener
 		//Display tela4
 		tela4.setVisible(true);
 	}
+
+	public static void criar_tela5(){
+
+		tela5 = new JFrame("MCVC - Cadastrar Aeroporto");
+		tela5.setSize(1000, 600);
+		tela5.setLayout(null);
+		tela5.setBackground(Color.white);
+		JLabel texto1 = new JLabel("Vamos cadastrar um novo Aeroporto");  
+        texto1.setBounds(20,10, 250,30); 
+
+		//criando os JTextField
+		JTextField nome = new JTextField();
+		JTextField coordenadas = new JTextField();
+		JTextField cidade = new JTextField();
+		JTextField largura_pista = new JTextField();
+
+		nome.setBounds(100, 150, 200, 50);
+		coordenadas.setBounds(100, 300, 200, 50);
+		cidade.setBounds(500, 150, 200, 50);
+		largura_pista.setBounds(500, 300, 200, 50);
+
+		//criando os JLabels
+		JLabel nome_label = new JLabel("Nome: ");
+		JLabel coordenadas_label = new JLabel("coordenadass: ");
+		JLabel cidade_label = new JLabel("Cidade: ");
+		JLabel largura_pista_label = new JLabel("Largura da pista de pouso: ");
+
+		nome_label.setBounds(100, 100, 200, 50);
+		coordenadas_label.setBounds(100, 250, 200, 50);
+		cidade_label.setBounds(500, 100, 200, 50);
+		largura_pista_label.setBounds(500, 250, 200, 50);
+
+		//criando os botoes
+		concluir_cadastro = new JButton("Concluir cadastro - Aeroporto"); 
+		voltar = new JButton("Voltar"); 
+		concluir_cadastro.setBounds(75,450,300,50);
+		voltar.setBounds(450,450,300,50);
+
+		//Add the button to frame 2
+		tela5.add(texto1);
+		tela5.add(concluir_cadastro);
+		tela5.add(nome_label);
+		tela5.add(coordenadas_label);
+		tela5.add(cidade_label);
+		tela5.add(largura_pista_label);
+		tela5.add(nome);
+		tela5.add(coordenadas);
+		tela5.add(cidade);
+		tela5.add(largura_pista);
+		tela5.add(voltar);
+
+		//criando um objeto
+		Swing obj = new Swing();
+
+
+		//associando o ActionListener com os botões
+		ArrayList<Object> listaAeroporto = new ArrayList<Object>();
+
+		nome.addActionListener(new ActionListener() {  
+			public void actionPerformed(ActionEvent e) {       
+				String nome_str = nome.getText();
+				Integer.parseInt(nome_str);  
+				listaAeroporto.add(nome_str);  
+			}  
+		});
+		coordenadas.addActionListener(new ActionListener() {  
+			public void actionPerformed(ActionEvent e) {       
+				String coordenadas_str = coordenadas.getText();  
+				listaAeroporto.add(coordenadas_str);  
+			}  
+		});
+		cidade.addActionListener(new ActionListener() {  
+			public void actionPerformed(ActionEvent e) {       
+				String cidade_str = cidade.getText();  
+				listaAeroporto.add(cidade_str);  
+			}  
+		});
+		largura_pista.addActionListener(new ActionListener() {  
+			public void actionPerformed(ActionEvent e) {       
+				String largura_pista_str = largura_pista.getText();  
+				listaAeroporto.add(largura_pista_str);  
+			}  
+		});
+
+		concluir_cadastro.addActionListener(obj);
+		voltar.addActionListener(obj);
+
+		MenuCadastro.cadastrarAeroporto(listaAeroporto);
+		
+		//Display tela2
+		tela5.setVisible(true);
+	}
 }
+
 
 
 
