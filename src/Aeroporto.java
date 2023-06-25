@@ -39,6 +39,16 @@ public class Aeroporto {
         return false;
     }
 
+    public boolean removerVoo(int codigo) {
+        //TODO implementar
+        return false;
+    }
+
+    public Voo buscaVoo(int codigo) {
+        //TODO implementar
+        return null;
+    }
+
     public ArrayList<Voo> getListaVoos() {
         return listaVoos;
     }
