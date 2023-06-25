@@ -19,10 +19,11 @@ public class MenuCompra {
         Calendar data = (Calendar)entradas.get(2);
         ArrayList<Passagem> possiveis = new ArrayList<Passagem>();
         ArrayList<Trajeto> trajetos = new ArrayList<Trajeto>();
-        companhia.verificaTodosCaminhos(trajetos, origem, destino);
+        trajetos = companhia.verificaTodosCaminhos(origem, destino);
         for (Trajeto trajeto : trajetos) {
             possiveis.add(new Passagem(trajeto, data, null));
         }
         return possiveis;
     }
 }
+
