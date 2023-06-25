@@ -39,6 +39,8 @@ class Swing implements ActionListener {
 
 	public static void main(String args[]){
 
+		Main.main(args);
+
 		//criando a tela1 (Menu principal)
 		tela1 = new JFrame("MCVC - Menu");
 		tela1.setSize(1000, 600);
@@ -291,16 +293,18 @@ class Swing implements ActionListener {
 
 		final JLabel label = new JLabel();          
 		label.setHorizontalAlignment(JLabel.CENTER);  
-		label.setSize(400,100); 
+		label.setSize(400,100);
   
 		//Criando as ComboBoxes
-		String origens[]={"C","C++","C#","Java","PHP"};        
+		String[] origens = new String[Main.companhia.getNomeAeroportos().size()];
+		origens = Main.companhia.getNomeAeroportos().toArray(origens);
 		final JComboBox<String> origens_cb = new JComboBox<>(origens);  
-		origens_cb.setBounds(50, 100,90,20);    
+		origens_cb.setBounds(50, 100,90,20);		
 
-		String destinos[]={"C","C++","C#","Java","PHP"};        
+		String[] destinos = new String[Main.companhia.getNomeAeroportos().size()];
+		destinos = Main.companhia.getNomeAeroportos().toArray(origens);
 		final JComboBox<String> destinos_cb = new JComboBox<>(destinos); 
-		destinos_cb.setBounds(50, 175,90,20);    
+		destinos_cb.setBounds(50, 175,90,20);
 
 		JButton calcular_trajetos = new JButton("Calcular trajetos");  
 		calcular_trajetos.setBounds(50,250,200,50);  
@@ -315,13 +319,17 @@ class Swing implements ActionListener {
 		tela4.setLayout(null);    
 		tela4.setSize(350,350);    
 		tela4.setVisible(true);       
-		// calcular_trajetos.addActionListener (new ActionListener() {  
-		// 	//TODO: chamar a função que calcula o trajeto de acordo com a origem e o destino
-		// 	public void actionPerformed(ActionEvent e) {       
-		// 	String data = "Programming language Selected: " + cb.getItemAt(cb.getSelectedIndex());  
-		// 	label.setText(data);  
-		// 	}  
-		// });           
+
+
+		calcular_trajetos.addActionListener (new ActionListener() {  
+			//TODO: A lista de trajetos já está aqui
+			public void actionPerformed(ActionEvent e) {
+			Aeroporto origem = Main.companhia.getlistaAeroportos().get(origens_cb.getSelectedIndex());
+			Aeroporto dest = Main.companhia.getlistaAeroportos().get(destinos_cb.getSelectedIndex());
+			ArrayList<Trajeto> trajetos = Main.companhia.verificaTodosCaminhos(origem, dest, 1);
+			label.setText("");
+			}  
+		});
 		
 		//Display tela4
 		tela4.setVisible(true);

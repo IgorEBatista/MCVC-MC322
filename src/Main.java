@@ -41,8 +41,10 @@ public class Main {
         aeroporto1.cadastrarVoo(aeroporto5, aviao);
         aeroporto4.cadastrarVoo(aeroporto5, aviao);
 
+        companhia.getNomeAeroportos();
+
         ArrayList<Trajeto> saida = new ArrayList<Trajeto>();
-        companhia.verificaTodosCaminhos(saida, aeroporto1, aeroporto5, 1);
+        saida = companhia.verificaTodosCaminhos(aeroporto1, aeroporto5, 1);
         Collections.sort(saida);
         
         System.out.println(companhia.listarTrajetos(aeroporto1, aeroporto5, 2));
