@@ -1,4 +1,4 @@
-public abstract class MenuExcluir {
+public abstract class MenuExclusao {
     // Atributo
     private static Companhia companhia = Main.companhia;
 
