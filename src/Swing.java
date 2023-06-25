@@ -48,7 +48,7 @@ class Swing implements ActionListener {
 	static JButton calcular_trajetos;
 	static JButton concluir_cadastro;
 	static JButton concluir_remocao;
-
+	static JTextArea resumo;
 	public static void main(String args[]){
 
 		//criando a tela1 (Menu principal)
@@ -396,7 +396,6 @@ class Swing implements ActionListener {
 		JLabel texto1 = new JLabel("O que você deseja analisar?");  
         texto1.setBounds(20,10, 250,30); 
 
-
 		//criando os botoes
 		JButton resumo = new JButton("Resumir informações da companhia");
 		aeroporto6 = new JButton("Listar Aeroportos"); 
@@ -517,7 +516,7 @@ class Swing implements ActionListener {
 		}
 		if(button.equals("Resumir informações da companhia")){
 			//TODO: fazer o textArea com o return da resumirInfos
-			MenuAnalise.resumirInfos();
+			resumo = new JTextArea(MenuAnalise.resumirInfos());
 		}
 	}
 
