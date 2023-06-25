@@ -328,25 +328,25 @@ public class Companhia {
         return aeroportos;
     }
     
-    public void verificaTodosCaminhos(ArrayList<Trajeto> saida, Aeroporto source, Aeroporto destination, int limite) {
+    public void verificaTodosCaminhos(ArrayList<Trajeto> saida, Aeroporto source, Aeroporto destination) {
         Map<Aeroporto, Boolean> foiVisitado = new HashMap<Aeroporto, Boolean>();
         for (Aeroporto a : listaAeroportos){
             foiVisitado.put(a, false);
         }
         ArrayList<Aeroporto> caminho = new ArrayList<Aeroporto>();
         caminho.add(source);
-        VerificaTodosCaminhosRecursivo(saida, source, destination, foiVisitado, caminho, 0, limite);
+        VerificaTodosCaminhosRecursivo(saida, source, destination, foiVisitado, caminho, 0);
     }
 
     private void VerificaTodosCaminhosRecursivo(ArrayList<Trajeto> saida, Aeroporto current, 
-    Aeroporto destination, Map<Aeroporto, Boolean> foiVisitado, ArrayList<Aeroporto> caminho, int profundidade, int limite) {
+    Aeroporto destination, Map<Aeroporto, Boolean> foiVisitado, ArrayList<Aeroporto> caminho, int profundidade) {
         foiVisitado.put(current, true);
 
         if (current == destination) {
             Trajeto trajeto = new Trajeto(new ArrayList<Aeroporto>(caminho));
             saida.add(trajeto);
         
-        } else if (profundidade < limite) {
+        } else if (profundidade < limiteEscalas) {
 
             ArrayList<Aeroporto> adjacentes = getAeroportos(current.getListaVoos());
             for (Aeroporto adj : adjacentes) {
@@ -354,7 +354,7 @@ public class Companhia {
                     // Verificar se o nó já está presente no caminho atual para evitar ciclos
                     if (!caminho.contains(adj)) {
                         caminho.add(adj);
-                        VerificaTodosCaminhosRecursivo(saida, adj, destination, foiVisitado, caminho, profundidade + 1, limite);
+                        VerificaTodosCaminhosRecursivo(saida, adj, destination, foiVisitado, caminho, profundidade + 1);
                         caminho.remove(adj);
                     }
                 }
@@ -364,10 +364,10 @@ public class Companhia {
         foiVisitado.put(current, false);
     }
 
-    public String listarTrajetos(Aeroporto origem, Aeroporto destino, int limite) {
+    public String listarTrajetos(Aeroporto origem, Aeroporto destino) {
         /* Retorna uma string com os possíveis trajetos para viajar da origem para o destino. */
         ArrayList<Trajeto> listaTrajetos = new ArrayList<Trajeto>();
-        verificaTodosCaminhos(listaTrajetos, origem, destino, limite);
+        verificaTodosCaminhos(listaTrajetos, origem, destino);
         Collections.sort(listaTrajetos); // Organizando os trajetos com base em distância
 
         if (listaTrajetos.size() == 0)
