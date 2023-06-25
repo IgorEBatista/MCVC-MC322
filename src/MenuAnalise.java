@@ -1,9 +1,10 @@
 public abstract class MenuAnalise {
     //Propriedades
     private static final int TOP = 3;
+    private static Companhia companhia = Main.companhia;
     
     //Métodos
-    public static String resumirInfos(Companhia companhia){
+    public static String resumirInfos(){
         return "Informações sobre a companhia:" +
                 "\nNome da Companhia: " + companhia.getNome() +
                 "\nCNPJ: " + companhia.getCNPJ() +
@@ -13,23 +14,23 @@ public abstract class MenuAnalise {
                 "\nNúmero de Aviões: " + companhia.getListaAvioes().size();
     }
 
-    public static String listarTopOrigens(Companhia companhia){
+    public static String listarTopOrigens(){
         return companhia.listarTopOrigens(TOP);
     }
 
-    public static String listarTopDestinos(Companhia companhia){
+    public static String listarTopDestinos(){
         return companhia.listarTopDestinos(TOP);
     }
 
-    public static String listarAeroportos(Companhia companhia){
+    public static String listarAeroportos(){
         return companhia.listarAeroporto();
     }
 
-    public static String listarAvioes(Companhia companhia){
+    public static String listarAvioes(){
         return companhia.listarAvioes();
     }
 
-    public static String listarClientes(Companhia companhia){
+    public static String listarClientes(){
         return companhia.listarClientes();
     }
 
