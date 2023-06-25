@@ -141,15 +141,18 @@ public class Companhia {
         return false;
     }
 
-    public Aviao buscarAviao(String serie) {
+    public Aviao buscarAviao(int serie) {
         /* Busca, na lista de aviões, o avião que tem o número de série
         dado como parâmetro.
         Retorna o avião se ele estiver na lista.
         Caso contrário, retorna null. */
         for (Aviao a: listaAvioes) 
-            if (a.getSerie() == serie)
+            if (a.getSerie() == serie )
                 return a;
         return null;
+    }
+    public Aviao buscarAviao(String serie) {
+        return buscarAviao(Integer.parseInt(serie));
     }
 
     public String listarAvioes() {
