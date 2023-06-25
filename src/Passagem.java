@@ -13,6 +13,12 @@ public class Passagem {
 
 
     // Construtor
+    /**
+     * 
+     * @param trajeto
+     * @param data
+     * @param comprador
+     */
     public Passagem(Trajeto trajeto, Calendar data, Cliente comprador) {
         this.ID = gerarID();
         this.preco = calcularPreco();

@@ -48,9 +48,10 @@ public class Main {
         companhia.getNomeAeroportos();
 
         ArrayList<Trajeto> saida = new ArrayList<Trajeto>();
-        saida = companhia.verificaTodosCaminhos(aeroporto1, aeroporto5, 1);
+
+        saida = companhia.verificaTodosCaminhos(aeroporto1, aeroporto5);
         Collections.sort(saida);
         
-        System.out.println(companhia.listarTrajetos(aeroporto1, aeroporto5, 2));
+        System.out.println(companhia.listarTrajetos(aeroporto1, aeroporto5));
     }
 }
