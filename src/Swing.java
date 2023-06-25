@@ -1,6 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.util.ArrayList;
 class Swing implements ActionListener {
 	static JFrame tela1;
 	static JFrame tela2;
@@ -121,7 +122,7 @@ class Swing implements ActionListener {
 			criar_tela5();
 		}
 		if(button.equals("Concluir cadastro - Aeroporto")){
-
+			JOptionPane.showMessageDialog(tela5, "Aeroporto cadastrado com sucesso!");
 		}
 
 		if(button.equals("Remover Aeroporto")){
@@ -337,23 +338,23 @@ class Swing implements ActionListener {
 
 		//criando os JTextField
 		JTextField nome = new JTextField();
-		JTextField coordenada = new JTextField();
+		JTextField coordenadas = new JTextField();
 		JTextField cidade = new JTextField();
 		JTextField largura_pista = new JTextField();
 
 		nome.setBounds(100, 150, 200, 50);
-		coordenada.setBounds(100, 300, 200, 50);
+		coordenadas.setBounds(100, 300, 200, 50);
 		cidade.setBounds(500, 150, 200, 50);
 		largura_pista.setBounds(500, 300, 200, 50);
 
 		//criando os JLabels
 		JLabel nome_label = new JLabel("Nome: ");
-		JLabel coordenada_label = new JLabel("Coordenadas: ");
+		JLabel coordenadas_label = new JLabel("coordenadass: ");
 		JLabel cidade_label = new JLabel("Cidade: ");
 		JLabel largura_pista_label = new JLabel("Largura da pista de pouso: ");
 
 		nome_label.setBounds(100, 100, 200, 50);
-		coordenada_label.setBounds(100, 250, 200, 50);
+		coordenadas_label.setBounds(100, 250, 200, 50);
 		cidade_label.setBounds(500, 100, 200, 50);
 		largura_pista_label.setBounds(500, 250, 200, 50);
 
@@ -367,11 +368,11 @@ class Swing implements ActionListener {
 		tela5.add(texto1);
 		tela5.add(concluir_cadastro);
 		tela5.add(nome_label);
-		tela5.add(coordenada_label);
+		tela5.add(coordenadas_label);
 		tela5.add(cidade_label);
 		tela5.add(largura_pista_label);
 		tela5.add(nome);
-		tela5.add(coordenada);
+		tela5.add(coordenadas);
 		tela5.add(cidade);
 		tela5.add(largura_pista);
 		tela5.add(voltar);
@@ -379,18 +380,46 @@ class Swing implements ActionListener {
 		//criando um objeto
 		Swing obj = new Swing();
 
+
 		//associando o ActionListener com os botões
-		nome.addActionListener(obj);
-		coordenada.addActionListener(obj);
-		cidade.addActionListener(obj);
-		largura_pista.addActionListener(obj);
+		ArrayList<Object> listaAeroporto = new ArrayList<Object>();
+
+		nome.addActionListener(new ActionListener() {  
+			public void actionPerformed(ActionEvent e) {       
+				String nome_str = nome.getText();
+				Integer.parseInt(nome_str);  
+				listaAeroporto.add(nome_str);  
+			}  
+		});
+		coordenadas.addActionListener(new ActionListener() {  
+			public void actionPerformed(ActionEvent e) {       
+				String coordenadas_str = coordenadas.getText();  
+				listaAeroporto.add(coordenadas_str);  
+			}  
+		});
+		cidade.addActionListener(new ActionListener() {  
+			public void actionPerformed(ActionEvent e) {       
+				String cidade_str = cidade.getText();  
+				listaAeroporto.add(cidade_str);  
+			}  
+		});
+		largura_pista.addActionListener(new ActionListener() {  
+			public void actionPerformed(ActionEvent e) {       
+				String largura_pista_str = largura_pista.getText();  
+				listaAeroporto.add(largura_pista_str);  
+			}  
+		});
+
 		concluir_cadastro.addActionListener(obj);
 		voltar.addActionListener(obj);
+
+		MenuCadastro.cadastrarAeroporto(listaAeroporto);
 		
 		//Display tela2
 		tela5.setVisible(true);
 	}
 }
+
 
 
 
