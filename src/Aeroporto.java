@@ -28,7 +28,7 @@ public class Aeroporto {
         }
         return false;
     }
-    public boolean cadastrarVoo (Aeroporto destino, Aviao aviao){
+    public boolean adicionarVoo (Aeroporto destino, Aviao aviao){
         
         Voo ida = new Voo(aviao, this, destino);
         Voo volta = new Voo (aviao, destino, this);
