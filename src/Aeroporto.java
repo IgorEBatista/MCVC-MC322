@@ -28,7 +28,7 @@ public class Aeroporto {
         }
         return false;
     }
-    public boolean cadastrarVoo (Aeroporto destino, Aviao aviao){
+    public boolean adicionarVoo (Aeroporto destino, Aviao aviao){
         
         Voo ida = new Voo(aviao, this, destino);
         Voo volta = new Voo (aviao, destino, this);
@@ -39,13 +39,25 @@ public class Aeroporto {
         return false;
     }
 
-    public boolean removerVoo(int codigo) {
-        //TODO implementar
+    public boolean removerVoo(Voo voo) {
+        /* Remove, da lista de voos, o voo dado como parâmetro.
+        Se não estiver na lista, retorna False.
+        Caso contrário, retorna True. */
+        if (listaVoos.contains(voo)) {
+            listaVoos.remove(voo);
+            return true;
+        }
         return false;
     }
 
-    public Voo buscaVoo(int codigo) {
-        //TODO implementar
+    public Voo buscarVoo(int codigo) {
+        /* Busca, na lista de voos, o voo que tem o número de série
+        dado como parâmetro.
+        Retorna o voo se ele estiver na lista.
+        Caso contrário, retorna null. */
+        for (Voo v: listaVoos) 
+            if (v.getCodigo() == codigo)
+                return v;
         return null;
     }
 

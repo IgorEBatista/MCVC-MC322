@@ -3,7 +3,7 @@ public class AviaoComercial extends Aviao {
     private int passageirosMax;
 
     public AviaoComercial(String modelo, String marca, Aeroporto local, double combustivelMax,
-            double consumoCombustivel, double envergadura, int passageirosMax, double pesoMax) {
+            double consumoCombustivel, double envergadura, double pesoMax, int passageirosMax) {
         super(modelo, marca, local, combustivelMax, consumoCombustivel, envergadura, pesoMax);
         this.passageirosMax = passageirosMax;
     }

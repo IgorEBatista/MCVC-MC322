@@ -48,6 +48,15 @@ public class Companhia {
     public ArrayList<Aeroporto> getlistaAeroportos() {
         return listaAeroportos;
     }
+
+    public ArrayList<String> getNomeAeroportos(){
+
+        ArrayList<String> nomes = new ArrayList<String>();
+        for (Aeroporto a : listaAeroportos){
+            nomes.add(a.getNome());
+        }
+        return nomes;
+    }
     
     public void setlistaAeroportos(ArrayList<Aeroporto> listaAeroportos) {
         this.listaAeroportos = listaAeroportos;
@@ -328,14 +337,18 @@ public class Companhia {
         return aeroportos;
     }
     
-    public void verificaTodosCaminhos(ArrayList<Trajeto> saida, Aeroporto source, Aeroporto destination) {
+
+    public ArrayList<Trajeto> verificaTodosCaminhos(Aeroporto source, Aeroporto destination) {
         Map<Aeroporto, Boolean> foiVisitado = new HashMap<Aeroporto, Boolean>();
         for (Aeroporto a : listaAeroportos){
             foiVisitado.put(a, false);
         }
+        ArrayList<Trajeto> saida = new ArrayList<Trajeto>();
         ArrayList<Aeroporto> caminho = new ArrayList<Aeroporto>();
         caminho.add(source);
+
         VerificaTodosCaminhosRecursivo(saida, source, destination, foiVisitado, caminho, 0);
+        return saida;
     }
 
     private void VerificaTodosCaminhosRecursivo(ArrayList<Trajeto> saida, Aeroporto current, 
@@ -367,7 +380,8 @@ public class Companhia {
     public String listarTrajetos(Aeroporto origem, Aeroporto destino) {
         /* Retorna uma string com os possíveis trajetos para viajar da origem para o destino. */
         ArrayList<Trajeto> listaTrajetos = new ArrayList<Trajeto>();
-        verificaTodosCaminhos(listaTrajetos, origem, destino);
+
+        listaTrajetos = verificaTodosCaminhos(origem, destino);
         Collections.sort(listaTrajetos); // Organizando os trajetos com base em distância
 
         if (listaTrajetos.size() == 0)
