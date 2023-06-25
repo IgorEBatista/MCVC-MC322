@@ -42,10 +42,10 @@ public class Main {
         aeroporto4.cadastrarVoo(aeroporto5, aviao);
 
         ArrayList<Trajeto> saida = new ArrayList<Trajeto>();
-        companhia.verificaTodosCaminhos(saida, aeroporto1, aeroporto5, 1);
+        companhia.verificaTodosCaminhos(saida, aeroporto1, aeroporto5);
         Collections.sort(saida);
         
-        System.out.println(companhia.listarTrajetos(aeroporto1, aeroporto5, 2));
+        System.out.println(companhia.listarTrajetos(aeroporto1, aeroporto5));
 
     
     }
