@@ -51,7 +51,12 @@ public abstract class MenuExcluir {
             return false;
         }
         origem.removerVoo(voo);
-        destino.removerVoo(voo);
-        return true;
+        for (Voo v : destino.getListaVoos()) {
+            if (v.getOrigem() == origem) {
+                destino.removerVoo(v);
+                return true;
+            }
+        }
+        return false;
     }
 }
