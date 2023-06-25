@@ -25,6 +25,10 @@ public class Companhia {
 
     // - Getters e Setters
     
+    public String getCNPJ() {
+        return CNPJ;
+    }
+
     public int getLimiteEscalas() {
         return limiteEscalas;
     }
@@ -137,7 +141,7 @@ public class Companhia {
         return false;
     }
 
-    public Aviao buscarAviao(int serie) {
+    public Aviao buscarAviao(String serie) {
         /* Busca, na lista de aviões, o avião que tem o número de série
         dado como parâmetro.
         Retorna o avião se ele estiver na lista.
