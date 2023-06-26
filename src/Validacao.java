@@ -15,7 +15,7 @@ public abstract class Validacao {
      */
     public static Calendar formataData(String dataString) {
         Calendar calendar = Calendar.getInstance();
-        SimpleDateFormat dataFormatada = new SimpleDateFormat("dd/mm/aaaa");
+        SimpleDateFormat dataFormatada = new SimpleDateFormat("dd/MM/yyyy");
         try {
             Date date = dataFormatada.parse(dataString);
             calendar.setTime(date);
