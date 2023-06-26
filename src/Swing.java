@@ -2,6 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
+import java.util.Collections;
 class Swing implements ActionListener {
 	static JFrame tela1;
 	static JFrame tela2;
@@ -55,7 +56,6 @@ class Swing implements ActionListener {
 	public static void main(String args[]){
 
 		Main.main(args);
-
 		//criando uma instancia da tela de login 
         JFrame tela_login = new JFrame("MCVC - login");
 
@@ -355,6 +355,7 @@ class Swing implements ActionListener {
 			Aeroporto origem = Main.companhia.getlistaAeroportos().get(origens_cb.getSelectedIndex());
 			Aeroporto dest = Main.companhia.getlistaAeroportos().get(destinos_cb.getSelectedIndex());
 			ArrayList<Trajeto> trajetos = Main.companhia.calcularTrajetos(origem, dest);
+			Collections.sort(trajetos);
 			String lista_trajetos_str = "";
 			for(Trajeto trajeto_iterado : trajetos){
 				lista_trajetos_str += trajeto_iterado.toString();
@@ -389,7 +390,7 @@ class Swing implements ActionListener {
 
 		//criando os JLabels
 		JLabel nome_label = new JLabel("Nome: ");
-		JLabel coordenadas_label = new JLabel("Coordenadas: (latitude, longitude)");
+		JLabel coordenadas_label = new JLabel("coordenadass: ");
 		JLabel cidade_label = new JLabel("Cidade: ");
 		JLabel largura_pista_label = new JLabel("Largura da pista de pouso: ");
 
@@ -421,7 +422,7 @@ class Swing implements ActionListener {
 		Swing obj = new Swing();
 
 		//associando o ActionListener com os botões
-		ArrayList<Object> listaAeroporto = new ArrayList<Object>();
+		ArrayList<String> listaAeroporto = new ArrayList<String>();
 
 		nome.addActionListener(new ActionListener() {  
 			public void actionPerformed(ActionEvent e) {       
@@ -440,43 +441,11 @@ class Swing implements ActionListener {
 			}  
 		});
 
-		concluir_cadastro.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent e) {    
-				String largura_pista_str = largura_pista.getText();     
-				String cidade_str = cidade.getText();  
-				String coordenadas_str = coordenadas.getText();  
-				String nome_str = nome.getText(); 
-
-				if (largura_pista_str.equals("") || cidade_str.equals("") || coordenadas_str.equals("") || nome_str.equals("")){
-					JOptionPane.showMessageDialog(tela5, "Digite informações válidas!", "Atenção", JOptionPane.WARNING_MESSAGE);
-				}
-				else{
-					listaAeroporto.add(nome_str);
-					listaAeroporto.add(cidade_str);
-					try{
-						listaAeroporto.add(coordenadas_str.split(", ")[0]);
-						listaAeroporto.add(coordenadas_str.split(", ")[1]);
-					} catch (ArrayIndexOutOfBoundsException ex){
-						JOptionPane.showMessageDialog(tela5, "Digite informações válidas!", "Atenção", JOptionPane.WARNING_MESSAGE);
-					}
-					listaAeroporto.add(largura_pista_str);
-					if (MenuCadastro.cadastrarAeroporto(listaAeroporto)){
-						JOptionPane.showMessageDialog(tela5, "Aeroporto cadastrado com sucesso!");
-					}
-					else{
-						JOptionPane.showMessageDialog(tela5, "Digite informações válidas!", "Atenção", JOptionPane.WARNING_MESSAGE);
-					}
-				}
-			}  
-		});
+		concluir_cadastro.addActionListener(obj);
 		voltar.addActionListener(obj);
-		
-		voltar.addActionListener(new ActionListener() {  
-			public void actionPerformed(ActionEvent e) {
-				tela5.setVisible(false); 
-			}  
-		});
 
+		MenuCadastro.cadastrarAeroporto(listaAeroporto);
+		
 		//Display tela2
 		tela5.setVisible(true);
 	}
