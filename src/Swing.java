@@ -12,6 +12,7 @@ class Swing implements ActionListener {
 	static JFrame tela6;
 	static JFrame tela7;
 	static JFrame tela8;
+	static JFrame tela9;
 	static JButton cadastrar;
 	static JButton remover;
 	static JButton listar;
