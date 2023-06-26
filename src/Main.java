@@ -1,3 +1,4 @@
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -6,10 +7,14 @@ public class Main {
     public static Companhia companhia;
 
     public static void main(String[] args) {
-        
+
         companhia = new Companhia("61902722000126",
                                   "Companhia",
                                   3);
+
+        File entradas = new File("entrada.txt");
+        Leitura.lerArquivo(entradas);
+
         Coordenada coordenada1 = new Coordenada(-23.4322, -46.4692);
         Coordenada coordenada2 = new Coordenada(-22.8089, -43.2436);
         Coordenada coordenada3 = new Coordenada(-23.006944, -47.134444);
