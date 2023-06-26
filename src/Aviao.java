@@ -8,7 +8,7 @@ abstract class Aviao implements Serializable{
     private String marca;
     private Aeroporto local;
     private double combustivelAtual;
-    private double combustivelMax;
+    private final double combustivelMax;
     private double consumoCombustivel;
     private double envergadura;
     private double pesoAtual;
@@ -30,7 +30,7 @@ abstract class Aviao implements Serializable{
         return combustivelAtual/consumoCombustivel;
     }
 
-    public boolean abastercer(double volume){
+    public boolean abastecer(double volume){
         this.combustivelAtual += volume;
         return true;
     }
@@ -72,10 +72,6 @@ abstract class Aviao implements Serializable{
 
     public double getCapacidade() {
         return combustivelMax;
-    }
-
-    public void setCombustivelMax(double combustivelMax) {
-        this.combustivelMax = combustivelMax;
     }
 
     public double getCombustivelAtual() {
