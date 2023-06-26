@@ -61,7 +61,7 @@ public class Main {
         trajetos = companhia.calcularTrajetos(aeroporto1, aeroporto5);
 
         Passagem passagem = new Passagem(trajetos.get(0), data, clientePF);
-        clientePF.addPassagem(passagem);
+        clientePF.adicionarPassagem(passagem);
 
         System.out.println(passagem);
 
