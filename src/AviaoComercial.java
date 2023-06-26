@@ -15,7 +15,7 @@ public class AviaoComercial extends Aviao {
             peso_entrando  += (passageiro_iterado.getPesoBagagem() + Passageiro.pesoMedio);
 
         }
-        if (peso_entrando <= (getPesoMax())){
+        if (peso_entrando <= (getPesoMAX())){
             setPesoAtual(peso_entrando); 
             return true;
         }

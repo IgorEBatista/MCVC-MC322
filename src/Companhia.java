@@ -157,7 +157,7 @@ public class Companhia implements Serializable{
         Retorna o avião se ele estiver na lista.
         Caso contrário, retorna null. */
         for (Aviao a: listaAvioes) 
-            if (a.getSerie() == serie )
+            if (a.getSERIE() == serie )
                 return a;
         return null;
     }

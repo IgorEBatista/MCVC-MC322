@@ -12,7 +12,7 @@ public class Main {
                                   "Companhia",
                                   3);
 
-        File entradas = new File("entrada.txt");
+        File entradas = new File(".\\src\\entrada.txt");
         Leitura.lerArquivo(entradas);
 
         System.out.println(companhia.listarClientes());
