@@ -1,4 +1,6 @@
-public class Carga {
+import java.io.Serializable;
+
+public class Carga implements Serializable{
     private static int registros = 1_000_000;
     private final int ID;    
     private String tipoCarga;

@@ -1,6 +1,7 @@
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Voo {
+public class Voo implements Serializable {
     // Atributos (Propriedades)
     private static int registros = 100_000;
     private final int codigo;
