@@ -295,7 +295,7 @@ class Swing implements ActionListener {
 			public void actionPerformed(ActionEvent e) {
 			Aeroporto origem = Main.companhia.getlistaAeroportos().get(origens_cb.getSelectedIndex());
 			Aeroporto dest = Main.companhia.getlistaAeroportos().get(destinos_cb.getSelectedIndex());
-			ArrayList<Trajeto> trajetos = Main.companhia.verificaTodosCaminhos(origem, dest, 1);
+			ArrayList<Trajeto> trajetos = Main.companhia.verificaTodosCaminhos(origem, dest);
 			label.setText("");
 			}  
 		});
