@@ -54,7 +54,7 @@ public class Main {
 
         ArrayList<Trajeto> saida = new ArrayList<Trajeto>();
 
-        saida = companhia.verificaTodosCaminhos(aeroporto1, aeroporto5);
+        saida = companhia.calcularTrajetos(aeroporto1, aeroporto5);
         Collections.sort(saida);
         
         System.out.println(companhia.listarTrajetos(aeroporto1, aeroporto5));
