@@ -72,7 +72,7 @@ public abstract class Cliente implements Serializable {
         return removerPassagem(buscaPassagem(ID));        
     }
 
-    public boolean remPassagem(int ID){
+    public boolean removerPassagem(int ID){
         return removerPassagem(buscaPassagem(String.valueOf(ID)));        
 
     }
