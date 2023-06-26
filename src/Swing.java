@@ -489,6 +489,7 @@ class Swing implements ActionListener {
 
 		if(button.equals("Sair")){
 			tela1.dispose();
+			Escrita.salvarDados();
 		}
 
 		if(button.equals("Voltar")){
