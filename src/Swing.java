@@ -9,6 +9,8 @@ class Swing implements ActionListener {
 	static JFrame tela4;
 	static JFrame tela5;
 	static JFrame tela6;
+	static JFrame tela7;
+	static JFrame tela8;
 	static JButton cadastrar;
 	static JButton remover;
 	static JButton listar;
@@ -55,7 +57,7 @@ class Swing implements ActionListener {
 
 		//criando a tela1 (Menu principal)
 		tela1 = new JFrame("MCVC - Menu");
-		tela1.setSize(1000, 600);
+		tela1.setSize(625, 600);
 		tela1.setLayout(null);
 		tela1.setBackground(Color.white);
 
@@ -108,7 +110,7 @@ class Swing implements ActionListener {
 	public static void criar_tela2(){
 
 		tela2 = new JFrame("MCVC - Cadastrar");
-		tela2.setSize(1000, 600);
+		tela2.setSize(625, 600);
 		tela2.setLayout(null);
 		tela2.setBackground(Color.white);
 		JLabel texto1 = new JLabel("O que você deseja cadastrar?");  
@@ -179,7 +181,7 @@ class Swing implements ActionListener {
 	public static void criar_tela3(){
 
 		tela3 = new JFrame("MCVC - Remover");
-		tela3.setSize(1000, 600);
+		tela3.setSize(625, 600);
 		tela3.setLayout(null);
 		tela3.setBackground(Color.white);
 		JLabel texto1 = new JLabel("O que você deseja remover?");  
@@ -248,7 +250,7 @@ class Swing implements ActionListener {
 
 	public static void criar_tela4(){
 		tela4 = new JFrame("MCVC - Simular compra");
-		tela4.setSize(1000, 600);
+		tela4.setSize(625, 600);
 		tela4.setLayout(null);
 		tela4.setBackground(Color.white);
 
@@ -260,9 +262,11 @@ class Swing implements ActionListener {
 		JLabel texto3 = new JLabel("Destino: ");  
         texto3.setBounds(50,150, 250,30);
 
-		final JLabel label = new JLabel();          
-		label.setHorizontalAlignment(JLabel.CENTER);  
-		label.setSize(400,100);
+		final JTextArea lista_trajetos_area = new JTextArea();    
+		lista_trajetos_area.setEditable(false);      
+		lista_trajetos_area.setBounds(350, 75, 200, 425);
+
+		//TODO: adicionar a barra de rolagem (SrollPane)
   
 		//Criando as ComboBoxes
 		String[] origens = new String[Main.companhia.getNomeAeroportos().size()];
@@ -283,20 +287,22 @@ class Swing implements ActionListener {
 		tela4.add(texto3);
 		tela4.add(origens_cb); 
 		tela4.add(destinos_cb);
-		tela4.add(label); 
+		tela4.add(lista_trajetos_area); 
 		tela4.add(calcular_trajetos);    
-		tela4.setLayout(null);    
-		tela4.setSize(350,350);    
+		tela4.setLayout(null);       
 		tela4.setVisible(true);       
 
 
 		calcular_trajetos.addActionListener (new ActionListener() {  
-			//TODO: A lista de trajetos já está aqui
 			public void actionPerformed(ActionEvent e) {
 			Aeroporto origem = Main.companhia.getlistaAeroportos().get(origens_cb.getSelectedIndex());
 			Aeroporto dest = Main.companhia.getlistaAeroportos().get(destinos_cb.getSelectedIndex());
 			ArrayList<Trajeto> trajetos = Main.companhia.calcularTrajetos(origem, dest);
-			label.setText("");
+			String lista_trajetos_str = "";
+			for(Trajeto trajeto_iterado : trajetos){
+				lista_trajetos_str += trajeto_iterado.toString();
+			}
+			lista_trajetos_area.setText(lista_trajetos_str);
 			}  
 		});
 		
@@ -305,6 +311,7 @@ class Swing implements ActionListener {
 	}
 
 	public static void criar_tela5(){
+		//TODO: fazer o cadastro funcionar - validação (a tela de confirmação aparece mesmo quando não digitamos nada)
 
 		tela5 = new JFrame("MCVC - Cadastrar Aeroporto");
 		tela5.setSize(1000, 600);
@@ -398,7 +405,7 @@ class Swing implements ActionListener {
 	public static void criar_tela6(){
 		
 		tela6 = new JFrame("MCVC - Análise");
-		tela6.setSize(1000, 600);
+		tela6.setSize(625, 600);
 		tela6.setLayout(null);
 		tela6.setBackground(Color.white);
 		JLabel texto1 = new JLabel("O que você deseja analisar?");  
@@ -472,25 +479,26 @@ class Swing implements ActionListener {
 
 	public static void criar_tela7(){
 
-		tela6 = new JFrame("MCVC - Principais informações");
-		tela6.setSize(1000, 600);
-		tela6.setLayout(null);
-		tela6.setBackground(Color.white);
+		tela7 = new JFrame("MCVC - Principais informações");
+		tela7.setSize(625, 600);
+		tela7.setLayout(null);
+		tela7.setBackground(Color.white);
 		JLabel texto1 = new JLabel("Principais informações: ");  
         texto1.setBounds(20,10, 250,30); 
 
 		JTextArea resumo_resposta;
 		resumo_resposta = new JTextArea(MenuAnalise.resumirInfos());
+		resumo_resposta.setEditable(false);
 
 		//criando os botoes
 		voltar = new JButton("Voltar"); 
 
 		voltar.setBounds(350,475,200,50);
-		resumo_resposta.setBounds(75, 375, 200, 200);
+		resumo_resposta.setBounds(75, 75, 200, 200);
 
 		//Add the button to frame 2
-		tela6.add(resumo_resposta);
-		tela6.add(voltar);
+		tela7.add(resumo_resposta);
+		tela7.add(voltar);
 
 		//criando um objeto
 		Swing obj = new Swing();
@@ -498,9 +506,56 @@ class Swing implements ActionListener {
 		//associando o ActionListener com os botões
 		voltar.addActionListener(obj);
 		
-		//Display tela6
-		tela6.setVisible(true);
+		//Display tela7
+		tela7.setVisible(true);
 	}
+	public static void criar_tela8(){
+
+		tela8 = new JFrame("MCVC - Listar Aeroportos");
+		tela8.setSize(625, 600);
+		tela8.setLayout(null);
+		tela8.setBackground(Color.white);
+		tela8.getContentPane().setLayout(new FlowLayout());
+		JLabel texto1 = new JLabel("Lista de Aeroportos: ");  
+        texto1.setBounds(20,10, 250,30); 
+		tela8.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		tela8.getContentPane().setLayout(new FlowLayout());   
+
+		JTextArea resumo_resposta;
+		resumo_resposta = new JTextArea(75, 75);
+		resumo_resposta.setText(MenuAnalise.listarAeroportos());
+		resumo_resposta.setEditable(false);
+
+		//criando a Scroll bar
+		// TODO : fazer a scrollbar funcionar pelo amor de Deus
+		JScrollPane scroll = new JScrollPane(resumo_resposta); 
+		scroll.setBounds(500,75, 50,400);  
+		tela8.getContentPane().add(scroll);
+
+		//criando os botoes
+		voltar = new JButton("Voltar"); 
+
+		voltar.setBounds(350,475,200,50);
+		// resumo_resposta.setBounds(75, 75, 475, 400);
+
+		scroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);  
+        scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+
+		//Add the button to frame 2
+		tela8.add(resumo_resposta);
+        tela8.getContentPane().add(scroll);  
+		tela8.add(voltar);
+
+		//criando um objeto
+		Swing obj = new Swing();
+
+		//associando o ActionListener com os botões
+		voltar.addActionListener(obj);
+		
+		//Display tela8
+		tela8.setVisible(true);
+	}
+	
 	//função que vai fazer coisas quando os botões forem clicados
 	public void actionPerformed(ActionEvent e){
 		String button = e.getActionCommand();
@@ -526,7 +581,13 @@ class Swing implements ActionListener {
 		}
 
 		if(button.equals("Voltar")){
-			if (tela6 != null && tela6.isVisible()){
+			if (tela8 != null && tela8.isVisible()){
+				tela8.dispose();
+			}
+			else if (tela7 != null && tela7.isVisible()){
+				tela7.dispose();
+			}
+			else if (tela6 != null && tela6.isVisible()){
 				tela6.dispose();
 			}			
 			else if (tela5 != null && tela5.isVisible()){
@@ -551,10 +612,16 @@ class Swing implements ActionListener {
 		}
 
 		if(button.equals("Remover Aeroporto")){
+			// TODO: se der tempo: fazer uma página de remoção
 
 		}
-		if(button.equals("Listar Aeroportoss")){
 
+		if(button.equals("Listar Aeroportos")){
+			javax.swing.SwingUtilities.invokeLater(new Runnable() {  
+				public void run() {  
+					criar_tela8();  
+				}  
+        }); 
 		}
 		if(button.equals("Principais informações")){
 			//TODO: fazer o textArea com o return da resumirInfos
