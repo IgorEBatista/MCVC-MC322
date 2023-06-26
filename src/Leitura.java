@@ -24,7 +24,7 @@ public class Leitura {
                     infos.add("");
                     line = in.readLine();
                 }
-                infos.add(".");
+                infos.add("!");
                 line = in.readLine();
             }
             in.close();
@@ -39,7 +39,7 @@ public class Leitura {
         ArrayList<String> caracteristicas = new ArrayList<String>();
         for (String item : infos){
 
-            if (item.equals(".")){
+            if (item.equals("!")){
                 objetos.add(new ArrayList<String>(caracteristicas));
                 caracteristicas.clear();
             }
@@ -98,8 +98,7 @@ public class Leitura {
         }
 
         else if (index == 3){
-            //TODO ver como faz pra converter a data de nascimento
-            ClientePF cliente = new ClientePF(param[0], param[1], param[2], param[3], null);
+            ClientePF cliente = new ClientePF(param[0], param[1], param[2], param[3], Validacao.formataData(param[4]));
             Main.companhia.adicionarCliente(cliente);
         }
 
@@ -110,11 +109,14 @@ public class Leitura {
 
         else if (index == 5){
             Aviao aviao = Main.companhia.buscarAviao(param[0]);
-            Aeroporto origem = Main.companhia.buscarAeroporto(param[1]);
-            Aeroporto destino = Main.companhia.buscarAeroporto(param[2]);
+            // Aeroporto origem = Main.companhia.buscarAeroporto(param[1]);
+            Aeroporto origem = aviao.getLocal();
+            // Aeroporto destino = Main.companhia.buscarAeroporto(param[1]);
+            Aeroporto destino = Main.companhia.getlistaAeroportos().get(Integer.parseInt(param[1]));
+            if (destino == origem) {
+                destino = Main.companhia.getlistaAeroportos().get((Integer.parseInt(param[1]) + 1) % 20);
+            }
             origem.adicionarVoo(destino, aviao);
         }
     }
-
-
 }
