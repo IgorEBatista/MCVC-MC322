@@ -1,6 +1,6 @@
 import java.io.File;
 import java.util.ArrayList;
-import java.util.Collections;
+import java.util.Calendar;
 
 public class Main {
     
@@ -14,6 +14,10 @@ public class Main {
 
         File entradas = new File("entrada.txt");
         Leitura.lerArquivo(entradas);
+
+        System.out.println(companhia.listarClientes());
+
+        Calendar data = Validacao.formataData("10/10/2010");
 
         Coordenada coordenada1 = new Coordenada(-23.4322, -46.4692);
         Coordenada coordenada2 = new Coordenada(-22.8089, -43.2436);
@@ -50,13 +54,20 @@ public class Main {
         aeroporto1.adicionarVoo(aeroporto5, aviao);
         aeroporto4.adicionarVoo(aeroporto5, aviao);
 
-        System.out.println(companhia.listarAeroporto());
-        ArrayList<Trajeto> saida = new ArrayList<Trajeto>();
+        ClientePF clientePF = new ClientePF("Pedro", "1599999999", "pedro@email.com", "936.736.090-84", null);
+        ClientePJ clientePJ = new ClientePJ("Corintia", "1515151515151", "vamo@corintia.com", "61902722000126");
 
-        saida = companhia.calcularTrajetos(aeroporto1, aeroporto5);
+        ArrayList<Trajeto> trajetos = new ArrayList<Trajeto>();
+        trajetos = companhia.calcularTrajetos(aeroporto1, aeroporto5);
+
+        Passagem passagem = new Passagem(trajetos.get(0), data, clientePF);
+        clientePF.addPassagem(passagem);
+
+        System.out.println(passagem);
+
+
         
-        Collections.sort(saida);
         
-        System.out.println(companhia.listarTrajetos(aeroporto1, aeroporto5));
+
     }
 }

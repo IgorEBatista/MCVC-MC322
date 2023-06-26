@@ -60,7 +60,8 @@ public abstract class Cliente implements Serializable {
     }
 
     public boolean addPassagem(Passagem passagem) {
-        return this.historicoDeCompras.add(passagem);
+        historicoDeCompras.add(passagem);
+        return true;
     }
     
     public boolean remPassagem(Passagem passagem){
