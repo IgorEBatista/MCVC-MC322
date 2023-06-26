@@ -56,6 +56,51 @@ class Swing implements ActionListener {
 
 		Main.main(args);
 
+		//criando uma instancia da tela de login 
+        JFrame tela_login = new JFrame("MCVC - login");
+
+        //setando o JLabel que vai ter o "senha:"
+        final JLabel senha_label = new JLabel();            
+        senha_label.setBounds(20,150, 200,50); 
+        
+        //criando o espaço em que a senha será digitada
+        final JPasswordField senha_PasswordField = new JPasswordField();   
+        senha_PasswordField.setBounds(100,75,100,30);
+
+        JLabel usuario_JLabel = new JLabel("Username:");    
+        usuario_JLabel.setBounds(20,20, 80,30);    
+        JLabel senha_JLabel = new JLabel("Password:");    
+        senha_JLabel.setBounds(20,75, 80,30); 
+
+        JButton login = new JButton("Fazer login");  
+        login.setBounds(100,120, 150,30);
+
+        final JTextField usuario_Field = new JTextField();  
+        usuario_Field.setBounds(100,20, 100,30); 
+
+        tela_login.add(senha_PasswordField);
+		tela_login.add(usuario_Field);
+        tela_login.add(usuario_JLabel);
+        tela_login.add(senha_JLabel);
+        tela_login.add(login);  
+        tela_login.setSize(300,300);    
+        tela_login.setLayout(null);    
+        tela_login.setVisible(true);     
+        login.addActionListener(new ActionListener() {  
+			public void actionPerformed(ActionEvent e) {       
+				String usuario = usuario_Field.getText(); 
+				String senha = new String(senha_PasswordField.getPassword());
+				if(usuario.equals("mcvc") && senha.equals("senha")){
+					criar_tela1();	
+				} else {
+					JOptionPane.showMessageDialog(tela_login, "Login/senha inválidos","Atenção!", JOptionPane.WARNING_MESSAGE);
+				}
+			}  
+        });
+	}
+
+	public static void criar_tela1(){
+		
 		//criando a tela1 (Menu principal)
 		tela1 = new JFrame("MCVC - Menu");
 		tela1.setSize(625, 600);
@@ -81,7 +126,6 @@ class Swing implements ActionListener {
 		remover.setBounds(75,250,200,50);
 		simular_compra.setBounds(75,325,200,50);
 		sair.setBounds(75,400,200,50);
-		
 
 		//adicionando o texto e os botões na tela1
 		tela1.add(texto1);
@@ -105,7 +149,6 @@ class Swing implements ActionListener {
 		//display tela1
 		tela1.setVisible(true);
 	}
-
 
 	//função que cria a tela2
 	public static void criar_tela2(){
@@ -263,9 +306,21 @@ class Swing implements ActionListener {
 		JLabel texto3 = new JLabel("Destino: ");  
         texto3.setBounds(50,150, 250,30);
 
+		//setando a área de texto
 		final JTextArea lista_trajetos_area = new JTextArea();    
 		lista_trajetos_area.setEditable(false);      
 		lista_trajetos_area.setBounds(350, 75, 200, 425);
+
+		Swing obj = new Swing();
+
+		//setando os botoes
+		JButton calcular_trajetos = new JButton("Calcular trajetos");  
+		calcular_trajetos.setBounds(50,250,200,50);
+
+		voltar = new JButton("Voltar"); 
+		voltar.setBounds(50,350,200,50);
+
+		voltar.addActionListener(obj);
 
 		//setando a barra de rolagem (ScrollPane)
   		JScrollPane scroll = new JScrollPane(lista_trajetos_area);
@@ -282,9 +337,7 @@ class Swing implements ActionListener {
 		destinos = Main.companhia.getNomeAeroportos().toArray(origens);
 		final JComboBox<String> destinos_cb = new JComboBox<>(destinos); 
 		destinos_cb.setBounds(50, 175,90,20);
-
-		JButton calcular_trajetos = new JButton("Calcular trajetos");  
-		calcular_trajetos.setBounds(50,250,200,50);  
+  
 
 		tela4.add(texto1);
 		tela4.add(texto2);
@@ -292,10 +345,10 @@ class Swing implements ActionListener {
 		tela4.add(origens_cb); 
 		tela4.add(destinos_cb);
 		tela4.add(calcular_trajetos); 
+		tela4.add(voltar);
 		tela4.getContentPane().add(scroll);   
 		tela4.setLayout(null);       
-		tela4.setVisible(true);       
-
+		tela4.setVisible(true);    
 
 		calcular_trajetos.addActionListener (new ActionListener() {  
 			public void actionPerformed(ActionEvent e) {
@@ -602,7 +655,6 @@ class Swing implements ActionListener {
 		}
 
 		if(button.equals("Remover Aeroporto")){
-			// TODO: se der tempo: fazer uma página de remoção
 
 		}
 
@@ -618,77 +670,3 @@ class Swing implements ActionListener {
 		}
 	}
 }
-
-
-
-
-// import javax.swing.*;
-// import java.awt.event.*;  
-
-// public class Swing {  
-//     public static void main(String[] args) { 
-//         //criando uma instancia da frame que vai exibir os botões 
-//         JFrame frame = new JFrame("MCVC - login");
-
-//         //setando o JLabel que vai ter o "senha:"
-//         final JLabel label = new JLabel();            
-//         label.setBounds(20,150, 200,50); 
-        
-//         //criando o espaço em que a senha será digitada
-//         final JPasswordField senha_PasswordField = new JPasswordField();   
-//         senha_PasswordField.setBounds(100,75,100,30);
-
-//         JLabel usuario_JLabel = new JLabel("Username:");    
-//         usuario_JLabel.setBounds(20,20, 80,30);    
-//         JLabel senha_JLabel = new JLabel("Password:");    
-//         senha_JLabel.setBounds(20,75, 80,30); 
-
-//         JButton login = new JButton("Fazer login");  
-//         login.setBounds(100,120, 80,30);
-
-//         final JTextField usuario_Field = new JTextField();  
-//         usuario_Field.setBounds(100,20, 100,30); 
-
-//         frame.add(senha_PasswordField);
-//         frame.add(usuario_Field);
-//         frame.add(label);
-//         frame.add(senha_JLabel);
-//         frame.add(login);
-//         frame.add(usuario_Field);  
-//         frame.setSize(300,300);    
-//         frame.setLayout(null);    
-//         frame.setVisible(true);     
-//         login.addActionListener(new ActionListener() {  
-//         public void actionPerformed(ActionEvent e) {       
-//             String data = "Username " + usuario_Field.getText();  
-//             data += ", Password: "   
-//             + new String(senha_PasswordField.getPassword());   
-//             label.setText(data);          
-//         }  
-//         });   
-
-        // //Criando os botões                
-        // JButton cadastrar = new JButton("Cadastrar");
-        // // Fazer uma lista de botoes com todas as cidades pra pessoa clicar em qual ela quer remover
-        // JButton remover = new JButton("Remover");
-        // JButton simular_compra = new JButton("Simular compra");
-        // JButton sair = new JButton("Sair");
-
-        // //Setando os tamanhos dos botões
-        // cadastrar.setBounds(100,100,170, 40);
-        // remover.setBounds(100,170,170, 40); 
-        // simular_compra.setBounds(100,240,170, 40);
-        // sair.setBounds(100, 310, 170, 40); 
-
-        // //Adicionando o botão na frame (JFrame)
-        // frame.add(cadastrar);
-        // frame.add(remover);
-        // frame.add(sair);
-        // frame.add(simular_compra);
-        
-        // //Setando as características da frame     
-        // frame.setSize(400,500);  
-        // frame.setLayout(null);//using no layout managers  
-        // frame.setVisible(true);//making the frame visible  
-//     }  
-// }  
