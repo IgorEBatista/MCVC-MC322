@@ -19,13 +19,15 @@ public class Leitura {
             line = in.readLine();
             while (!line.equals("--")){       
                
-                while(!line.equals("-")){
+                while(!line.equals("-") && !line.equals("--")){
                     infos.add(line);
                     infos.add("");
                     line = in.readLine();
                 }
                 infos.add("!");
-                line = in.readLine();
+                if (!line.equals("--")) {
+                    line = in.readLine();
+                }
             }
             in.close();
 
@@ -48,7 +50,7 @@ public class Leitura {
             }
         }
 
-        for (int i = 0; i < 10; i++){ // Esse iterador deve passar por todas as classes
+        for (int i = 0; i < 6; i++){ // Esse iterador deve passar por todas as classes
 
             ArrayList<String> aux = objetos.get(i);
             ArrayList<String> objeto = new ArrayList<String>();
