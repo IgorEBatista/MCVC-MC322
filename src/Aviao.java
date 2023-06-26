@@ -30,7 +30,7 @@ abstract class Aviao implements Serializable{
         return combustivelAtual/consumoCombustivel;
     }
 
-    public boolean abastercer(double volume){
+    public boolean abastecer(double volume){
         this.combustivelAtual += volume;
         return true;
     }
