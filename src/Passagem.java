@@ -1,6 +1,7 @@
+import java.io.Serializable;
 import java.util.Calendar;
 
-public class Passagem {
+public class Passagem implements Serializable {
     // Atributos (Propriedades)
     private static int registros = 1_000_000;
     private final int ID;

@@ -1,7 +1,8 @@
+import java.io.Serializable;
 import java.util.ArrayList;
 
 
-public class Trajeto implements Comparable<Trajeto> {
+public class Trajeto implements Comparable<Trajeto>, Serializable {
     // Atributos (Propriedades)
     private ArrayList<Aeroporto> rota;   // Lista de conexões que compoem o trajeto
     private double distanciaTotal;

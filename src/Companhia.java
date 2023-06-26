@@ -1,9 +1,10 @@
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Companhia {
+public class Companhia implements Serializable{
     // Atributos (Propriedades)
     private final String CNPJ;
     private String nome;

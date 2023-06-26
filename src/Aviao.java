@@ -1,4 +1,6 @@
-abstract class Aviao{
+import java.io.Serializable;
+
+abstract class Aviao implements Serializable{
 
     private static int registros = 1_000_000;
     private final int serie;
