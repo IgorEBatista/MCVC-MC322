@@ -403,7 +403,7 @@ class Swing implements ActionListener {
 					listaAeroporto.add(coordenadas_str.split(", ")[1]);
 					listaAeroporto.add(largura_pista_str);
 					if (MenuCadastro.cadastrarAeroporto(listaAeroporto)){
-						//TODO mensagem de cadastrado com sucesso
+						JOptionPane.showMessageDialog(tela5, "Aeroporto cadastrado com sucesso!");
 					}
 					else{
 						JOptionPane.showMessageDialog(tela5, "Digite informações válidas!", "Atenção", JOptionPane.WARNING_MESSAGE);
