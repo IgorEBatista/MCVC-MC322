@@ -12,7 +12,6 @@ class Swing implements ActionListener {
 	static JFrame tela6;
 	static JFrame tela7;
 	static JFrame tela8;
-	static JFrame tela9;
 	static JButton cadastrar;
 	static JButton remover;
 	static JButton listar;
@@ -56,7 +55,6 @@ class Swing implements ActionListener {
 	public static void main(String args[]){
 
 		Main.main(args);
-
 		//criando uma instancia da tela de login 
         JFrame tela_login = new JFrame("MCVC - login");
 
@@ -390,7 +388,6 @@ class Swing implements ActionListener {
 
 		//criando os JLabels
 		JLabel nome_label = new JLabel("Nome: ");
-		JLabel coordenadas_label = new JLabel("Coordenadas: (latitude, longitude)");
 		JLabel coordenadas_label = new JLabel("Coordenadas: (latitude, longitude)");
 		JLabel cidade_label = new JLabel("Cidade: ");
 		JLabel largura_pista_label = new JLabel("Largura da pista de pouso: ");
