@@ -10,7 +10,7 @@ public class Passagem implements Serializable {
     private Calendar data;
     private Cliente comprador;
 
-    private final double CUSTOKM = 0.5;
+    private final double CUSTOKM = 0.3;
 
 
     // Construtor
@@ -22,10 +22,10 @@ public class Passagem implements Serializable {
      */
     public Passagem(Trajeto trajeto, Calendar data, Cliente comprador) {
         this.ID = gerarID();
-        this.preco = calcularPreco();
         this.trajeto = trajeto;
         this.data = data;
         this.comprador = comprador;
+        this.preco = calcularPreco();
     }
 
     // Métodos
@@ -86,8 +86,8 @@ public class Passagem implements Serializable {
 
         double fatDist, fatEscal, fatDia = 1, preco = 0;
         int semana = data.get(Calendar.DAY_OF_WEEK);
-        fatDist = CUSTOKM * trajeto.getDistanciaTotal();
-        fatEscal = 2/(1 + trajeto.getRota().size());
+        fatDist = CUSTOKM * trajeto.getDistanciaTotal()/1000;
+        fatEscal = 2.0 / (1 + trajeto.getRota().size());
         
         if ((semana % 6) < 3) {
             if ((semana % 2) == 0) {
@@ -99,15 +99,15 @@ public class Passagem implements Serializable {
             fatDia = 1.0;
         }
         preco = fatDist * fatEscal * fatDia;
-        return preco;
+        return Math.round(preco);
     }
 
     @Override
     public String toString() {
         return "ID da passagem: " + this.ID + "\n" + 
                "Preco: " + this.preco + "\n" +
-               "Trajeto: " + this.trajeto + "\n" +
-               "Data: " + this.data + "\n" +
-               "Cliente: " + this.comprador + "\n";
+               "Trajeto: " + this.trajeto + "" +
+               "Data: " + this.data.getTime() + "\n" +
+               "Cliente: " + this.comprador.getNome() + "\n";
     }
 }

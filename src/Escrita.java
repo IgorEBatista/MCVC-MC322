@@ -6,7 +6,6 @@ public abstract class Escrita {
     
     public static void salvarDados() {
         
-        
         File arqSaida = new File(".\\src\\saida.txt");
         try {
             arqSaida.delete();

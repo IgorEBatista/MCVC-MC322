@@ -350,6 +350,7 @@ public class Companhia implements Serializable{
         caminho.add(source);
 
         verificarCaminhos(saida, source, destination, foiVisitado, caminho, 0);
+        Collections.sort(saida);
         return saida;
     }
 
