@@ -12,7 +12,7 @@ public class Main {
                                   "Companhia",
                                   3);
 
-        File entradas = new File(".\\src\\entrada.txt");
+        File entradas = new File("entrada.txt");
         Leitura.lerArquivo(entradas);
 
         Coordenada coordenada1 = new Coordenada(-23.4322, -46.4692);
@@ -50,11 +50,11 @@ public class Main {
         aeroporto1.adicionarVoo(aeroporto5, aviao);
         aeroporto4.adicionarVoo(aeroporto5, aviao);
 
-        companhia.getNomeAeroportos();
-
+        System.out.println(companhia.listarAeroporto());
         ArrayList<Trajeto> saida = new ArrayList<Trajeto>();
 
         saida = companhia.calcularTrajetos(aeroporto1, aeroporto5);
+        
         Collections.sort(saida);
         
         System.out.println(companhia.listarTrajetos(aeroporto1, aeroporto5));

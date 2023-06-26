@@ -111,9 +111,7 @@ public class Leitura {
 
         else if (index == 5){
             Aviao aviao = Main.companhia.buscarAviao(param[0]);
-            // Aeroporto origem = Main.companhia.buscarAeroporto(param[1]);
             Aeroporto origem = aviao.getLocal();
-            // Aeroporto destino = Main.companhia.buscarAeroporto(param[1]);
             Aeroporto destino = Main.companhia.getlistaAeroportos().get(Integer.parseInt(param[1]));
             if (destino == origem) {
                 destino = Main.companhia.getlistaAeroportos().get((Integer.parseInt(param[1]) + 1) % 20);
