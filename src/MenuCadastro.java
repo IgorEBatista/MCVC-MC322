@@ -16,15 +16,15 @@ public abstract class MenuCadastro {
      * [3] - cidade(String),
      * [4] - larguraPista(double)
      */
-    public static boolean cadastrarAeroporto(ArrayList<Object> entradas){
+    public static boolean cadastrarAeroporto(ArrayList<String> entradas){
         try {
             Aeroporto aeroporto;
             Coordenada coordenada;
             String nome = (String)entradas.get(0);
-            double lat = (double)entradas.get(1);
-            double lon = (double)entradas.get(2);
-            String cidade = (String)entradas.get(3);
-            double largura = (double)entradas.get(4);
+            String cidade = (String)entradas.get(1);
+            double lat = Double.parseDouble(entradas.get(2));
+            double lon = Double.parseDouble(entradas.get(3));
+            double largura = Double.parseDouble(entradas.get(4));
 
             coordenada = new Coordenada(lat, lon);
             aeroporto = new Aeroporto(nome, coordenada, cidade, largura);

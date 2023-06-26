@@ -65,7 +65,7 @@ public class Trajeto implements Comparable<Trajeto>, Serializable {
 
     public String vizualizarTrajeto() {
         /* Retorna uma string com a rota do trajeto. */
-        String lista = "Trajeto:\n";
+        String lista = "";
         for (int i = 0; i < rota.size() - 1; i++){
             lista += (rota.get(i).getNome()) + " -> ";
         }

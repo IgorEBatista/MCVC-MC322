@@ -360,8 +360,21 @@ public class Companhia implements Serializable{
 
         if (current == destination) {
             Trajeto trajeto = new Trajeto(new ArrayList<Aeroporto>(caminho));
-            saida.add(trajeto);
-        
+
+            boolean jaExiste = true;
+            for (Trajeto tr : saida){
+                jaExiste = true;
+                for (int i = 0; i < tr.getRota().size(); i++){
+                    if (!(trajeto.getRota().get(i).getNome().equals(tr.getRota().get(i).getNome()))){
+                        jaExiste = false;
+                        break;
+                    }
+                }
+            }
+            if (!jaExiste || saida.size() == 0){
+                saida.add(trajeto);
+            }
+
         } else if (profundidade < limiteEscalas) {
 
             ArrayList<Aeroporto> adjacentes = getAeroportos(current.getListaVoos());
