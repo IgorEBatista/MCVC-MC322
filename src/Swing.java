@@ -266,8 +266,11 @@ class Swing implements ActionListener {
 		lista_trajetos_area.setEditable(false);      
 		lista_trajetos_area.setBounds(350, 75, 200, 425);
 
-		//TODO: adicionar a barra de rolagem (SrollPane)
-  
+		//setando a barra de rolagem (ScrollPane)
+  		JScrollPane scroll = new JScrollPane(lista_trajetos_area);
+		scroll.setBounds(350, 75, 200, 425); 
+		scroll.setPreferredSize(new Dimension(500, 500)); 
+
 		//Criando as ComboBoxes
 		String[] origens = new String[Main.companhia.getNomeAeroportos().size()];
 		origens = Main.companhia.getNomeAeroportos().toArray(origens);
@@ -287,8 +290,8 @@ class Swing implements ActionListener {
 		tela4.add(texto3);
 		tela4.add(origens_cb); 
 		tela4.add(destinos_cb);
-		tela4.add(lista_trajetos_area); 
-		tela4.add(calcular_trajetos);    
+		tela4.add(calcular_trajetos); 
+		tela4.getContentPane().add(scroll);   
 		tela4.setLayout(null);       
 		tela4.setVisible(true);       
 
@@ -311,7 +314,6 @@ class Swing implements ActionListener {
 	}
 
 	public static void criar_tela5(){
-		//TODO: fazer o cadastro funcionar - validação (a tela de confirmação aparece mesmo quando não digitamos nada)
 
 		tela5 = new JFrame("MCVC - Cadastrar Aeroporto");
 		tela5.setSize(1000, 600);
@@ -333,7 +335,7 @@ class Swing implements ActionListener {
 
 		//criando os JLabels
 		JLabel nome_label = new JLabel("Nome: ");
-		JLabel coordenadas_label = new JLabel("coordenadass: ");
+		JLabel coordenadas_label = new JLabel("Coordenadas: (latitude, longitude)");
 		JLabel cidade_label = new JLabel("Cidade: ");
 		JLabel largura_pista_label = new JLabel("Largura da pista de pouso: ");
 
@@ -348,7 +350,7 @@ class Swing implements ActionListener {
 		concluir_cadastro.setBounds(75,450,300,50);
 		voltar.setBounds(450,450,300,50);
 
-		//Add the button to frame 2
+		//adicionando os botoes na tela2
 		tela5.add(texto1);
 		tela5.add(concluir_cadastro);
 		tela5.add(nome_label);
@@ -364,52 +366,63 @@ class Swing implements ActionListener {
 		//criando um objeto
 		Swing obj = new Swing();
 
-
 		//associando o ActionListener com os botões
-		ArrayList<String> lista_aeroporto_str = new ArrayList<String>();
+		ArrayList<Object> listaAeroporto = new ArrayList<Object>();
 
 		nome.addActionListener(new ActionListener() {  
 			public void actionPerformed(ActionEvent e) {       
-				String nome_str = nome.getText(); 
-				lista_aeroporto_str.add(nome_str);  
 			}  
 		});
 		coordenadas.addActionListener(new ActionListener() {  
 			public void actionPerformed(ActionEvent e) {       
-				String coordenadas_str = coordenadas.getText();
-				lista_aeroporto_str.add(coordenadas_str);  
 			}  
 		});
 		cidade.addActionListener(new ActionListener() {  
 			public void actionPerformed(ActionEvent e) {       
-				String cidade_str = cidade.getText();  
-				lista_aeroporto_str.add(cidade_str);  
 			}  
 		});
 		largura_pista.addActionListener(new ActionListener() {  
 			public void actionPerformed(ActionEvent e) {       
-				String largura_pista_str = largura_pista.getText();  
-				lista_aeroporto_str.add(largura_pista_str);  
 			}  
 		});
 
-		ArrayList<Object> lista_aeroporto_obj = new ArrayList<Object>();
+		concluir_cadastro.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {    
+				String largura_pista_str = largura_pista.getText();     
+				String cidade_str = cidade.getText();  
+				String coordenadas_str = coordenadas.getText();  
+				String nome_str = nome.getText(); 
 
-		//Validando todos os dados recebidos
-		if (Validacao.validaNome(lista_aeroporto_str.get(0))){
-			lista_aeroporto_obj.add(lista_aeroporto_str.get(0));
-		} 
-		else {
-			JOptionPane.showMessageDialog(tela5, "Digite um nome válido!", "Atenção", JOptionPane.WARNING_MESSAGE);
-		}
-
-		if()
-
-		concluir_cadastro.addActionListener(obj);
+				if (largura_pista_str.equals("") || cidade_str.equals("") || coordenadas_str.equals("") || nome_str.equals("")){
+					JOptionPane.showMessageDialog(tela5, "Digite informações válidas!", "Atenção", JOptionPane.WARNING_MESSAGE);
+				}
+				else{
+					listaAeroporto.add(nome_str);
+					listaAeroporto.add(cidade_str);
+					try{
+						listaAeroporto.add(coordenadas_str.split(", ")[0]);
+						listaAeroporto.add(coordenadas_str.split(", ")[1]);
+					} catch (ArrayIndexOutOfBoundsException ex){
+						JOptionPane.showMessageDialog(tela5, "Digite informações válidas!", "Atenção", JOptionPane.WARNING_MESSAGE);
+					}
+					listaAeroporto.add(largura_pista_str);
+					if (MenuCadastro.cadastrarAeroporto(listaAeroporto)){
+						JOptionPane.showMessageDialog(tela5, "Aeroporto cadastrado com sucesso!");
+					}
+					else{
+						JOptionPane.showMessageDialog(tela5, "Digite informações válidas!", "Atenção", JOptionPane.WARNING_MESSAGE);
+					}
+				}
+			}  
+		});
 		voltar.addActionListener(obj);
-
-		MenuCadastro.cadastrarAeroporto(lista_aeroporto_str);
 		
+		voltar.addActionListener(new ActionListener() {  
+			public void actionPerformed(ActionEvent e) {
+				tela5.setVisible(false); 
+			}  
+		});
+
 		//Display tela2
 		tela5.setVisible(true);
 	}
@@ -521,50 +534,37 @@ class Swing implements ActionListener {
 		//Display tela7
 		tela7.setVisible(true);
 	}
-	public static void criar_tela8(){
-
+	public static void criar_tela8() {
 		tela8 = new JFrame("MCVC - Listar Aeroportos");
-		tela8.setSize(625, 600);
 		tela8.setLayout(null);
+		tela8.setSize(625, 650);
 		tela8.setBackground(Color.white);
-		tela8.getContentPane().setLayout(new FlowLayout());
-		JLabel texto1 = new JLabel("Lista de Aeroportos: ");  
-        texto1.setBounds(20,10, 250,30); 
-		tela8.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		tela8.getContentPane().setLayout(new FlowLayout());   
 
-		JTextArea resumo_resposta;
-		resumo_resposta = new JTextArea(75, 75);
+		JLabel texto1 = new JLabel("Lista de Aeroportos:");
+		texto1.setBounds(20, 10, 250, 30);
+
+		JTextArea resumo_resposta = new JTextArea(75, 75);
 		resumo_resposta.setText(MenuAnalise.listarAeroportos());
 		resumo_resposta.setEditable(false);
 
-		//criando a Scroll bar
-		// TODO : fazer a scrollbar funcionar pelo amor de Deus
-		JScrollPane scroll = new JScrollPane(resumo_resposta); 
-		scroll.setBounds(500,75, 50,400);  
+		//setando o scrollpane
+		JScrollPane scroll = new JScrollPane(resumo_resposta);
+		scroll.setBounds(20, 50, 580, 480); 
+		scroll.setPreferredSize(new Dimension(500, 500)); 
+
+		//setando o botão voltar
+		voltar = new JButton("Voltar");
+		voltar.setBounds(350, 540, 200, 50);
+
+		//adicionando os componentes na tela8
+		tela8.add(voltar);
 		tela8.getContentPane().add(scroll);
 
-		//criando os botoes
-		voltar = new JButton("Voltar"); 
-
-		voltar.setBounds(350,475,200,50);
-		// resumo_resposta.setBounds(75, 75, 475, 400);
-
-		scroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);  
-        scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-
-		//Add the button to frame 2
-		tela8.add(resumo_resposta);
-        tela8.getContentPane().add(scroll);  
-		tela8.add(voltar);
-
-		//criando um objeto
+		//associando o ActionListener com o scrollpane
 		Swing obj = new Swing();
-
-		//associando o ActionListener com os botões
 		voltar.addActionListener(obj);
-		
-		//Display tela8
+
+		//display tela8
 		tela8.setVisible(true);
 	}
 	
@@ -636,7 +636,6 @@ class Swing implements ActionListener {
         }); 
 		}
 		if(button.equals("Principais informações")){
-			//TODO: fazer o textArea com o return da resumirInfos
 			criar_tela7();
 		}
 	}
