@@ -394,7 +394,7 @@ class Swing implements ActionListener {
 				String nome_str = nome.getText(); 
 
 				if (largura_pista_str.equals("") || cidade_str.equals("") || coordenadas_str.equals("") || nome_str.equals("")){
-					//TODO colocar erro na tela
+					JOptionPane.showMessageDialog(tela5, "Digite informações válidas!", "Atenção", JOptionPane.WARNING_MESSAGE);
 				}
 				else{
 					listaAeroporto.add(nome_str);
@@ -404,7 +404,10 @@ class Swing implements ActionListener {
 					listaAeroporto.add(largura_pista_str);
 					if (MenuCadastro.cadastrarAeroporto(listaAeroporto)){
 						//TODO mensagem de cadastrado com sucesso
-					};
+					}
+					else{
+						JOptionPane.showMessageDialog(tela5, "Digite informações válidas!", "Atenção", JOptionPane.WARNING_MESSAGE);
+					}
 				}
 			}  
 		});
