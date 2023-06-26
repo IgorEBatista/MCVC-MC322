@@ -396,7 +396,7 @@ class Swing implements ActionListener {
 	}
 
 	public static void criar_tela6(){
-
+		
 		tela6 = new JFrame("MCVC - Análise");
 		tela6.setSize(1000, 600);
 		tela6.setLayout(null);
@@ -479,7 +479,7 @@ class Swing implements ActionListener {
 			criar_tela3();
 		}
 
-		if(button.equals("Listar")){
+		if(button.equals("Análise")){
 			criar_tela6();
 		}
 
