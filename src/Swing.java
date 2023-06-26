@@ -11,6 +11,7 @@ class Swing implements ActionListener {
 	static JFrame tela6;
 	static JFrame tela7;
 	static JFrame tela8;
+	static JFrame tela9;
 	static JButton cadastrar;
 	static JButton remover;
 	static JButton listar;
@@ -620,6 +621,53 @@ class Swing implements ActionListener {
 		//display tela8
 		tela8.setVisible(true);
 	}
+
+	public void criar_tela9(){
+
+		tela9 = new JFrame("MCVC - Remover Aeroporto");
+		tela9.setSize(625, 600);
+		tela9.setLayout(null);
+		tela9.setBackground(Color.white);
+
+		//setando os textos (JLabels)
+		JLabel texto1 = new JLabel("Selecione o aeroporto que deseja remover:");  
+        texto1.setBounds(20,10, 350,30); 
+
+		//setando os botoes
+		JButton remover = new JButton("Remover");  
+		remover.setBounds(50,250,200,50);
+
+		voltar = new JButton("Voltar"); 
+		voltar.setBounds(50,350,200,50);
+
+		Swing obj = new Swing();
+		voltar.addActionListener(obj);
+
+		//Criando as ComboBoxes
+		String[] aeroportos = new String[Main.companhia.getNomeAeroportos().size()];
+		aeroportos = Main.companhia.getNomeAeroportos().toArray(aeroportos);
+		final JComboBox<String> aeroportos_cb = new JComboBox<>(aeroportos);  
+		aeroportos_cb.setBounds(50, 100,90,20);		
+
+		tela9.add(texto1); 
+		tela9.add(aeroportos_cb);
+		tela9.add(remover); 
+		tela9.add(voltar); 
+		tela9.setLayout(null);       
+		tela9.setVisible(true);    
+
+		remover.addActionListener (new ActionListener() {  
+			public void actionPerformed(ActionEvent e) {
+				Aeroporto aeroporto = Main.companhia.getlistaAeroportos().get(aeroportos_cb.getSelectedIndex());
+				if(Main.companhia.removerAeroporto(aeroporto)){
+					JOptionPane.showMessageDialog(tela9, "Aeroporto removido com sucesso!");	
+				} 
+			}
+		});
+		
+		//Display tela9
+		tela9.setVisible(true);
+	}
 	
 	//função que vai fazer coisas quando os botões forem clicados
 	public void actionPerformed(ActionEvent e){
@@ -646,7 +694,10 @@ class Swing implements ActionListener {
 		}
 
 		if(button.equals("Voltar")){
-			if (tela8 != null && tela8.isVisible()){
+			if (tela9 != null && tela9.isVisible()){
+				tela9.dispose();
+			}
+			else if (tela8 != null && tela8.isVisible()){
 				tela8.dispose();
 			}
 			else if (tela7 != null && tela7.isVisible()){
@@ -668,7 +719,7 @@ class Swing implements ActionListener {
 				tela2.dispose();
 			}
 		}
-
+		
 		if(button.equals("Cadastrar Aeroporto")){
 			criar_tela5();
 		}
@@ -677,7 +728,7 @@ class Swing implements ActionListener {
 		}
 
 		if(button.equals("Remover Aeroporto")){
-
+			criar_tela9();
 		}
 
 		if(button.equals("Listar Aeroportos")){
