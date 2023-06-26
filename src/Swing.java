@@ -366,37 +366,49 @@ class Swing implements ActionListener {
 
 
 		//associando o ActionListener com os botões
-		ArrayList<Object> listaAeroporto = new ArrayList<Object>();
+		ArrayList<String> lista_aeroporto_str = new ArrayList<String>();
 
 		nome.addActionListener(new ActionListener() {  
 			public void actionPerformed(ActionEvent e) {       
 				String nome_str = nome.getText(); 
-				listaAeroporto.add(nome_str);  
+				lista_aeroporto_str.add(nome_str);  
 			}  
 		});
 		coordenadas.addActionListener(new ActionListener() {  
 			public void actionPerformed(ActionEvent e) {       
-				String coordenadas_str = coordenadas.getText();  
-				listaAeroporto.add(coordenadas_str);  
+				String coordenadas_str = coordenadas.getText();
+				lista_aeroporto_str.add(coordenadas_str);  
 			}  
 		});
 		cidade.addActionListener(new ActionListener() {  
 			public void actionPerformed(ActionEvent e) {       
 				String cidade_str = cidade.getText();  
-				listaAeroporto.add(cidade_str);  
+				lista_aeroporto_str.add(cidade_str);  
 			}  
 		});
 		largura_pista.addActionListener(new ActionListener() {  
 			public void actionPerformed(ActionEvent e) {       
 				String largura_pista_str = largura_pista.getText();  
-				listaAeroporto.add(largura_pista_str);  
+				lista_aeroporto_str.add(largura_pista_str);  
 			}  
 		});
+
+		ArrayList<Object> lista_aeroporto_obj = new ArrayList<Object>();
+
+		//Validando todos os dados recebidos
+		if (Validacao.validaNome(lista_aeroporto_str.get(0))){
+			lista_aeroporto_obj.add(lista_aeroporto_str.get(0));
+		} 
+		else {
+			JOptionPane.showMessageDialog(tela5, "Digite um nome válido!", "Atenção", JOptionPane.WARNING_MESSAGE);
+		}
+
+		if()
 
 		concluir_cadastro.addActionListener(obj);
 		voltar.addActionListener(obj);
 
-		MenuCadastro.cadastrarAeroporto(listaAeroporto);
+		MenuCadastro.cadastrarAeroporto(lista_aeroporto_str);
 		
 		//Display tela2
 		tela5.setVisible(true);
