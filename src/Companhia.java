@@ -339,7 +339,8 @@ public class Companhia implements Serializable{
     }
     
 
-    public ArrayList<Trajeto> verificaTodosCaminhos(Aeroporto source, Aeroporto destination) {
+    public ArrayList<Trajeto> calcularTrajetos(Aeroporto source, Aeroporto destination) {
+        // verifica todos os caminhos
         Map<Aeroporto, Boolean> foiVisitado = new HashMap<Aeroporto, Boolean>();
         for (Aeroporto a : listaAeroportos){
             foiVisitado.put(a, false);
@@ -348,12 +349,13 @@ public class Companhia implements Serializable{
         ArrayList<Aeroporto> caminho = new ArrayList<Aeroporto>();
         caminho.add(source);
 
-        VerificaTodosCaminhosRecursivo(saida, source, destination, foiVisitado, caminho, 0);
+        verificarCaminhos(saida, source, destination, foiVisitado, caminho, 0);
         return saida;
     }
 
-    private void VerificaTodosCaminhosRecursivo(ArrayList<Trajeto> saida, Aeroporto current, 
+    private void verificarCaminhos(ArrayList<Trajeto> saida, Aeroporto current, 
     Aeroporto destination, Map<Aeroporto, Boolean> foiVisitado, ArrayList<Aeroporto> caminho, int profundidade) {
+        // verifica todos os caminhos recursivamente
         foiVisitado.put(current, true);
 
         if (current == destination) {
@@ -368,7 +370,7 @@ public class Companhia implements Serializable{
                     // Verificar se o nó já está presente no caminho atual para evitar ciclos
                     if (!caminho.contains(adj)) {
                         caminho.add(adj);
-                        VerificaTodosCaminhosRecursivo(saida, adj, destination, foiVisitado, caminho, profundidade + 1);
+                        verificarCaminhos(saida, adj, destination, foiVisitado, caminho, profundidade + 1);
                         caminho.remove(adj);
                     }
                 }
@@ -382,7 +384,7 @@ public class Companhia implements Serializable{
         /* Retorna uma string com os possíveis trajetos para viajar da origem para o destino. */
         ArrayList<Trajeto> listaTrajetos = new ArrayList<Trajeto>();
 
-        listaTrajetos = verificaTodosCaminhos(origem, destino);
+        listaTrajetos = calcularTrajetos(origem, destino);
         Collections.sort(listaTrajetos); // Organizando os trajetos com base em distância
 
         if (listaTrajetos.size() == 0)
