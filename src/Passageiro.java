@@ -2,7 +2,7 @@ import java.io.Serializable;
 
 public class Passageiro implements Serializable {
     
-    public static final double pesoMedio = 70.0; //média de peso 70 kg
+    public static final double pesoMEDIO = 70.0; //média de peso 70 kg
     private final String  CPF;
     private String nome;
     private String telefoneEmergencia;
