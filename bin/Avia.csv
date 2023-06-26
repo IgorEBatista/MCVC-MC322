@@ -1,0 +1,33 @@
+MODELO,FABRICANTE, ENVERGADURA(m), CARGA MÁXIMA(kg), TANQUE (galões), PISTA MÍNIMA(m)
+Boeing 737, Boeing, 35.79, 82.190, 2.400, 1.830
+Airbus A320, Airbus, 34.10, 77.000, 2.500, 1.700
+Boeing 747, Boeing, 64.44, 439.985, 63.500, 3.050
+Airbus A380, Airbus, 79.75, 1.235.000, 85.472, 3.050
+Boeing 777, Boeing, 60.93, 352.000, 47.890, 2.650
+Boeing 787 Dreamliner, Boeing, 60.12, 227.930, 33.384, 2.440
+Airbus A330, Airbus, 60.30, 242.000, 36.160, 2.560
+Embraer E-Jet, Embraer, 26.00, 50.790, 1.528, 1.500
+Bombardier CRJ Series, Bombardier, 21.20, 24.000, 835, 1.500
+Cessna 172, Textron Aviation, 11.00, 1.040, 56, 603
+Boeing 737 MAX, Boeing, 35.79, 82.190, 2.400, 1.830
+Airbus A350 XWB, Airbus, 64.75, 268.000, 38.036, 2.670
+Embraer E195-E2, Embraer, 35.13, 61.900, 3.161, 1.546
+ATR 72, ATR, 27.05, 22.500, 2.686, 1.165
+Boeing 757, Boeing, 38.05, 115.680, 11.489, 2.340
+
+AUTONOMIA(m)
+Boeing 737: , 5.550.000
+Airbus A320: , 6.100.000
+Boeing 747: , 14.815.000
+Airbus A380: , 15.700.000
+Boeing 777: , 14.685.000
+Boeing 787 Dreamliner: , 13.620.000
+Airbus A330: , 11.300.000
+Embraer E-Jet: , 4.070.000
+Bombardier CRJ Series: , 3.640.000
+Cessna 172: , 1.215.000
+Boeing 737 MAX: , 6.570.000
+Airbus A350 XWB: , 15.000.000
+Embraer E195-E2: , 4.480.000
+ATR 72: , 1.528.000
+Boeing 757: , 7.220.000
