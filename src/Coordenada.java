@@ -34,7 +34,7 @@ public class Coordenada implements Serializable {
         double dist_lat, dist_long;
 
         dist_lat = dif_lat * grau;
-        dist_long = dif_lon * grau * Math.cos(med_lon); // Devido a mudança no comprimento dos paralelos, é necessário corrigir pela longitude.
+        dist_long = dif_lon * grau * Math.cos(Math.toRadians(med_lon)); // Devido a mudança no comprimento dos paralelos, é necessário corrigir pela longitude.
         
         return Math.sqrt(Math.pow(dist_lat, 2) + Math.pow(dist_long, 2));
     }
