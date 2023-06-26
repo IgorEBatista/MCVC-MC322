@@ -15,7 +15,7 @@ public class ClientePJ extends Cliente{
     
     public String toString() {
         return super.toString() +
-            "\nCNPJ: " + CNPJ;
+            "\nCNPJ: " + CNPJ + "\n";
     }
 
 }

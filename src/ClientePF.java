@@ -27,7 +27,7 @@ public class ClientePF extends Cliente{
     public String toString() {
         return super.toString() + 
             "\nCPF: " + CPF + 
-            "\nData de Nascimento: " + dataNascimento;
+            "\nData de Nascimento: " + dataNascimento.getTime() + "\n";
     }
 
 }

@@ -299,7 +299,6 @@ class Swing implements ActionListener {
 			Aeroporto origem = Main.companhia.getlistaAeroportos().get(origens_cb.getSelectedIndex());
 			Aeroporto dest = Main.companhia.getlistaAeroportos().get(destinos_cb.getSelectedIndex());
 			ArrayList<Trajeto> trajetos = Main.companhia.calcularTrajetos(origem, dest);
-			Collections.sort(trajetos);
 			String lista_trajetos_str = "";
 			for(Trajeto trajeto_iterado : trajetos){
 				lista_trajetos_str += trajeto_iterado.toString();
@@ -363,35 +362,15 @@ class Swing implements ActionListener {
 		tela5.add(largura_pista);
 		tela5.add(voltar);
 
-		//criando um objeto
-		Swing obj = new Swing();
-
 		//associando o ActionListener com os botões
 		ArrayList<String> listaAeroporto = new ArrayList<String>();
 
-		nome.addActionListener(new ActionListener() {  
-			public void actionPerformed(ActionEvent e) {       
-			}  
-		});
-		coordenadas.addActionListener(new ActionListener() {  
-			public void actionPerformed(ActionEvent e) {       
-			}  
-		});
-		cidade.addActionListener(new ActionListener() {  
-			public void actionPerformed(ActionEvent e) {       
-			}  
-		});
-		largura_pista.addActionListener(new ActionListener() {  
-			public void actionPerformed(ActionEvent e) {       
-			}  
-		});
-
 		concluir_cadastro.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {    
-				String largura_pista_str = largura_pista.getText();     
+				String nome_str = nome.getText(); 
 				String cidade_str = cidade.getText();  
 				String coordenadas_str = coordenadas.getText();  
-				String nome_str = nome.getText(); 
+				String largura_pista_str = largura_pista.getText();     
 
 				if (largura_pista_str.equals("") || cidade_str.equals("") || coordenadas_str.equals("") || nome_str.equals("")){
 					JOptionPane.showMessageDialog(tela5, "Digite informações válidas!", "Atenção", JOptionPane.WARNING_MESSAGE);
@@ -411,7 +390,6 @@ class Swing implements ActionListener {
 				}
 			}  
 		});
-		voltar.addActionListener(obj);
 		
 		voltar.addActionListener(new ActionListener() {  
 			public void actionPerformed(ActionEvent e) {
