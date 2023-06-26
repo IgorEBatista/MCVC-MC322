@@ -12,7 +12,7 @@ public class Main {
                                   "Companhia",
                                   3);
 
-        File entradas = new File("C:\\Users\\igore\\Documents\\Unicamp\\2023 - S1\\MC322\\Grupo-MCVC\\MCVC-MC322\\src\\entrada.txt");
+        File entradas = new File(".\\src\\entrada.txt");
         Leitura.lerArquivo(entradas);
 
         Coordenada coordenada1 = new Coordenada(-23.4322, -46.4692);
