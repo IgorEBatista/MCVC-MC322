@@ -53,21 +53,30 @@ public class Main {
         aeroporto1.adicionarVoo(aeroporto4, aviao);
         aeroporto1.adicionarVoo(aeroporto5, aviao);
         aeroporto4.adicionarVoo(aeroporto5, aviao);
+        System.out.println(aeroporto1.listarVoos());
 
         ClientePF clientePF = new ClientePF("Pedro", "1599999999", "pedro@email.com", "936.736.090-84", null);
         ClientePJ clientePJ = new ClientePJ("Corintia", "1515151515151", "vamo@corintia.com", "61902722000126");
+        companhia.adicionarCliente(clientePF);
+        companhia.adicionarCliente(clientePJ);
 
         ArrayList<Trajeto> trajetos = new ArrayList<Trajeto>();
         trajetos = companhia.calcularTrajetos(aeroporto1, aeroporto5);
 
-        Passagem passagem = new Passagem(trajetos.get(0), data, clientePF);
-        clientePF.adicionarPassagem(passagem);
+        Passagem passagem1 = new Passagem(trajetos.get(0), data, clientePF);
+        clientePF.addPassagem(passagem1);
 
-        System.out.println(passagem);
+        Passageiro passageiro1 = new Passageiro("120.238.710-18", "Lucax", "12821818218", passagem1, 10);
 
+        System.out.println("PASSAGEIRO1:\n" + passageiro1);
+        System.out.println(MenuAnalise.resumirInfos());
 
-        
-        
+        Passagem passagem2 = new Passagem(trajetos.get(1), data, clientePJ);
+        clientePJ.addPassagem(passagem2);
+        Passageiro passageiro2 = new Passageiro("422.517.860-90", "pele", "312831231", passagem2, 10);
+
+        System.out.println("\nPASSAGEIRO2:\n" + passageiro2);
+        System.out.println(MenuAnalise.resumirInfos());
 
     }
 }
