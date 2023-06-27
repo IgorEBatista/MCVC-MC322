@@ -1,19 +1,19 @@
 (GRU), -23.4356, -46.4731, Guarulhos, 3700
-(CGH), -23.6261, -46.6553, São Paulo, 1945
+(CGH), -23.6261, -46.6553, Sao Paulo, 1945
 (GIG), -22.8092, -43.2506, Rio de Janeiro, 4300
-(BSB), -15.8711, -47.9186, Brasília, 3200
+(BSB), -15.8711, -47.9186, Brasilia, 3200
 (VCP), -23.0074, -47.1345, Campinas, 3050
 (CNF), -19.6336, -43.9686, Belo Horizonte, 3400
 (POA), -29.9939, -51.1711, Porto Alegre, 2895
 (REC), -8.1323, -34.9223, Recife, 3050
 (SSA), -12.9109, -38.3312, Salvador, 3000
 (FOR), -3.7763, -38.5323, Fortaleza, 3250
-(CWB), -25.5285, -49.1768, São José dos Pinhais, 2400
+(CWB), -25.5285, -49.1768, Sao Jose dos Pinhais, 2400
 (MAO), -3.0412, -60.0497, Manaus, 3240
-(BEL), -1.3824, -48.4762, Belém, 2900
-(FLN), -27.6705, -48.5477, Florianópolis, 2400
+(BEL), -1.3824, -48.4762, Belem, 2900
+(FLN), -27.6705, -48.5477, Florianopolis, 2400
 (BPS), -16.4386, -39.0809, Porto Seguro, 2100
-(NAT), -5.9081, -35.2477, São Gonçalo do Amarante, 3020
+(NAT), -5.9081, -35.2477, Sao Gonçalo do Amarante, 3020
 (CGB), -15.6529, -56.1167, Várzea Grande, 2340
 (GYN), -16.6299, -49.2237, Goiânia, 3500
 (IGU), -25.6002, -54.4851, Foz do Iguaçu, 2340
@@ -52,7 +52,7 @@ Boeing 757, Boeing, (BPS), 11.49, 0.000001591274, 38.05, 115.68, 190
 -
 Airbus A380, Airbus, (VCP), 85.47, 0.000005444076, 79.75, 1235.000, carga
 -
-João da Silva, (11) 98765-4321, joao.silva@email.com, 80396719570, 15/03/1985
+Joao da Silva, (11) 98765-4321, joao.silva@email.com, 80396719570, 15/03/1985
 Maria Santos, (21) 99999-8888, maria.santos@email.com, 46509122294, 02/07/1990
 Pedro Oliveira, (31) 12345-6789, pedro.oliveira@email.com, 61430678135, 10/11/1988
 Ana Costa, (47) 55555-4444, ana.costa@email.com, 67467070675, 25/09/1995
@@ -60,7 +60,7 @@ Carlos Souza, (85) 77777-6666, carlos.souza@email.com, 06520280470, 12/06/1982
 Luiza Almeida, (19) 22222-3333, luiza.almeida@email.com, 36813321501, 05/12/1992
 Gabriel Pereira, (51) 66666-7777, gabriel.pereira@email.com, 94414192498, 17/08/1998
 Juliana Rocha, (12) 33333-2222, juliana.rocha@email.com, 08897660533, 30/04/1987
-André Santos, (92) 88888-9999, andre.santos@email.com, 23815391903, 22/01/1991
+Andre Santos, (92) 88888-9999, andre.santos@email.com, 23815391903, 22/01/1991
 Camila Costa, (81) 77777-8888, camila.costa@email.com, 89061160804, 07/07/1989
 Rafael Oliveira, (14) 44444-5555, rafael.oliveira@email.com, 92941054740, 18/09/1997
 Fernanda Silva, (32) 66666-5555, fernanda.silva@email.com, 54545809880, 14/02/1986
