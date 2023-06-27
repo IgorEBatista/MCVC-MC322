@@ -57,7 +57,7 @@ public class Aeroporto implements Serializable {
         Retorna o voo se ele estiver na lista.
         Caso contrário, retorna null. */
         for (Voo v: listaVoos) 
-            if (v.getCodigo() == codigo)
+            if (v.getCODIGO() == codigo)
                 return v;
         return null;
     }

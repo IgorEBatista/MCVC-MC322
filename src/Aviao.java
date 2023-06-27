@@ -3,27 +3,27 @@ import java.io.Serializable;
 abstract class Aviao implements Serializable{
 
     private static int registros = 1_000_000;
-    private final int serie;
+    private final int SERIE;
     private String modelo;
     private String marca;
     private Aeroporto local;
     private double combustivelAtual;
-    private final double combustivelMax;
+    private final double combustivelMAX;
     private double consumoCombustivel;
     private double envergadura;
     private double pesoAtual;
-    private final double pesoMax;
+    private final double pesoMAX;
 
-    public Aviao(String modelo, String marca, Aeroporto local, double combustivelMax,
-            double consumoCombustivel, double envergadura, double pesoMax) {
-        this.serie = gerarSerie();
+    public Aviao(String modelo, String marca, Aeroporto local, double combustivelMAX,
+            double consumoCombustivel, double envergadura, double pesoMAX) {
+        this.SERIE = gerarSERIE();
         this.modelo = modelo;
         this.marca = marca;
         this.local = local;
-        this.combustivelMax = combustivelMax;
+        this.combustivelMAX = combustivelMAX;
         this.consumoCombustivel = consumoCombustivel;
         this.envergadura = envergadura;
-        this.pesoMax = pesoMax;
+        this.pesoMAX = pesoMAX;
     }
 
     public double calculaAlcance(){
@@ -42,8 +42,8 @@ abstract class Aviao implements Serializable{
         return true;
     }
     //Gets e Sets
-    public int getSerie() {
-        return serie;
+    public int getSERIE() {
+        return SERIE;
     }
 
     public String getModelo() {
@@ -70,8 +70,8 @@ abstract class Aviao implements Serializable{
         this.local = local;
     }
 
-    public double getCapacidade() {
-        return combustivelMax;
+    public double getCombustivelMAX() {
+        return combustivelMAX;
     }
 
     public double getCombustivelAtual() {
@@ -98,7 +98,7 @@ abstract class Aviao implements Serializable{
         this.envergadura = envergadura;
     }
     
-    public int gerarSerie() {
+    public int gerarSERIE() {
         /* Gera um número a partir do atributo de classe 'registros'.
         o ID gerado tem, pelo menos, 7 dígitos. */
         registros++;
@@ -113,15 +113,15 @@ abstract class Aviao implements Serializable{
         this.pesoAtual = pesoAtual;
     }
 
-    public double getPesoMax() {
-        return pesoMax;
+    public double getPesoMAX() {
+        return pesoMAX;
     }
 
 
     public String toString(){
-        return "Número de série: " + this.serie + "\nModelo: " + this.modelo + "\nLocal atual: " + this.local + 
-        "\nCapacidade: " + this.combustivelMax + "\nNível de combustível atual: " + this.combustivelAtual + 
+        return "Número de série: " + this.SERIE + "\nModelo: " + this.modelo + "\nLocal atual: " + this.local + 
+        "\nCapacidade: " + this.combustivelMAX + "\nNível de combustível atual: " + this.combustivelAtual + 
         "\nConsumo de combustível(l/km): " + this.consumoCombustivel + "\nEnvergadura(m): " + this.envergadura + 
-        "\nPeso atual: " + this.pesoAtual;
+        "\nPeso máximo: " + this.pesoMAX + "\nPeso atual: " + this.pesoAtual;
     }
 }

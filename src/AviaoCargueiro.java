@@ -14,7 +14,7 @@ public class AviaoCargueiro extends Aviao{
         for(Carga carga_iterada : voo.getListaCargas()){
             peso_entrando += (carga_iterada.getPeso());
         }
-        if (peso_entrando <= getPesoMax()){
+        if (peso_entrando <= getPesoMAX()){
             setPesoAtual(peso_entrando); 
             return true;
         }

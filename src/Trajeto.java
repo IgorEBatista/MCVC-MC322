@@ -10,7 +10,7 @@ public class Trajeto implements Comparable<Trajeto>, Serializable {
     // Construtor
     public Trajeto(ArrayList<Aeroporto> rota) {
         this.rota = rota;
-        this.distanciaTotal = calculaDistanciaTotal();
+        this.distanciaTotal = calcularDistanciaTotal();
     }
 
     // Métodos
@@ -34,19 +34,18 @@ public class Trajeto implements Comparable<Trajeto>, Serializable {
 
     // - Funções da classe Trajeto
 
-    public boolean adicionarRota(Aeroporto aeroporto) {
-        /* Adiciona uma conexão à rota. */
+    public boolean adicionarAeroporto(Aeroporto aeroporto) {
+        /* Adiciona um aeroporto à rota. */
         rota.add(aeroporto);
-        atualizaDistancia();
+        atualizarDistancia();
         return true;
     }
 
-    public boolean removerRota(Aeroporto aeroporto) {
-        /* Remove uma conexão da rota.
-        Se  */
+    public boolean removerAeroporto(Aeroporto aeroporto) {
+        /* Remove um aeroporto da rota. */
         if (rota.contains(aeroporto)) {
             rota.remove(aeroporto);
-            atualizaDistancia();
+            atualizarDistancia();
             return true;
         }
         return false;
@@ -67,23 +66,23 @@ public class Trajeto implements Comparable<Trajeto>, Serializable {
         /* Retorna uma string com a rota do trajeto. */
         String lista = "";
         for (int i = 0; i < rota.size() - 1; i++){
-            lista += (rota.get(i).getNome()) + " -> ";
+            lista += (rota.get(i).getCidade()) + " " + (rota.get(i).getNome()) + " -> ";
         }
-        lista += (rota.get(rota.size() - 1).getNome()) + "\n";
+        lista += (rota.get(rota.size() - 1).getCidade()) + " " + (rota.get(rota.size() - 1).getNome()) + "\n";
         lista += "Distancia: " + Math.round(getDistanciaTotal())/1000 + " km\n";
         return lista;
     }
 
-    public double calculaDistanciaTotal() {
+    public double calcularDistanciaTotal() {
         double distanciaTot = 0.0;
         for (int i = 0; i < rota.size() - 1; i++){
-            distanciaTot += Coordenada.calculaDistancia(rota.get(i), rota.get(i + 1));
+            distanciaTot += Coordenada.calcularDistancia(rota.get(i), rota.get(i + 1));
         }
         return distanciaTot;
     }
 
-    public void atualizaDistancia() {
-        setDistanciaTotal(calculaDistanciaTotal());
+    public void atualizarDistancia() {
+        setDistanciaTotal(calcularDistanciaTotal());
     }
 
     public Aeroporto getInicio() {

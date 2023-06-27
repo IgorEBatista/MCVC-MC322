@@ -4,7 +4,7 @@ import java.util.ArrayList;
 public class Voo implements Serializable {
     // Atributos (Propriedades)
     private static int registros = 100_000;
-    private final int codigo;
+    private final int CODIGO;
     private Aviao aviao;
     private Aeroporto origem;
     private Aeroporto destino;
@@ -13,7 +13,7 @@ public class Voo implements Serializable {
 
     // Construtor
     public Voo(Aviao aviao, Aeroporto origem, Aeroporto destino) {
-        this.codigo = gerarCodigo();
+        this.CODIGO = gerarCODIGO();
         this.aviao = aviao;
         this.origem = origem;
         this.destino = destino;
@@ -22,8 +22,8 @@ public class Voo implements Serializable {
     }
 
     // - Getters e Setters
-    public int getCodigo() {
-        return codigo;
+    public int getCODIGO() {
+        return CODIGO;
     }
 
     public Aviao getAviao() {
@@ -68,7 +68,7 @@ public class Voo implements Serializable {
 
     // - Funções da classe Voo
 
-    public int gerarCodigo() {
+    public int gerarCODIGO() {
         /* Gera um número a partir do atributo de classe 'registros'.
         o código gerado tem, pelo menos, 6 dígitos. */
         registros++;
@@ -86,7 +86,7 @@ public class Voo implements Serializable {
         return faturamento;
     }
 
-    public Passageiro buscaPassageiro(String CPF) {
+    public Passageiro buscarPassageiro(String CPF) {
         //Encontra o passageiro dado o CPF, caso não haja, retorna null
         for (Passageiro a: listaPassageiros) 
             if (a.getCPF().equals(CPF))
@@ -94,11 +94,52 @@ public class Voo implements Serializable {
         return null;
     }
 
+    public Carga buscarCarga(int ID) {
+        //Encontra a carga dado o ID, caso não haja, retorna null
+        for (Carga c: listaCargas) 
+            if (c.getID() == ID)
+                return c;
+        return null;
+    }
+
+    public boolean adicionarPassageiro(Passageiro passageiro) {
+        if (!listaPassageiros.contains(passageiro)) {
+            listaPassageiros.add(passageiro);
+            return true;
+        }
+        return false;
+    }
+
+    public boolean adicionarCarga(Carga carga) {
+        if (!listaCargas.contains(carga)) {
+            listaCargas.add(carga);
+            return true;
+        }
+        return false;
+    }
+
+    public boolean removerPassageiro(Passageiro passageiro) {
+        if (listaPassageiros.contains(passageiro)) {
+            listaPassageiros.remove(passageiro);
+            return true;
+        }
+        return false;
+    }
+
+    public boolean removerCarga(Carga carga) {
+        if (!listaCargas.contains(carga)) {
+            listaCargas.add(carga);
+            return true;
+        }
+        return false;
+    }
+
+
     // Criar os métodos de listar coisas
     
     @Override
     public String toString() {
-        return "Código do vôo: " + this.codigo + "\n" +
+        return "Código do vôo: " + this.CODIGO + "\n" +
                "Origem: " + this.origem.getCidade() + " - " + this.origem.getNome() + "\n" +
                "Destino: " + this.destino.getCidade() + " - " + this.destino.getNome() + "\n";
     }
