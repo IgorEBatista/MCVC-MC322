@@ -64,7 +64,7 @@ public class Main {
         trajetos = companhia.calcularTrajetos(aeroporto1, aeroporto5);
 
         Passagem passagem1 = new Passagem(trajetos.get(0), data, clientePF);
-        clientePF.addPassagem(passagem1);
+        clientePF.adicionarPassagem(passagem1);
 
         Passageiro passageiro1 = new Passageiro("120.238.710-18", "Lucax", "12821818218", passagem1, 10);
 
@@ -72,7 +72,7 @@ public class Main {
         System.out.println(MenuAnalise.resumirInfos());
 
         Passagem passagem2 = new Passagem(trajetos.get(1), data, clientePJ);
-        clientePJ.addPassagem(passagem2);
+        clientePJ.adicionarPassagem(passagem2);
         Passageiro passageiro2 = new Passageiro("422.517.860-90", "pele", "312831231", passagem2, 10);
 
         System.out.println("\nPASSAGEIRO2:\n" + passageiro2);

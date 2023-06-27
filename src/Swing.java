@@ -305,6 +305,8 @@ class Swing implements ActionListener {
         texto2.setBounds(50,75, 250,30);
 		JLabel texto3 = new JLabel("Destino: ");  
         texto3.setBounds(50,150, 250,30);
+		JLabel texto4 = new JLabel("Cliente: ");  
+        texto4.setBounds(50,225, 250,30);
 
 		//setando a área de texto
 		final JTextArea lista_trajetos_area = new JTextArea();    
@@ -337,7 +339,6 @@ class Swing implements ActionListener {
 		destinos = Main.companhia.getNomeAeroportos().toArray(origens);
 		final JComboBox<String> destinos_cb = new JComboBox<>(destinos); 
 		destinos_cb.setBounds(50, 175,90,20);
-  
 
 		tela4.add(texto1);
 		tela4.add(texto2);
@@ -355,9 +356,15 @@ class Swing implements ActionListener {
 			Aeroporto origem = Main.companhia.getlistaAeroportos().get(origens_cb.getSelectedIndex());
 			Aeroporto dest = Main.companhia.getlistaAeroportos().get(destinos_cb.getSelectedIndex());
 			ArrayList<Trajeto> trajetos = Main.companhia.calcularTrajetos(origem, dest);
+			ArrayList<Double> precos = new ArrayList<Double>();
+			for (Trajeto tr : trajetos){
+				precos.add(new Passagem(tr, Validacao.formataData("10/10/2022"), null).calcularPreco());
+			}
+
 			String lista_trajetos_str = "";
-			for(Trajeto trajeto_iterado : trajetos){
-				lista_trajetos_str += trajeto_iterado.toString();
+			for (int i = 0; i < trajetos.size(); i++){
+				lista_trajetos_str += trajetos.get(i).toString();
+				lista_trajetos_str += "Preço: " + precos.get(i) + "\n";
 			}
 			lista_trajetos_area.setText(lista_trajetos_str);
 			}  
@@ -448,7 +455,7 @@ class Swing implements ActionListener {
 		
 		voltar.addActionListener(new ActionListener() {  
 			public void actionPerformed(ActionEvent e) {
-				tela5.setVisible(false); 
+				tela5.setVisible(false);
 			}  
 		});
 
