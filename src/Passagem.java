@@ -10,7 +10,7 @@ public class Passagem implements Serializable {
     private Calendar data;
     private Cliente comprador;
 
-    private final double CUSTO_KM = 0.3;
+    private final double CUSTO_KM = 0.45;
 
 
     // Construtor
