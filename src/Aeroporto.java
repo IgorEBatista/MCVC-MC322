@@ -62,6 +62,15 @@ public class Aeroporto implements Serializable {
         return null;
     }
 
+    public String listarVoos(){
+        String saida = "VOOS " + this.nome.toUpperCase() + ":\n";
+        for (Voo v: listaVoos){
+            saida += v;
+            saida += "---------------\n";
+        }
+        return saida;
+    }
+
     public ArrayList<Voo> getListaVoos() {
         return listaVoos;
     }
