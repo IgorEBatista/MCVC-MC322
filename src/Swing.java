@@ -12,6 +12,7 @@ class Swing implements ActionListener {
 	static JFrame tela6;
 	static JFrame tela7;
 	static JFrame tela8;
+	static JFrame tela9;
 	static JButton cadastrar;
 	static JButton remover;
 	static JButton listar;
@@ -55,7 +56,51 @@ class Swing implements ActionListener {
 	public static void main(String args[]){
 
 		Main.main(args);
+		//criando uma instancia da tela de login 
+        JFrame tela_login = new JFrame("MCVC - login");
 
+        //setando o JLabel que vai ter o "senha:"
+        final JLabel senha_label = new JLabel();            
+        senha_label.setBounds(20,150, 200,50); 
+        
+        //criando o espaço em que a senha será digitada
+        final JPasswordField senha_PasswordField = new JPasswordField();   
+        senha_PasswordField.setBounds(100,75,100,30);
+
+        JLabel usuario_JLabel = new JLabel("Username:");    
+        usuario_JLabel.setBounds(20,20, 80,30);    
+        JLabel senha_JLabel = new JLabel("Password:");    
+        senha_JLabel.setBounds(20,75, 80,30); 
+
+        JButton login = new JButton("Fazer login");  
+        login.setBounds(100,120, 150,30);
+
+        final JTextField usuario_Field = new JTextField();  
+        usuario_Field.setBounds(100,20, 100,30); 
+
+        tela_login.add(senha_PasswordField);
+		tela_login.add(usuario_Field);
+        tela_login.add(usuario_JLabel);
+        tela_login.add(senha_JLabel);
+        tela_login.add(login);  
+        tela_login.setSize(300,300);    
+        tela_login.setLayout(null);    
+        tela_login.setVisible(true);     
+        login.addActionListener(new ActionListener() {  
+			public void actionPerformed(ActionEvent e) {       
+				String usuario = usuario_Field.getText(); 
+				String senha = new String(senha_PasswordField.getPassword());
+				if(usuario.equals("mcvc") && senha.equals("senha")){
+					criar_tela1();	
+				} else {
+					JOptionPane.showMessageDialog(tela_login, "Login/senha inválidos","Atenção!", JOptionPane.WARNING_MESSAGE);
+				}
+			}  
+        });
+	}
+
+	public static void criar_tela1(){
+		
 		//criando a tela1 (Menu principal)
 		tela1 = new JFrame("MCVC - Menu");
 		tela1.setSize(625, 600);
@@ -81,7 +126,6 @@ class Swing implements ActionListener {
 		remover.setBounds(75,250,200,50);
 		simular_compra.setBounds(75,325,200,50);
 		sair.setBounds(75,400,200,50);
-		
 
 		//adicionando o texto e os botões na tela1
 		tela1.add(texto1);
@@ -105,7 +149,6 @@ class Swing implements ActionListener {
 		//display tela1
 		tela1.setVisible(true);
 	}
-
 
 	//função que cria a tela2
 	public static void criar_tela2(){
@@ -263,12 +306,27 @@ class Swing implements ActionListener {
 		JLabel texto3 = new JLabel("Destino: ");  
         texto3.setBounds(50,150, 250,30);
 
+		//setando a área de texto
 		final JTextArea lista_trajetos_area = new JTextArea();    
 		lista_trajetos_area.setEditable(false);      
 		lista_trajetos_area.setBounds(350, 75, 200, 425);
 
-		//TODO: adicionar a barra de rolagem (SrollPane)
-  
+		Swing obj = new Swing();
+
+		//setando os botoes
+		JButton calcular_trajetos = new JButton("Calcular trajetos");  
+		calcular_trajetos.setBounds(50,250,200,50);
+
+		voltar = new JButton("Voltar"); 
+		voltar.setBounds(50,350,200,50);
+
+		voltar.addActionListener(obj);
+
+		//setando a barra de rolagem (ScrollPane)
+  		JScrollPane scroll = new JScrollPane(lista_trajetos_area);
+		scroll.setBounds(350, 75, 200, 425); 
+		scroll.setPreferredSize(new Dimension(500, 500)); 
+
 		//Criando as ComboBoxes
 		String[] origens = new String[Main.companhia.getNomeAeroportos().size()];
 		origens = Main.companhia.getNomeAeroportos().toArray(origens);
@@ -279,20 +337,18 @@ class Swing implements ActionListener {
 		destinos = Main.companhia.getNomeAeroportos().toArray(origens);
 		final JComboBox<String> destinos_cb = new JComboBox<>(destinos); 
 		destinos_cb.setBounds(50, 175,90,20);
-
-		JButton calcular_trajetos = new JButton("Calcular trajetos");  
-		calcular_trajetos.setBounds(50,250,200,50);  
+  
 
 		tela4.add(texto1);
 		tela4.add(texto2);
 		tela4.add(texto3);
 		tela4.add(origens_cb); 
 		tela4.add(destinos_cb);
-		tela4.add(lista_trajetos_area); 
-		tela4.add(calcular_trajetos);    
+		tela4.add(calcular_trajetos); 
+		tela4.add(voltar);
+		tela4.getContentPane().add(scroll);   
 		tela4.setLayout(null);       
-		tela4.setVisible(true);       
-
+		tela4.setVisible(true);    
 
 		calcular_trajetos.addActionListener (new ActionListener() {  
 			public void actionPerformed(ActionEvent e) {
@@ -312,7 +368,6 @@ class Swing implements ActionListener {
 	}
 
 	public static void criar_tela5(){
-		//TODO: fazer o cadastro funcionar - validação (a tela de confirmação aparece mesmo quando não digitamos nada)
 
 		tela5 = new JFrame("MCVC - Cadastrar Aeroporto");
 		tela5.setSize(1000, 600);
@@ -349,7 +404,7 @@ class Swing implements ActionListener {
 		concluir_cadastro.setBounds(75,450,300,50);
 		voltar.setBounds(450,450,300,50);
 
-		//Add the button to frame 2
+		//adicionando os botoes na tela2
 		tela5.add(texto1);
 		tela5.add(concluir_cadastro);
 		tela5.add(nome_label);
@@ -396,6 +451,7 @@ class Swing implements ActionListener {
 				tela5.setVisible(false); 
 			}  
 		});
+
 
 		//Display tela2
 		tela5.setVisible(true);
@@ -508,51 +564,85 @@ class Swing implements ActionListener {
 		//Display tela7
 		tela7.setVisible(true);
 	}
-	public static void criar_tela8(){
-
+	public static void criar_tela8() {
 		tela8 = new JFrame("MCVC - Listar Aeroportos");
-		tela8.setSize(625, 600);
 		tela8.setLayout(null);
+		tela8.setSize(625, 650);
 		tela8.setBackground(Color.white);
-		tela8.getContentPane().setLayout(new FlowLayout());
-		JLabel texto1 = new JLabel("Lista de Aeroportos: ");  
-        texto1.setBounds(20,10, 250,30); 
-		tela8.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		tela8.getContentPane().setLayout(new FlowLayout());   
 
-		JTextArea resumo_resposta;
-		resumo_resposta = new JTextArea(75, 75);
+		JLabel texto1 = new JLabel("Lista de Aeroportos:");
+		texto1.setBounds(20, 10, 250, 30);
+
+		JTextArea resumo_resposta = new JTextArea(75, 75);
 		resumo_resposta.setText(MenuAnalise.listarAeroportos());
 		resumo_resposta.setEditable(false);
 
-		//criando a Scroll bar
-		// TODO : fazer a scrollbar funcionar pelo amor de Deus
-		JScrollPane scroll = new JScrollPane(resumo_resposta); 
-		scroll.setBounds(500,75, 50,400);  
+		//setando o scrollpane
+		JScrollPane scroll = new JScrollPane(resumo_resposta);
+		scroll.setBounds(20, 50, 580, 480); 
+		scroll.setPreferredSize(new Dimension(500, 500)); 
+
+		//setando o botão voltar
+		voltar = new JButton("Voltar");
+		voltar.setBounds(350, 540, 200, 50);
+
+		//adicionando os componentes na tela8
+		tela8.add(voltar);
 		tela8.getContentPane().add(scroll);
 
-		//criando os botoes
-		voltar = new JButton("Voltar"); 
-
-		voltar.setBounds(350,475,200,50);
-		// resumo_resposta.setBounds(75, 75, 475, 400);
-
-		scroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);  
-        scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-
-		//Add the button to frame 2
-		tela8.add(resumo_resposta);
-        tela8.getContentPane().add(scroll);  
-		tela8.add(voltar);
-
-		//criando um objeto
+		//associando o ActionListener com o scrollpane
 		Swing obj = new Swing();
-
-		//associando o ActionListener com os botões
 		voltar.addActionListener(obj);
-		
-		//Display tela8
+
+		//display tela8
 		tela8.setVisible(true);
+	}
+
+	public void criar_tela9(){
+
+		tela9 = new JFrame("MCVC - Remover Aeroporto");
+		tela9.setSize(625, 600);
+		tela9.setLayout(null);
+		tela9.setBackground(Color.white);
+
+		//setando os textos (JLabels)
+		JLabel texto1 = new JLabel("Selecione o aeroporto que deseja remover:");  
+        texto1.setBounds(20,10, 350,30); 
+
+		//setando os botoes
+		JButton remover = new JButton("Remover");  
+		remover.setBounds(50,250,200,50);
+
+		voltar = new JButton("Voltar"); 
+		voltar.setBounds(50,350,200,50);
+
+		Swing obj = new Swing();
+		voltar.addActionListener(obj);
+
+		//Criando as ComboBoxes
+		String[] aeroportos = new String[Main.companhia.getNomeAeroportos().size()];
+		aeroportos = Main.companhia.getNomeAeroportos().toArray(aeroportos);
+		final JComboBox<String> aeroportos_cb = new JComboBox<>(aeroportos);  
+		aeroportos_cb.setBounds(50, 100,90,20);		
+
+		tela9.add(texto1); 
+		tela9.add(aeroportos_cb);
+		tela9.add(remover); 
+		tela9.add(voltar); 
+		tela9.setLayout(null);       
+		tela9.setVisible(true);    
+
+		remover.addActionListener (new ActionListener() {  
+			public void actionPerformed(ActionEvent e) {
+				Aeroporto aeroporto = Main.companhia.getlistaAeroportos().get(aeroportos_cb.getSelectedIndex());
+				if(Main.companhia.removerAeroporto(aeroporto)){
+					JOptionPane.showMessageDialog(tela9, "Aeroporto removido com sucesso!");	
+				} 
+			}
+		});
+		
+		//Display tela9
+		tela9.setVisible(true);
 	}
 	
 	//função que vai fazer coisas quando os botões forem clicados
@@ -580,7 +670,10 @@ class Swing implements ActionListener {
 		}
 
 		if(button.equals("Voltar")){
-			if (tela8 != null && tela8.isVisible()){
+			if (tela9 != null && tela9.isVisible()){
+				tela9.dispose();
+			}
+			else if (tela8 != null && tela8.isVisible()){
 				tela8.dispose();
 			}
 			else if (tela7 != null && tela7.isVisible()){
@@ -602,17 +695,17 @@ class Swing implements ActionListener {
 				tela2.dispose();
 			}
 		}
-
+		
 		if(button.equals("Cadastrar Aeroporto")){
 			criar_tela5();
 		}
+
 		if(button.equals("Concluir cadastro - Aeroporto")){
 			JOptionPane.showMessageDialog(tela5, "Aeroporto cadastrado com sucesso!");
 		}
 
 		if(button.equals("Remover Aeroporto")){
-			// TODO: se der tempo: fazer uma página de remoção
-
+			criar_tela9();
 		}
 
 		if(button.equals("Listar Aeroportos")){
@@ -623,82 +716,7 @@ class Swing implements ActionListener {
         }); 
 		}
 		if(button.equals("Principais informações")){
-			//TODO: fazer o textArea com o return da resumirInfos
 			criar_tela7();
 		}
 	}
 }
-
-
-
-
-// import javax.swing.*;
-// import java.awt.event.*;  
-
-// public class Swing {  
-//     public static void main(String[] args) { 
-//         //criando uma instancia da frame que vai exibir os botões 
-//         JFrame frame = new JFrame("MCVC - login");
-
-//         //setando o JLabel que vai ter o "senha:"
-//         final JLabel label = new JLabel();            
-//         label.setBounds(20,150, 200,50); 
-        
-//         //criando o espaço em que a senha será digitada
-//         final JPasswordField senha_PasswordField = new JPasswordField();   
-//         senha_PasswordField.setBounds(100,75,100,30);
-
-//         JLabel usuario_JLabel = new JLabel("Username:");    
-//         usuario_JLabel.setBounds(20,20, 80,30);    
-//         JLabel senha_JLabel = new JLabel("Password:");    
-//         senha_JLabel.setBounds(20,75, 80,30); 
-
-//         JButton login = new JButton("Fazer login");  
-//         login.setBounds(100,120, 80,30);
-
-//         final JTextField usuario_Field = new JTextField();  
-//         usuario_Field.setBounds(100,20, 100,30); 
-
-//         frame.add(senha_PasswordField);
-//         frame.add(usuario_Field);
-//         frame.add(label);
-//         frame.add(senha_JLabel);
-//         frame.add(login);
-//         frame.add(usuario_Field);  
-//         frame.setSize(300,300);    
-//         frame.setLayout(null);    
-//         frame.setVisible(true);     
-//         login.addActionListener(new ActionListener() {  
-//         public void actionPerformed(ActionEvent e) {       
-//             String data = "Username " + usuario_Field.getText();  
-//             data += ", Password: "   
-//             + new String(senha_PasswordField.getPassword());   
-//             label.setText(data);          
-//         }  
-//         });   
-
-        // //Criando os botões                
-        // JButton cadastrar = new JButton("Cadastrar");
-        // // Fazer uma lista de botoes com todas as cidades pra pessoa clicar em qual ela quer remover
-        // JButton remover = new JButton("Remover");
-        // JButton simular_compra = new JButton("Simular compra");
-        // JButton sair = new JButton("Sair");
-
-        // //Setando os tamanhos dos botões
-        // cadastrar.setBounds(100,100,170, 40);
-        // remover.setBounds(100,170,170, 40); 
-        // simular_compra.setBounds(100,240,170, 40);
-        // sair.setBounds(100, 310, 170, 40); 
-
-        // //Adicionando o botão na frame (JFrame)
-        // frame.add(cadastrar);
-        // frame.add(remover);
-        // frame.add(sair);
-        // frame.add(simular_compra);
-        
-        // //Setando as características da frame     
-        // frame.setSize(400,500);  
-        // frame.setLayout(null);//using no layout managers  
-        // frame.setVisible(true);//making the frame visible  
-//     }  
-// }  
