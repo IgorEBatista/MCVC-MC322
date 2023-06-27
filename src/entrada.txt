@@ -13,10 +13,10 @@
 (BEL), -1.3824, -48.4762, Belem, 2900
 (FLN), -27.6705, -48.5477, Florianopolis, 2400
 (BPS), -16.4386, -39.0809, Porto Seguro, 2100
-(NAT), -5.9081, -35.2477, Sao Gonçalo do Amarante, 3020
-(CGB), -15.6529, -56.1167, Várzea Grande, 2340
-(GYN), -16.6299, -49.2237, Goiânia, 3500
-(IGU), -25.6002, -54.4851, Foz do Iguaçu, 2340
+(NAT), -5.9081, -35.2477, Sao Goncalo do Amarante, 3020
+(CGB), -15.6529, -56.1167, Varzea Grande, 2340
+(GYN), -16.6299, -49.2237, Goiania, 3500
+(IGU), -25.6002, -54.4851, Foz do Iguacu, 2340
 (JPA), -7.1451, -34.9487, Bayeux, 2480
 -
 Boeing 737, Boeing, (GRU), 2.40, 0.000000432432, 35.79, 82.19, 230
