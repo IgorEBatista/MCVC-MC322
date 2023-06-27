@@ -13,7 +13,7 @@ public class Voo implements Serializable {
 
     // Construtor
     public Voo(Aviao aviao, Aeroporto origem, Aeroporto destino) {
-        this.CODIGO = gerarCodigo();
+        this.CODIGO = gerarCODIGO();
         this.aviao = aviao;
         this.origem = origem;
         this.destino = destino;
@@ -68,7 +68,7 @@ public class Voo implements Serializable {
 
     // - Funções da classe Voo
 
-    public int gerarCodigo() {
+    public int gerarCODIGO() {
         /* Gera um número a partir do atributo de classe 'registros'.
         o código gerado tem, pelo menos, 6 dígitos. */
         registros++;
