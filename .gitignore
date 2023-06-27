@@ -1,5 +1,1 @@
 
-#Até a finalização do projeto, ignora arquivos de código compilado, para evitar conflitos desnecessários.
-
-*.class
-*.json
