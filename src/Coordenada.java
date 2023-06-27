@@ -26,7 +26,7 @@ public class Coordenada implements Serializable {
         this.longitude = longitude;
     }
 
-    public static double calculaDistancia(Coordenada coordenada1, Coordenada coordenada2){
+    public static double calcularDistancia(Coordenada coordenada1, Coordenada coordenada2){
         double grau = 111319.5; // 1 grau equivale a aproximadamente essa distância no equador, tanto em termos de latitude quanto longitude.
         double dif_lat = Math.abs(coordenada1.getLatitude() - coordenada2.getLatitude());
         double med_lat = Math.abs(coordenada1.getLatitude() + coordenada2.getLatitude())/2;
@@ -39,8 +39,8 @@ public class Coordenada implements Serializable {
         return Math.sqrt(Math.pow(dist_lat, 2) + Math.pow(dist_long, 2));
     }
 
-    public static double calculaDistancia(Aeroporto aeroporto1, Aeroporto aeroporto2){
-        return calculaDistancia(aeroporto1.getCoordenada(), aeroporto2.getCoordenada());
+    public static double calcularDistancia(Aeroporto aeroporto1, Aeroporto aeroporto2){
+        return calcularDistancia(aeroporto1.getCoordenada(), aeroporto2.getCoordenada());
     }
 
     public String toString() {

@@ -59,21 +59,21 @@ public abstract class Cliente implements Serializable {
         return null;
     }
 
-    public boolean addPassagem(Passagem passagem) {
+    public boolean adicionarPassagem(Passagem passagem) {
         historicoDeCompras.add(passagem);
         return true;
     }
     
-    public boolean remPassagem(Passagem passagem){
+    public boolean removerPassagem(Passagem passagem){
         return this.historicoDeCompras.remove(passagem);
     }
     
-    public boolean remPassagem(String ID){
-        return remPassagem(buscaPassagem(ID));        
+    public boolean removerPassagem(String ID){
+        return removerPassagem(buscaPassagem(ID));        
     }
 
-    public boolean remPassagem(int ID){
-        return remPassagem(buscaPassagem(String.valueOf(ID)));        
+    public boolean removerPassagem(int ID){
+        return removerPassagem(buscaPassagem(String.valueOf(ID)));        
 
     }
 

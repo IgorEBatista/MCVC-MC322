@@ -12,7 +12,7 @@ public class AviaoComercial extends Aviao {
     public boolean carregar(Voo voo){
         double peso_entrando = 0;
         for(Passageiro passageiro_iterado : voo.getListaPassageiros()){
-            peso_entrando  += (passageiro_iterado.getPesoBagagem() + Passageiro.pesoMedio);
+            peso_entrando  += (passageiro_iterado.getPesoBagagem() + Passageiro.pesoMEDIO);
 
         }
         if (peso_entrando <= (getPesoMAX())){

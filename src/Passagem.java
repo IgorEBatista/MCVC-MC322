@@ -10,7 +10,7 @@ public class Passagem implements Serializable {
     private Calendar data;
     private Cliente comprador;
 
-    private final double CUSTOKM = 0.3;
+    private final double CUSTO_KM = 0.3;
 
 
     // Construtor
@@ -86,7 +86,7 @@ public class Passagem implements Serializable {
 
         double fatDist, fatEscal, fatDia = 1, preco = 0;
         int semana = data.get(Calendar.DAY_OF_WEEK);
-        fatDist = CUSTOKM * trajeto.getDistanciaTotal()/1000;
+        fatDist = CUSTO_KM * trajeto.getDistanciaTotal()/1000;
         fatEscal = 2.0 / (1 + trajeto.getRota().size());
         
         if ((semana % 6) < 3) {
