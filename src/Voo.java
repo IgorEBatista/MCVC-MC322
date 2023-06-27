@@ -86,13 +86,54 @@ public class Voo implements Serializable {
         return faturamento;
     }
 
-    public Passageiro buscaPassageiro(String CPF) {
+    public Passageiro buscarPassageiro(String CPF) {
         //Encontra o passageiro dado o CPF, caso não haja, retorna null
         for (Passageiro a: listaPassageiros) 
             if (a.getCPF().equals(CPF))
                 return a;
         return null;
     }
+
+    public Carga buscarCarga(int ID) {
+        //Encontra a carga dado o ID, caso não haja, retorna null
+        for (Carga c: listaCargas) 
+            if (c.getID() == ID)
+                return c;
+        return null;
+    }
+
+    public boolean adicionarPassageiro(Passageiro passageiro) {
+        if (!listaPassageiros.contains(passageiro)) {
+            listaPassageiros.add(passageiro);
+            return true;
+        }
+        return false;
+    }
+
+    public boolean adicionarCarga(Carga carga) {
+        if (!listaCargas.contains(carga)) {
+            listaCargas.add(carga);
+            return true;
+        }
+        return false;
+    }
+
+    public boolean removerPassageiro(Passageiro passageiro) {
+        if (listaPassageiros.contains(passageiro)) {
+            listaPassageiros.remove(passageiro);
+            return true;
+        }
+        return false;
+    }
+
+    public boolean removerCarga(Carga carga) {
+        if (!listaCargas.contains(carga)) {
+            listaCargas.add(carga);
+            return true;
+        }
+        return false;
+    }
+
 
     // Criar os métodos de listar coisas
     
