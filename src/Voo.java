@@ -4,7 +4,7 @@ import java.util.ArrayList;
 public class Voo implements Serializable {
     // Atributos (Propriedades)
     private static int registros = 100_000;
-    private final int codigo;
+    private final int CODIGO;
     private Aviao aviao;
     private Aeroporto origem;
     private Aeroporto destino;
@@ -13,7 +13,7 @@ public class Voo implements Serializable {
 
     // Construtor
     public Voo(Aviao aviao, Aeroporto origem, Aeroporto destino) {
-        this.codigo = gerarCodigo();
+        this.CODIGO = gerarCodigo();
         this.aviao = aviao;
         this.origem = origem;
         this.destino = destino;
@@ -22,8 +22,8 @@ public class Voo implements Serializable {
     }
 
     // - Getters e Setters
-    public int getCodigo() {
-        return codigo;
+    public int getCODIGO() {
+        return CODIGO;
     }
 
     public Aviao getAviao() {
@@ -98,7 +98,7 @@ public class Voo implements Serializable {
     
     @Override
     public String toString() {
-        return "Código do vôo: " + this.codigo + "\n" +
+        return "Código do vôo: " + this.CODIGO + "\n" +
                "Origem: " + this.origem.getCidade() + " - " + this.origem.getNome() + "\n" +
                "Destino: " + this.destino.getCidade() + " - " + this.destino.getNome() + "\n";
     }
