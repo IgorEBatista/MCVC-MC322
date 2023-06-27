@@ -65,7 +65,8 @@ public class Passageiro implements Serializable {
             "\nNome: " + nome + 
             "\nTelefone de Emergência: " + telefoneEmergencia +
             "\nID da Passagem: " + passagem.getID() +
+            "\nValor da Passagem: " + passagem.getPreco() +
             "\nOrigem e Destino: " + passagem.getTrajeto().vizualizarTrajeto() +
-            "\nPeso da Bagagem=" + pesoBagagem;
+            "Peso da Bagagem: " + pesoBagagem + "\n";
     }
 }
